@@ -2,8 +2,11 @@ package smartclass.com.smartclass;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,8 +15,9 @@ import java.util.List;
 public class CourseListActivity extends Activity implements CourseContract.View {
 
     private CourseListAdapter mListAdapter;
-    private List<Course> mCourseList;
+    private List<Course> mCourseList = new ArrayList<Course>();
     private RecyclerView mRecyclerView;
+    private CourseListPresenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,11 +26,11 @@ public class CourseListActivity extends Activity implements CourseContract.View 
 
         mRecyclerView = (RecyclerView) findViewById(R.id.course_list_view);
 
-        Course course1 = new Course("ECE 105", "Andrew Kennings", 25);
-        Course course2 = new Course("ECE 105", "Andrew Kennings", 25);
-        Course course3 = new Course("ECE 105", "Andrew Kennings", 25);
-        Course course4 = new Course("ECE 105", "Andrew Kennings", 25);
-        Course course5 = new Course("ECE 105", "Andrew Kennings", 25);
+        Course course1 = new Course("ECE 105", "James Smith", 25);
+        Course course2 = new Course("ECE 116", "James Kennings", 25);
+        Course course3 = new Course("ECE 125", "Arthur Kennings", 25);
+        Course course4 = new Course("ECE 135", "Tim Smith", 25);
+        Course course5 = new Course("ECE 149", "Able John", 25);
 
         mCourseList.add(course1);
         mCourseList.add(course2);
@@ -34,13 +38,13 @@ public class CourseListActivity extends Activity implements CourseContract.View 
         mCourseList.add(course4);
         mCourseList.add(course5);
 
-
-        mListAdapter = new CourseListAdapter(mCourseList, this);
+        mPresenter = new CourseListPresenter(this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        mListAdapter = new CourseListAdapter(mCourseList, mPresenter);
+        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setAdapter(mListAdapter);
-
     }
-
-
 
     @Override
     public void showCourse() {

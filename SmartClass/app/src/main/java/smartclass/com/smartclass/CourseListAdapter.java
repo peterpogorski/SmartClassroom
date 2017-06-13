@@ -1,6 +1,7 @@
 package smartclass.com.smartclass;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +17,10 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
 
     private List<Course> courseList;
     private CourseContract.View mCourseView;
+    private CourseContract.Presenter mPresenter;
 
-    public CourseListAdapter(List<Course> courseList, CourseContract.View courseView) {
+    public CourseListAdapter(List<Course> courseList, CourseContract.Presenter mPresenter) {
         this.courseList = courseList;
-        mCourseView = courseView;
     }
 
     @Override
@@ -35,9 +36,15 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
 
     @Override
     public void onBindViewHolder(CourseViewHolder holder, int position) {
-        Course course = courseList.get(position);
+        final Course course = courseList.get(position);
         holder.courseTitle.setText(course.getClassName());
         holder.professorName.setText(course.getTeacherName());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPresenter.onCourseSelected(course);
+            }
+        });
     }
 
     @Override
@@ -48,10 +55,11 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
     public class CourseViewHolder extends RecyclerView.ViewHolder{
         public TextView courseTitle;
         public TextView professorName;
-
+        public View itemView;
 
         public CourseViewHolder(View view) {
             super(view);
+            itemView = view;
             courseTitle = (TextView) view.findViewById(R.id.course_title);
             professorName = (TextView) view.findViewById(R.id.professor_name);
         }

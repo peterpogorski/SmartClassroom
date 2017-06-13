@@ -1,6 +1,7 @@
 package smartclass.com.smartclass;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,8 +24,6 @@ public class LoginActivity extends Activity implements LoginContract.View {
         setContentView(R.layout.login_screen);
         CallbackManager callbackManger = CallbackManager.Factory.create();
 
-
-        mProfile.getId();
         mLoginButton = (LoginButton) findViewById(R.id.login_button);
         mLoginButton.setReadPermissions("email");
         mLoginButton.registerCallback(callbackManger, new FacebookCallback<LoginResult>() {
@@ -43,6 +42,9 @@ public class LoginActivity extends Activity implements LoginContract.View {
 
             }
         });
+
+        Intent intent = new Intent(this, CourseListActivity.class);
+        startActivity(intent);
     }
 
 
