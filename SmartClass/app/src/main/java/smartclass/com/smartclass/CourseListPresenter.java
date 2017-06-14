@@ -4,11 +4,11 @@ package smartclass.com.smartclass;
  * Created by peterpogorski on 2017-06-12.
  */
 
-public class CourseListPresenter implements CourseContract.Presenter {
+public class CourseListPresenter implements CourseListContract.Presenter {
 
-    private CourseContract.View mCourseView;
+    private CourseListContract.View mCourseView;
 
-    public CourseListPresenter(CourseContract.View courseView) {
+    public CourseListPresenter(CourseListContract.View courseView) {
         mCourseView = courseView;
     }
 

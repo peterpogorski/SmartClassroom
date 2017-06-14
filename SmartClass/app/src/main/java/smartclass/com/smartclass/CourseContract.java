@@ -1,16 +1,25 @@
 package smartclass.com.smartclass;
 
 /**
- * Created by peterpogorski on 2017-06-12.
+ * Created by peterpogorski on 2017-06-13.
  */
 
 public class CourseContract {
 
     interface Presenter {
-        void onCourseSelected(Course course);
+        void onCreate();
+        void onProgressTabSelected();
+        void onQuizTabSelected();
+        void onAttendanceTabSelected();
     }
 
     interface View {
-        void showCourse();
+        void disableProgressTab();
+        void enableProgressTab();
+        void disableQuizTab();
+        void enableQuizTab();
+        void diableAttendanceTab();
+        void enableAttendaceTab();
     }
+
 }

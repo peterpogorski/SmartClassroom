@@ -1,7 +1,6 @@
 package smartclass.com.smartclass;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,11 +15,12 @@ import java.util.List;
 public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.CourseViewHolder> {
 
     private List<Course> courseList;
-    private CourseContract.View mCourseView;
-    private CourseContract.Presenter mPresenter;
+    private CourseListContract.View mCourseView;
+    private CourseListContract.Presenter mPresenter;
 
-    public CourseListAdapter(List<Course> courseList, CourseContract.Presenter mPresenter) {
+    public CourseListAdapter(List<Course> courseList, CourseListContract.Presenter presenter) {
         this.courseList = courseList;
+        mPresenter = presenter;
     }
 
     @Override

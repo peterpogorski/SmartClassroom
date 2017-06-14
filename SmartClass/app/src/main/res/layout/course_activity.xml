@@ -4,18 +4,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginBottom="4dp"
         android:background="@color/grey"/>
 
     <LinearLayout
         android:layout_gravity="bottom"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="60dp">
+        android:layout_height="64dp">
 
         <LinearLayout
+            android:id="@+id/progress"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -35,9 +43,16 @@
                 android:layout_gravity="center_horizontal"
                 android:text="Progress"/>
 
+            <View
+                android:layout_gravity="bottom"
+                android:id="@+id/progress_active"
+                android:layout_width="match_parent"
+                android:layout_height="4dp"/>
+
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/quiz"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -57,9 +72,15 @@
                 android:layout_gravity="center_horizontal"
                 android:text="Quiz"/>
 
+            <View
+                android:id="@+id/quiz_active"
+                android:layout_width="match_parent"
+                android:layout_height="4dp"/>
+
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/attendance"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -70,7 +91,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/quiz_icon"/>
+                android:src="@drawable/attendance"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -78,6 +99,11 @@
                 android:layout_marginTop="5dp"
                 android:layout_gravity="center_horizontal"
                 android:text="Attendance"/>
+
+            <View
+                android:id="@+id/attendance_active"
+                android:layout_width="match_parent"
+                android:layout_height="4dp"/>
 
         </LinearLayout>
 

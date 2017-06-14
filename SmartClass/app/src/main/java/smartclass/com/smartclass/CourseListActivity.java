@@ -1,6 +1,7 @@
 package smartclass.com.smartclass;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,7 +13,7 @@ import java.util.List;
 /**
  * Created by peterpogorski on 2017-06-12.
  */
-public class CourseListActivity extends Activity implements CourseContract.View {
+public class CourseListActivity extends Activity implements CourseListContract.View {
 
     private CourseListAdapter mListAdapter;
     private List<Course> mCourseList = new ArrayList<Course>();
@@ -48,6 +49,7 @@ public class CourseListActivity extends Activity implements CourseContract.View 
 
     @Override
     public void showCourse() {
-
+        Intent intent = new Intent(this, CourseActivity.class);
+        startActivity(intent);
     }
 }
