@@ -48,8 +48,9 @@ public class CourseListActivity extends Activity implements CourseListContract.V
     }
 
     @Override
-    public void showCourse() {
+    public void showCourse(String courseName) {
         Intent intent = new Intent(this, CourseActivity.class);
+        intent.putExtra(CourseActivity.COURSE_NAME, courseName);
         startActivity(intent);
     }
 }

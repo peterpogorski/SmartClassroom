@@ -11,6 +11,6 @@ public class CourseListContract {
     }
 
     interface View {
-        void showCourse();
+        void showCourse(String courseName);
     }
 }

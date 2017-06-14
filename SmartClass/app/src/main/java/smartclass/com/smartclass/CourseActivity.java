@@ -6,12 +6,15 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 /**
  * Created by peterpogorski on 2017-06-12.
  */
 
 public class CourseActivity extends FragmentActivity implements CourseContract.View {
+
+    public final static String COURSE_NAME = "courseName";
 
     private CoursePresenter mPresenter;
 
@@ -23,6 +26,8 @@ public class CourseActivity extends FragmentActivity implements CourseContract.V
     private View mQuizActive;
     private View mAttendanceActive;
 
+    private TextView mCourseTitle;
+
     private ProgressFragment mProgressFragment;
     private AttendanceFragment mAttendanceFragment;
     private QuizFragment mQuizFragment;
@@ -31,6 +36,8 @@ public class CourseActivity extends FragmentActivity implements CourseContract.V
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.course_activity);
+
+        String courseName = getIntent().getStringExtra(COURSE_NAME);
 
         mPresenter = new CoursePresenter(this);
 
@@ -41,6 +48,9 @@ public class CourseActivity extends FragmentActivity implements CourseContract.V
         mProgressActive = findViewById(R.id.progress_active);
         mQuizActive = findViewById(R.id.quiz_active);
         mAttendanceActive = findViewById(R.id.attendance_active);
+
+        mCourseTitle = (TextView) findViewById(R.id.course_title);
+        mCourseTitle.setText(courseName);
 
         mProgressButton.setOnClickListener(mOnProgressClickListener);
         mAttendanceButton.setOnClickListener(mOnAttendanceClickListener);
