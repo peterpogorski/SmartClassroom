@@ -1,6 +1,7 @@
 package smartclass.com.smartclass.Models;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * User Model.
@@ -10,31 +11,33 @@ import android.support.annotation.Nullable;
 
 public class User {
 
-    // TODO: Update with other necessary properties
-
+    private boolean teacherMode;
+    private Facebook facebook;
     private String firstName;
     private String lastName;
-    private boolean teacherMode;
-    private String profilePictureUrl;
+    private String displayName;
+    private Date birthday;
+    private ArrayList<Classroom> classrooms;
 
-    /**
-     * Constructor
-     */
-    public User(@NonNull String firstName, @NonNull String lastName,
-                boolean teacherMode, @Nullable String profilePictureUrl) {
+    public User(Facebook facebook, String firstName, String lastName, String displayName,
+                   Date birthday, ArrayList<Classroom> classrooms, boolean teacherMode) {
+        this.facebook = facebook;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.displayName = displayName;
+        this.birthday = birthday;
+        this.classrooms = classrooms;
         this.teacherMode = teacherMode;
-        this.profilePictureUrl = profilePictureUrl;
     }
 
     /** Getter functions **/
 
-    public String getFirstName() { return firstName; }
-
-    public String getLastName() { return lastName; }
-
-    public boolean isTeacherModeEnabled() { return teacherMode; }
-
-    public String getProfilePictureUrl() { return profilePictureUrl; }
+    public Facebook getFacebook() { return this.facebook; }
+    public String getFirstName() { return this.firstName; }
+    public String getLastName() { return this.lastName; }
+    public String getDisplayName() { return this.displayName; }
+    public Date getBirthday() { return this.birthday; }
+    public ArrayList<Classroom> getClassrooms() { return this.classrooms; }
+    public boolean isTeacherMode() { return teacherMode; }
+    public int getClassroomsCount() { return this.classrooms.size(); }
 }

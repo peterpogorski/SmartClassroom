@@ -7,14 +7,7 @@ import java.util.Date;
  * Created by max on 2017-06-15.
  */
 
-public class Teacher {
-    private Facebook facebook;
-    private String firstName;
-    private String lastName;
-    private String displayName;
-    private Date birthday;
-    private ArrayList<Classroom> classrooms;
-
+public class Teacher extends User {
     /**
      * Constructor
      * @param facebook Facebook details
@@ -26,18 +19,6 @@ public class Teacher {
      */
     public Teacher(Facebook facebook, String firstName, String lastName, String displayName,
                    Date birthday, ArrayList<Classroom> classrooms) {
-        this.facebook = facebook;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.displayName = displayName;
-        this.birthday = birthday;
-        this.classrooms = classrooms;
+        super(facebook, firstName, lastName, displayName, birthday, classrooms, true);
     }
-
-    public Facebook getFacebook() { return this.facebook; }
-    public String getFirstName() { return this.firstName; }
-    public String getLastName() { return this.lastName; }
-    public String getDisplayName() { return this.displayName; }
-    public Date getBirthday() { return this.birthday; }
-    public ArrayList<Classroom> getClassrooms() {return this.classrooms; }
 }
