@@ -12,9 +12,9 @@ public class Classroom {
     private String courseCode;
     private int year;
     private String level;
-    private String teacher;
-    private ArrayList students;
-    private ArrayList quizHistory;
+    private Teacher teacher;
+    private ArrayList<Student> students;
+    private ArrayList<Quiz> quizHistory;
 
     /**
      * Constructor
@@ -23,12 +23,12 @@ public class Classroom {
      * @param courseCode Classroom Course code
      * @param year Year (eg: 4)
      * @param level Classroom Level (academic, gifted, special)
-     * @param teacher Classroom teacher (will contain an ID that can be expanded to the teacher model)
-     * @param students Array of students (Array of student IDs that can be expanded to the student model)
-     * @param quizHistory Array of quizzes (Array of quiz IDs that can be expanded to the quiz model)
+     * @param teacher Classroom teacher
+     * @param students Array of students
+     * @param quizHistory Array of quizzes
      */
     public Classroom(String title, String description, String courseCode, int year, String level,
-                     String teacher, ArrayList students, ArrayList quizHistory) {
+                     Teacher teacher, ArrayList<Student> students, ArrayList<Quiz> quizHistory) {
         this.title = title;
         this.description = description;
         this.courseCode = courseCode;
@@ -46,9 +46,9 @@ public class Classroom {
     public String getCourseCode() { return this.courseCode; }
     public int getYear() {return this.year; }
     public String getLevel(){ return this.level; }
-    public String getTeacher() { return this.teacher; }
-    public ArrayList getStudents() { return this.students; }
-    public ArrayList getQuizHistory() { return this.quizHistory; }
+    public Teacher getTeacher() { return this.teacher; }
+    public ArrayList<Student> getStudents() { return this.students; }
+    public ArrayList<Quiz> getQuizHistory() { return this.quizHistory; }
     public int getStudentsCount() { return this.students.size(); }
     public int getQuizHistoryCount() { return this.quizHistory.size(); }
 }
