@@ -71,6 +71,36 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/students"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/students_icon"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center_horizontal"
+                android:text="Students"/>
+
+            <View
+                android:layout_gravity="bottom"
+                android:id="@+id/students_active"
+                android:layout_width="match_parent"
+                android:layout_height="4dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/quiz"
             android:layout_weight="1"
             android:layout_width="0dp"
