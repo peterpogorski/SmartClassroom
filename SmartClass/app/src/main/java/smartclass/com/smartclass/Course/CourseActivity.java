@@ -26,6 +26,7 @@ public class CourseActivity extends FragmentActivity implements CourseContract.V
     private LinearLayout mProgressButton;
     private LinearLayout mQuizButton;
     private LinearLayout mAttendanceButton;
+    private LinearLayout mStudentsButton;
 
     private View mProgressActive;
     private View mQuizActive;
