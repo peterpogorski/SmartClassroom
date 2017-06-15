@@ -1,4 +1,4 @@
-package smartclass.com.smartclass.Login;
+package smartclass.com.smartclass.login;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,7 +11,7 @@ import com.facebook.Profile;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
-import smartclass.com.smartclass.CourseList.CourseListActivity;
+import smartclass.com.smartclass.courseList.CourseListActivity;
 import smartclass.com.smartclass.R;
 
 public class LoginActivity extends Activity implements LoginContract.View {

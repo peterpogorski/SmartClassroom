@@ -1,4 +1,4 @@
-package smartclass.com.smartclass.Course;
+package smartclass.com.smartclass.course;
 
 /**
  * Created by peterpogorski on 2017-06-13.

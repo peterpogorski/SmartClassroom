@@ -3,6 +3,7 @@ package smartclass.com.smartclass.Models;
 import java.util.ArrayList;
 import java.util.Date;
 
+
 /**
  * User Model.
  *

@@ -1,4 +1,4 @@
-package smartclass.com.smartclass.Course;
+package smartclass.com.smartclass.course;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -8,9 +8,9 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import smartclass.com.smartclass.Course.Fragments.AttendanceFragment;
-import smartclass.com.smartclass.Course.Fragments.ProgressFragment;
-import smartclass.com.smartclass.Course.Fragments.QuizFragment;
+import smartclass.com.smartclass.course.Fragments.AttendanceFragment;
+import smartclass.com.smartclass.course.Fragments.ProgressFragment;
+import smartclass.com.smartclass.course.Fragments.QuizFragment;
 import smartclass.com.smartclass.R;
 
 /**

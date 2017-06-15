@@ -1,4 +1,4 @@
-package smartclass.com.smartclass.Login;
+package smartclass.com.smartclass.login;
 
 /**
  * Created by peterpogorski on 2017-06-09.
