@@ -51,8 +51,13 @@ public class ClassroomActivity extends FragmentActivity implements ClassroomCont
         mPresenter = new ClassroomPresenter(this);
 
         mStudentsButton = (LinearLayout) findViewById(R.id.students);
+        mStudentsButton.setVisibility(View.VISIBLE);
         mQuizButton = (LinearLayout) findViewById(R.id.quiz);
         mAttendanceButton = (LinearLayout) findViewById(R.id.attendance);
+
+        // Hide the default first tab (progress tab)
+        LinearLayout mProgressButton = ((LinearLayout) findViewById(R.id.progress));
+        mProgressButton.setVisibility(View.GONE);
 
         mStudentsActive = findViewById(R.id.students_active);
         mQuizActive = findViewById(R.id.quiz_active);
@@ -61,9 +66,9 @@ public class ClassroomActivity extends FragmentActivity implements ClassroomCont
         mCourseTitle = (TextView) findViewById(R.id.course_title);
         mCourseTitle.setText(courseName);
 
+        mStudentsButton.setOnClickListener(mOnStudentsClickListener);
         mAttendanceButton.setOnClickListener(mOnAttendanceClickListener);
         mQuizButton.setOnClickListener(mOnQuizClickListener);
-        mStudentsButton.setOnClickListener(mOnStudentsClickListener);
 
         mPresenter.onCreate();
     }

@@ -6,8 +6,6 @@ package smartclass.com.smartclass.course;
 
 public class CoursePresenter implements CourseContract.Presenter {
 
-    private boolean teacherMode = false;
-
     private CourseContract.View mView;
 
     public CoursePresenter(CourseContract.View view) {
@@ -16,7 +14,7 @@ public class CoursePresenter implements CourseContract.Presenter {
 
     @Override
     public void onCreate() {
-        mView.initialDisplay(teacherMode);
+        mView.enableProgressTab();
     }
 
     @Override
@@ -29,29 +27,14 @@ public class CoursePresenter implements CourseContract.Presenter {
     @Override
     public void onQuizTabSelected() {
         mView.enableQuizTab();
+        mView.disableProgressTab();
         mView.disableAttendanceTab();
-        if (teacherMode) {
-            mView.disableStudentsTab();
-        } else {
-            mView.disableProgressTab();
-        }
     }
 
     @Override
     public void onAttendanceTabSelected() {
         mView.enableAttendanceTab();
-        mView.disableQuizTab();
-        if (teacherMode) {
-            mView.disableStudentsTab();
-        } else {
-            mView.disableProgressTab();
-        }
-    }
-
-    @Override
-    public void onStudentsTabSelected() {
-        mView.enableStudentsTab();
-        mView.disableAttendanceTab();
+        mView.disableProgressTab();
         mView.disableQuizTab();
     }
 }

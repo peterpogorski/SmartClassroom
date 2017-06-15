@@ -11,7 +11,6 @@ import android.widget.TextView;
 import smartclass.com.smartclass.course.fragments.AttendanceFragment;
 import smartclass.com.smartclass.course.fragments.ProgressFragment;
 import smartclass.com.smartclass.course.fragments.QuizFragment;
-import smartclass.com.smartclass.course.fragments.StudentsFragment;
 import smartclass.com.smartclass.R;
 
 /**
@@ -21,7 +20,7 @@ import smartclass.com.smartclass.R;
 public class CourseActivity extends FragmentActivity implements CourseContract.View {
 
     private enum CourseTabs {
-        PROGRESS, QUIZ, ATTENDANCE, STUDENTS
+        PROGRESS, QUIZ, ATTENDANCE
     }
 
     public final static String COURSE_NAME = "courseName";
@@ -31,19 +30,16 @@ public class CourseActivity extends FragmentActivity implements CourseContract.V
     private LinearLayout mProgressButton;
     private LinearLayout mQuizButton;
     private LinearLayout mAttendanceButton;
-    private LinearLayout mStudentsButton;
 
     private View mProgressActive;
     private View mQuizActive;
     private View mAttendanceActive;
-    private View mStudentsActive;
 
     private TextView mCourseTitle;
 
     private ProgressFragment mProgressFragment;
     private AttendanceFragment mAttendanceFragment;
     private QuizFragment mQuizFragment;
-    private StudentsFragment mStudentsFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,12 +53,10 @@ public class CourseActivity extends FragmentActivity implements CourseContract.V
         mProgressButton = (LinearLayout) findViewById(R.id.progress);
         mQuizButton = (LinearLayout) findViewById(R.id.quiz);
         mAttendanceButton = (LinearLayout) findViewById(R.id.attendance);
-        mStudentsButton = (LinearLayout) findViewById(R.id.students);
 
         mProgressActive = findViewById(R.id.progress_active);
         mQuizActive = findViewById(R.id.quiz_active);
         mAttendanceActive = findViewById(R.id.attendance_active);
-        mStudentsActive = findViewById(R.id.students_active);
 
         mCourseTitle = (TextView) findViewById(R.id.course_title);
         mCourseTitle.setText(courseName);
@@ -70,22 +64,8 @@ public class CourseActivity extends FragmentActivity implements CourseContract.V
         mProgressButton.setOnClickListener(mOnProgressClickListener);
         mAttendanceButton.setOnClickListener(mOnAttendanceClickListener);
         mQuizButton.setOnClickListener(mOnQuizClickListener);
-        mStudentsButton.setOnClickListener(mOnStudentsClickListener);
 
         mPresenter.onCreate();
-    }
-
-    @Override
-    public void initialDisplay(boolean teacherMode) {
-        if (teacherMode) {
-            enableStudentsTab();
-            mStudentsButton.setVisibility(View.VISIBLE);
-            mProgressButton.setVisibility(View.GONE);
-        } else {
-            enableProgressTab();
-            mProgressButton.setVisibility(View.VISIBLE);
-            mStudentsButton.setVisibility(View.GONE);
-        }
     }
 
     @Override
@@ -118,16 +98,6 @@ public class CourseActivity extends FragmentActivity implements CourseContract.V
         changeTab(CourseTabs.ATTENDANCE);
     }
 
-    @Override
-    public void disableStudentsTab() {
-        mStudentsActive.setBackgroundResource(0);
-    }
-
-    @Override
-    public void enableStudentsTab() {
-        changeTab(CourseTabs.STUDENTS);
-    }
-
     /**
      * Handles switching tab fragments.
      *
@@ -158,13 +128,6 @@ public class CourseActivity extends FragmentActivity implements CourseContract.V
                 }
                 transaction.replace(R.id.fragment_container, mQuizFragment);
                 break;
-            case STUDENTS:
-                mStudentsActive.setBackgroundResource(R.color.active_blue);
-                if(mStudentsFragment == null) {
-                    mStudentsFragment = new StudentsFragment();
-                }
-                transaction.replace(R.id.fragment_container, mStudentsFragment);
-                break;
         }
         transaction.commit();
     }
@@ -187,13 +150,6 @@ public class CourseActivity extends FragmentActivity implements CourseContract.V
         @Override
         public void onClick(View v) {
             mPresenter.onAttendanceTabSelected();
-        }
-    };
-
-    private View.OnClickListener mOnStudentsClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            mPresenter.onStudentsTabSelected();
         }
     };
 }
