@@ -1,4 +1,4 @@
-package smartclass.com.smartclass;
+package smartclass.com.smartclass.CourseList;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,6 +7,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.List;
+
+import smartclass.com.smartclass.Models.Course;
+import smartclass.com.smartclass.R;
 
 /**
  * Created by peterpogorski on 2017-06-12.

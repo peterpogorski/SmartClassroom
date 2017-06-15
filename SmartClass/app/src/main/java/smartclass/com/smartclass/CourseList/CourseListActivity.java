@@ -1,4 +1,4 @@
-package smartclass.com.smartclass;
+package smartclass.com.smartclass.CourseList;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,6 +9,10 @@ import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import smartclass.com.smartclass.Models.Course;
+import smartclass.com.smartclass.Course.CourseActivity;
+import smartclass.com.smartclass.R;
 
 /**
  * Created by peterpogorski on 2017-06-12.

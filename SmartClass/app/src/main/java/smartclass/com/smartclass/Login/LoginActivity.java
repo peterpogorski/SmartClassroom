@@ -1,10 +1,8 @@
-package smartclass.com.smartclass;
+package smartclass.com.smartclass.Login;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -12,6 +10,9 @@ import com.facebook.FacebookException;
 import com.facebook.Profile;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+
+import smartclass.com.smartclass.CourseList.CourseListActivity;
+import smartclass.com.smartclass.R;
 
 public class LoginActivity extends Activity implements LoginContract.View {
 
