@@ -1,6 +1,6 @@
-package smartclass.com.smartclass.CourseList;
+package smartclass.com.smartclass.courseList;
 
-import smartclass.com.smartclass.Models.Course;
+import smartclass.com.smartclass.models.Course;
 
 /**
  * Created by peterpogorski on 2017-06-12.
