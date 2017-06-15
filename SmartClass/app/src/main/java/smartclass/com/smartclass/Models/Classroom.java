@@ -1,4 +1,4 @@
-package smartclass.com.smartclass.Models;
+package smartclass.com.smartclass.models;
 
 import java.util.ArrayList;
 

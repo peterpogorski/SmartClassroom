@@ -8,9 +8,9 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import smartclass.com.smartclass.course.Fragments.AttendanceFragment;
-import smartclass.com.smartclass.course.Fragments.ProgressFragment;
-import smartclass.com.smartclass.course.Fragments.QuizFragment;
+import smartclass.com.smartclass.course.fragments.AttendanceFragment;
+import smartclass.com.smartclass.course.fragments.ProgressFragment;
+import smartclass.com.smartclass.course.fragments.QuizFragment;
 import smartclass.com.smartclass.R;
 
 /**

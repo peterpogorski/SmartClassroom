@@ -1,4 +1,4 @@
-package smartclass.com.smartclass.Models;
+package smartclass.com.smartclass.models;
 
 /**
  * Created by max on 2017-06-15.
