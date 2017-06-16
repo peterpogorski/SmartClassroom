@@ -20,6 +20,15 @@ public class ClassroomPresenter implements ClassroomContract.Presenter {
     @Override
     public void onStudentsTabSelected() {
         mView.enableStudentsTab();
+        mView.disableGoalsTab();
+        mView.disableAttendanceTab();
+        mView.disableQuizTab();
+    }
+
+    @Override
+    public void onGoalsTabSelected() {
+        mView.enableGoalsTab();
+        mView.disableStudentsTab();
         mView.disableAttendanceTab();
         mView.disableQuizTab();
     }
@@ -28,6 +37,7 @@ public class ClassroomPresenter implements ClassroomContract.Presenter {
     public void onQuizTabSelected() {
         mView.enableQuizTab();
         mView.disableStudentsTab();
+        mView.disableGoalsTab();
         mView.disableAttendanceTab();
     }
 
@@ -35,6 +45,7 @@ public class ClassroomPresenter implements ClassroomContract.Presenter {
     public void onAttendanceTabSelected() {
         mView.enableAttendanceTab();
         mView.disableStudentsTab();
+        mView.disableGoalsTab();
         mView.disableQuizTab();
     }
 }
