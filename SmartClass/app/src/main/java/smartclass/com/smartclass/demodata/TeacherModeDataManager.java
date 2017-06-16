@@ -59,11 +59,15 @@ public class TeacherModeDataManager {
 
     private void createStudentList() {
         students = new ArrayList<>();
-        for(int i = 0; i < 10; i++) {
-            Student student = new Student(null, "John", "Doe", "JohnDoe"+i+1, new Date(2000, 10, 14),
-                    (ArrayList<Classroom>) getClassrooms(), new ArrayList<StudentQuizHistory>(), new ArrayList<StudentGoalHistory>());
-            students.add(i, student);
-        }
+        Student student1 = new Student(null, "John", "Doe", "JohnDoe", new Date(2000, 10, 14),
+                (ArrayList<Classroom>) getClassrooms(), new ArrayList<StudentQuizHistory>(), new ArrayList<StudentGoalHistory>());
+        Student student2 = new Student(null, "Bob", "Bee", "BobBee", new Date(2000, 5, 4),
+                (ArrayList<Classroom>) getClassrooms(), new ArrayList<StudentQuizHistory>(), new ArrayList<StudentGoalHistory>());
+        Student student3 = new Student(null, "Alice", "Apple", "AliceApple", new Date(2000, 5, 3),
+                (ArrayList<Classroom>) getClassrooms(), new ArrayList<StudentQuizHistory>(), new ArrayList<StudentGoalHistory>());
+        students.add(0, student1);
+        students.add(1, student2);
+        students.add(2, student3);
     }
 
     private void createClassroomsList() {
