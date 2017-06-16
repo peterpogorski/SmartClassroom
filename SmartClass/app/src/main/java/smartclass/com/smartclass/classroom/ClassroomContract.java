@@ -9,6 +9,7 @@ public class ClassroomContract {
     interface Presenter {
         void onCreate();
         void onStudentsTabSelected();
+        void onGoalsTabSelected();
         void onQuizTabSelected();
         void onAttendanceTabSelected();
     }
@@ -16,6 +17,8 @@ public class ClassroomContract {
     interface View {
         void disableStudentsTab();
         void enableStudentsTab();
+        void disableGoalsTab();
+        void enableGoalsTab();
         void disableQuizTab();
         void enableQuizTab();
         void disableAttendanceTab();

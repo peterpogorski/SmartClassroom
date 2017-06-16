@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -42,7 +44,7 @@
         android:layout_height="64dp">
 
         <LinearLayout
-            android:id="@+id/progress"
+            android:id="@+id/first_tab"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -50,28 +52,30 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/first_tab_image"
                 android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/goals_icon"/>
+                tools:src="@drawable/goals_icon"/>
 
             <TextView
+                android:id="@+id/first_tab_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_gravity="center_horizontal"
-                android:text="Progress"/>
+                tools:text="Progress"/>
 
             <View
+                android:id="@+id/first_tab_active"
                 android:layout_gravity="bottom"
-                android:id="@+id/progress_active"
                 android:layout_width="match_parent"
                 android:layout_height="4dp"/>
 
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/students"
+            android:id="@+id/second_tab"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -80,21 +84,23 @@
             android:visibility="gone">
 
             <ImageView
+                android:id="@+id/second_tab_image"
                 android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/students_icon"/>
+                tools:src="@drawable/students_icon"/>
 
             <TextView
+                android:id="@+id/second_tab_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_gravity="center_horizontal"
-                android:text="Students"/>
+                tools:text="Students"/>
 
             <View
+                android:id="@+id/second_tab_active"
                 android:layout_gravity="bottom"
-                android:id="@+id/students_active"
                 android:layout_width="match_parent"
                 android:layout_height="4dp"/>
 

@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -50,13 +51,19 @@ public class CourseActivity extends FragmentActivity implements CourseContract.V
 
         mPresenter = new CoursePresenter(this);
 
-        mProgressButton = (LinearLayout) findViewById(R.id.progress);
+        mProgressButton = (LinearLayout) findViewById(R.id.first_tab);
         mQuizButton = (LinearLayout) findViewById(R.id.quiz);
         mAttendanceButton = (LinearLayout) findViewById(R.id.attendance);
 
-        mProgressActive = findViewById(R.id.progress_active);
+        mProgressActive = findViewById(R.id.first_tab_active);
         mQuizActive = findViewById(R.id.quiz_active);
         mAttendanceActive = findViewById(R.id.attendance_active);
+
+        ImageView progressButtonImage = (ImageView) findViewById(R.id.first_tab_image);
+        progressButtonImage.setImageResource(R.drawable.goals_icon);
+
+        TextView progressButtonLabel = (TextView) findViewById(R.id.first_tab_label);
+        progressButtonLabel.setText("Progress");
 
         mCourseTitle = (TextView) findViewById(R.id.course_title);
         mCourseTitle.setText(courseName);
