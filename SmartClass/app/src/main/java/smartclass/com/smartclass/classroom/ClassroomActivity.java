@@ -11,7 +11,6 @@ import android.widget.TextView;
 import smartclass.com.smartclass.R;
 import smartclass.com.smartclass.course.fragments.AttendanceFragment;
 import smartclass.com.smartclass.course.fragments.QuizFragment;
-import smartclass.com.smartclass.course.fragments.StudentsFragment;
 
 /**
  * Created by kevinT on 2017-06-15.
