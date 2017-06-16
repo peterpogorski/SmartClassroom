@@ -28,8 +28,8 @@ public class StudentsListAdapter extends RecyclerView.Adapter<StudentsListAdapte
 
     @Override
     public StudentsListAdapter.StudentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.course_list_item, parent, false);
-        return new StudentsListAdapter.StudentViewHolder(itemView);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.student_list_item, parent, false);
+        return new StudentViewHolder(itemView);
     }
 
     @Override
@@ -40,6 +40,10 @@ public class StudentsListAdapter extends RecyclerView.Adapter<StudentsListAdapte
     @Override
     public void onBindViewHolder(StudentsListAdapter.StudentViewHolder holder, int position) {
         final Student student = studentsList.get(position);
+        if (holder.studentName == null || holder.studentCurrentGoalsCount == null
+                || holder.studentCompletedGoalsCount == null || holder.studentAverage == null || holder.itemView == null) {
+            return;
+        }
         holder.studentName.setText(student.getFirstName() + " " + student.getLastName());
         holder.studentCurrentGoalsCount.setText("0");
         holder.studentCompletedGoalsCount.setText("10");

@@ -114,7 +114,7 @@ public class ClassroomActivity extends FragmentActivity implements ClassroomCont
             case STUDENTS:
                 mStudentsActive.setBackgroundResource(R.color.active_blue);
                 if(mStudentsFragment == null) {
-                    mStudentsFragment = new StudentsFragment();
+                    mStudentsFragment = StudentsFragment.newInstance(mPresenter);
                 }
                 transaction.replace(R.id.fragment_container, mStudentsFragment);
                 break;
