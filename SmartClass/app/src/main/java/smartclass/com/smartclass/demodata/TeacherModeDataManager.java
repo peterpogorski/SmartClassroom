@@ -62,6 +62,7 @@ public class TeacherModeDataManager {
         for(int i = 0; i < 10; i++) {
             Student student = new Student(null, "John", "Doe", "JohnDoe"+i+1, new Date(2000, 10, 14),
                     (ArrayList<Classroom>) getClassrooms(), new ArrayList<StudentQuizHistory>(), new ArrayList<StudentGoalHistory>());
+            students.add(i, student);
         }
     }
 

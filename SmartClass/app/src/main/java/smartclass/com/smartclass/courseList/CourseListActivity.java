@@ -20,7 +20,7 @@ import smartclass.com.smartclass.R;
  */
 public class CourseListActivity extends Activity implements CourseListContract.View {
 
-    private boolean teacherMode = false;
+    private boolean teacherMode = true;
 
     private CourseListAdapter mListAdapter;
     private List<Course> mCourseList = new ArrayList<Course>();
