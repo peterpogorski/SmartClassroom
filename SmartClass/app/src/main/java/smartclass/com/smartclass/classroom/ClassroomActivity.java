@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import smartclass.com.smartclass.R;
+import smartclass.com.smartclass.classroom.students.StudentsFragment;
 import smartclass.com.smartclass.course.fragments.AttendanceFragment;
 import smartclass.com.smartclass.course.fragments.QuizFragment;
 
@@ -114,7 +115,7 @@ public class ClassroomActivity extends FragmentActivity implements ClassroomCont
             case STUDENTS:
                 mStudentsActive.setBackgroundResource(R.color.active_blue);
                 if(mStudentsFragment == null) {
-                    mStudentsFragment = StudentsFragment.newInstance(mPresenter);
+                    mStudentsFragment = StudentsFragment.newInstance();
                 }
                 transaction.replace(R.id.fragment_container, mStudentsFragment);
                 break;

@@ -1,4 +1,4 @@
-package smartclass.com.smartclass.classroom;
+package smartclass.com.smartclass.classroom.students;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,10 +18,10 @@ import smartclass.com.smartclass.models.Student;
 public class StudentsListAdapter extends RecyclerView.Adapter<StudentsListAdapter.StudentViewHolder> {
 
     private List<Student> studentsList;
-    private ClassroomContract.View mClassroomView;
-    private ClassroomContract.Presenter mPresenter;
+    private StudentsContract.View mClassroomView;
+    private StudentsContract.Presenter mPresenter;
 
-    public StudentsListAdapter(List<Student> studentsList, ClassroomContract.Presenter presenter) {
+    public StudentsListAdapter(List<Student> studentsList, StudentsContract.Presenter presenter) {
         this.studentsList = studentsList;
         mPresenter = presenter;
     }
@@ -40,18 +40,18 @@ public class StudentsListAdapter extends RecyclerView.Adapter<StudentsListAdapte
     @Override
     public void onBindViewHolder(StudentsListAdapter.StudentViewHolder holder, int position) {
         final Student student = studentsList.get(position);
-        if (holder.studentName == null || holder.studentCurrentGoalsCount == null
-                || holder.studentCompletedGoalsCount == null || holder.studentAverage == null || holder.itemView == null) {
+        if (holder.studentName == null || holder.currentGoalsCount == null
+                || holder.completedGoalsCount == null || holder.totalPoints == null || holder.itemView == null) {
             return;
         }
         holder.studentName.setText(student.getFirstName() + " " + student.getLastName());
-        holder.studentCurrentGoalsCount.setText("0");
-        holder.studentCompletedGoalsCount.setText("10");
-        holder.studentAverage.setText("65%");
+        holder.currentGoalsCount.setText("0");
+        holder.completedGoalsCount.setText("10");
+        holder.totalPoints.setText("65");
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                mPresenter.onCourseSelected(course);
+                mPresenter.onStudentSelected(student);
             }
         });
     }
@@ -63,18 +63,18 @@ public class StudentsListAdapter extends RecyclerView.Adapter<StudentsListAdapte
 
     public class StudentViewHolder extends RecyclerView.ViewHolder{
         public TextView studentName;
-        public TextView studentCurrentGoalsCount;
-        public TextView studentCompletedGoalsCount;
-        public TextView studentAverage;
+        public TextView currentGoalsCount;
+        public TextView completedGoalsCount;
+        public TextView totalPoints;
         public View itemView;
 
         public StudentViewHolder(View view) {
             super(view);
             itemView = view;
             studentName = (TextView) view.findViewById(R.id.student_fullname);
-            studentCurrentGoalsCount = (TextView) view.findViewById(R.id.current_goals_count);
-            studentCompletedGoalsCount = (TextView) view.findViewById(R.id.completed_goals_count);
-            studentAverage = (TextView) view.findViewById(R.id.student_average);
+            currentGoalsCount = (TextView) view.findViewById(R.id.current_goals_count);
+            completedGoalsCount = (TextView) view.findViewById(R.id.completed_goals_count);
+            totalPoints = (TextView) view.findViewById(R.id.total_points);
         }
 
     }

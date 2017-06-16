@@ -1,4 +1,4 @@
-package smartclass.com.smartclass.classroom;
+package smartclass.com.smartclass.classroom.students;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,18 +11,17 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import smartclass.com.smartclass.R;
-import smartclass.com.smartclass.demodata.TeacherModeDataManager;
 import smartclass.com.smartclass.models.Student;
 
 /**
  * Created by kevinT on 2017-06-15.
  */
 
-public class StudentsFragment extends Fragment {
+public class StudentsFragment extends Fragment implements StudentsContract.View {
 
+    /* CONSTANTS */
     private static final String TAG = "StudentsFragment";
     private static final String KEY_LAYOUT_MANAGER = "layoutManager";
     private static final int SPAN_COUNT = 2;
@@ -32,27 +31,24 @@ public class StudentsFragment extends Fragment {
         LINEAR_LAYOUT_MANAGER
     }
 
-    private List<Student> mStudentList = new ArrayList<>();
+    private ArrayList<Student> mStudentList = new ArrayList<>();
 
     private LayoutManagerType mCurrentLayoutManagerType;
 
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private StudentsListAdapter mListAdapter;
-    private ClassroomPresenter mPresenter;
+    private StudentsPresenter mPresenter;
 
-    public static StudentsFragment newInstance(ClassroomPresenter presenter) {
-        StudentsFragment studentsFragment = new StudentsFragment();
-        studentsFragment.mPresenter = presenter;
-
-        return studentsFragment;
+    public static StudentsFragment newInstance() {
+        return new StudentsFragment();
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        initDataset();
+        mPresenter = new StudentsPresenter(this);
+        mPresenter.onCreate();
     }
 
     @Nullable
@@ -112,11 +108,24 @@ public class StudentsFragment extends Fragment {
         super.onSaveInstanceState(savedInstanceState);
     }
 
+    /* Contract methods */
+
     /**
-     * Generates Strings for RecyclerView's adapter. This data would usually come
-     * from a local content provider or remote server.
+     * Add a single student to the students list for this classroom
      */
-    private void initDataset() {
-        mStudentList = TeacherModeDataManager.getInstance().getStudentList();
+    @Override
+    public void addStudent(Student student) {
+        mStudentList.add(student);
+        if (mListAdapter != null) {
+            mListAdapter.notifyDataSetChanged();
+        }
+    }
+
+    /**
+     * Initializes the fragment with a list of students
+     */
+    @Override
+    public void initStudentsList(ArrayList<Student> students) {
+        mStudentList = students;
     }
 }

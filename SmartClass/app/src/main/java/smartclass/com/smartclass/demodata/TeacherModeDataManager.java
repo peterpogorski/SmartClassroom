@@ -20,8 +20,8 @@ public class TeacherModeDataManager {
     private static TeacherModeDataManager instance;
 
     private Teacher currentTeacher;
-    private List<Student> students;
-    private List<Classroom> classrooms;
+    private ArrayList<Student> students;
+    private ArrayList<Classroom> classrooms;
 
     private TeacherModeDataManager() {}
 
@@ -41,7 +41,7 @@ public class TeacherModeDataManager {
         return currentTeacher;
     }
 
-    public List<Student> getStudentList() {
+    public ArrayList<Student> getStudentList() {
         if (students == null) {
             createStudentList();
         }
@@ -49,7 +49,7 @@ public class TeacherModeDataManager {
         return students;
     }
 
-    public List<Classroom> getClassrooms() {
+    public ArrayList<Classroom> getClassrooms() {
         if (classrooms == null) {
             createClassroomsList();
         }
@@ -60,11 +60,11 @@ public class TeacherModeDataManager {
     private void createStudentList() {
         students = new ArrayList<>();
         Student student1 = new Student(null, "John", "Doe", "JohnDoe", new Date(2000, 10, 14),
-                (ArrayList<Classroom>) getClassrooms(), new ArrayList<StudentQuizHistory>(), new ArrayList<StudentGoalHistory>());
+                getClassrooms(), new ArrayList<StudentQuizHistory>(), new ArrayList<StudentGoalHistory>());
         Student student2 = new Student(null, "Bob", "Bee", "BobBee", new Date(2000, 5, 4),
-                (ArrayList<Classroom>) getClassrooms(), new ArrayList<StudentQuizHistory>(), new ArrayList<StudentGoalHistory>());
+                getClassrooms(), new ArrayList<StudentQuizHistory>(), new ArrayList<StudentGoalHistory>());
         Student student3 = new Student(null, "Alice", "Apple", "AliceApple", new Date(2000, 5, 3),
-                (ArrayList<Classroom>) getClassrooms(), new ArrayList<StudentQuizHistory>(), new ArrayList<StudentGoalHistory>());
+                getClassrooms(), new ArrayList<StudentQuizHistory>(), new ArrayList<StudentGoalHistory>());
         students.add(0, student1);
         students.add(1, student2);
         students.add(2, student3);

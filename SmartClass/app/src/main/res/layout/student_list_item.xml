@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="80dp">
@@ -17,10 +16,9 @@
         android:id="@+id/student_fullname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:layout_toRightOf="@+id/student_picture"
         android:layout_toEndOf="@+id/student_picture"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="2dp"
         android:layout_marginLeft="4dp"
         android:layout_marginStart="4dp"
         tools:text="John Doe"
@@ -37,7 +35,7 @@
         android:layout_marginTop="2dp"
         android:layout_marginLeft="4dp"
         android:layout_marginStart="4dp"
-        android:text="Current Goals: "/>
+        android:text="Active Goals: "/>
 
     <TextView
         android:id="@+id/current_goals_count"
@@ -46,6 +44,7 @@
         android:layout_below="@id/student_fullname"
         android:layout_toRightOf="@id/current_goals_label"
         android:layout_toEndOf="@id/current_goals_label"
+        android:layout_alignTop="@id/current_goals_label"
         android:layout_marginLeft="2dp"
         android:layout_marginStart="2dp"
         android:text="0"/>
@@ -69,13 +68,13 @@
         android:layout_below="@id/current_goals_label"
         android:layout_toRightOf="@id/completed_goals_label"
         android:layout_toEndOf="@id/completed_goals_label"
-        android:layout_marginTop="2dp"
+        android:layout_alignTop="@id/completed_goals_label"
         android:layout_marginLeft="2dp"
         android:layout_marginStart="2dp"
         android:text="100"/>
 
     <TextView
-        android:id="@+id/student_average"
+        android:id="@+id/total_points"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="13dp"
@@ -84,7 +83,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:textSize="28sp"
-        tools:text="55%"/>
+        tools:text="55"/>
 
     <LinearLayout
         android:layout_width="match_parent"
