@@ -1,4 +1,4 @@
-package smartclass.com.smartclass.classroom;
+package smartclass.com.smartclass.classroom.students;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import smartclass.com.smartclass.R;
+import smartclass.com.smartclass.classroom.ClassroomContract;
 import smartclass.com.smartclass.models.Student;
 
 /**

@@ -1,4 +1,4 @@
-package smartclass.com.smartclass.classroom;
+package smartclass.com.smartclass.classroom.students;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import smartclass.com.smartclass.R;
+import smartclass.com.smartclass.classroom.ClassroomPresenter;
 import smartclass.com.smartclass.demodata.TeacherModeDataManager;
 import smartclass.com.smartclass.models.Student;
 
