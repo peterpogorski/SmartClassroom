@@ -1,25 +1,25 @@
-package smartclass.com.smartclass.course;
+package smartclass.com.smartclass.classroom;
 
 /**
- * Created by peterpogorski on 2017-06-13.
+ * Created by kevinT on 2017-06-15.
  */
 
-public class CoursePresenter implements CourseContract.Presenter {
+public class ClassroomPresenter implements ClassroomContract.Presenter {
 
-    private CourseContract.View mView;
+    private ClassroomContract.View mView;
 
-    public CoursePresenter(CourseContract.View view) {
+    public ClassroomPresenter(ClassroomContract.View view) {
         mView = view;
     }
 
     @Override
     public void onCreate() {
-        mView.enableProgressTab();
+        mView.enableStudentsTab();
     }
 
     @Override
-    public void onProgressTabSelected() {
-        mView.enableProgressTab();
+    public void onStudentsTabSelected() {
+        mView.enableStudentsTab();
         mView.disableAttendanceTab();
         mView.disableQuizTab();
     }
@@ -27,14 +27,14 @@ public class CoursePresenter implements CourseContract.Presenter {
     @Override
     public void onQuizTabSelected() {
         mView.enableQuizTab();
-        mView.disableProgressTab();
+        mView.disableStudentsTab();
         mView.disableAttendanceTab();
     }
 
     @Override
     public void onAttendanceTabSelected() {
         mView.enableAttendanceTab();
-        mView.disableProgressTab();
+        mView.disableStudentsTab();
         mView.disableQuizTab();
     }
 }

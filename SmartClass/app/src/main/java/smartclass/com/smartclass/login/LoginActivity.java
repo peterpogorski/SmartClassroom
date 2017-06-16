@@ -47,8 +47,4 @@ public class LoginActivity extends Activity implements LoginContract.View {
         Intent intent = new Intent(this, CourseListActivity.class);
         startActivity(intent);
     }
-
-
-
-
 }

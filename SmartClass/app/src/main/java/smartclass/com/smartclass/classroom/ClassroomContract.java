@@ -1,21 +1,21 @@
-package smartclass.com.smartclass.course;
+package smartclass.com.smartclass.classroom;
 
 /**
- * Created by peterpogorski on 2017-06-13.
+ * Created by kevinT on 2017-06-15.
  */
 
-public class CourseContract {
+public class ClassroomContract {
 
     interface Presenter {
         void onCreate();
-        void onProgressTabSelected();
+        void onStudentsTabSelected();
         void onQuizTabSelected();
         void onAttendanceTabSelected();
     }
 
     interface View {
-        void disableProgressTab();
-        void enableProgressTab();
+        void disableStudentsTab();
+        void enableStudentsTab();
         void disableQuizTab();
         void enableQuizTab();
         void disableAttendanceTab();
