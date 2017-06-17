@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 import smartclass.com.smartclass.R;
 import smartclass.com.smartclass.classroom.students.StudentsFragment;
+import smartclass.com.smartclass.classroom.teacherGoals.TeacherGoalFragment;
 import smartclass.com.smartclass.course.fragments.AttendanceFragment;
-import smartclass.com.smartclass.course.fragments.ProgressFragment;
 import smartclass.com.smartclass.course.fragments.QuizFragment;
 
 /**
@@ -42,7 +42,7 @@ public class ClassroomActivity extends FragmentActivity implements ClassroomCont
     private TextView mCourseTitle;
 
     private StudentsFragment mStudentsFragment;
-    private ProgressFragment mGoalsFragment;
+    private TeacherGoalFragment mGoalsFragment;
     private QuizFragment mQuizFragment;
     private AttendanceFragment mAttendanceFragment;
 
@@ -149,9 +149,8 @@ public class ClassroomActivity extends FragmentActivity implements ClassroomCont
                 break;
             case GOALS:
                 mGoalsActive.setBackgroundResource(R.color.active_blue);
-                // TODO: Replace this fragment with one that allows the teacher to create goals
                 if(mGoalsFragment == null) {
-                    mGoalsFragment = new ProgressFragment();
+                    mGoalsFragment = new TeacherGoalFragment();
                 }
                 transaction.replace(R.id.fragment_container, mGoalsFragment);
                 break;
