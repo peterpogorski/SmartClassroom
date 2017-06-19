@@ -1,5 +1,7 @@
 package smartclass.com.smartclass.classroom.teacherGoals;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.annotation.Nullable;
@@ -9,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -16,6 +19,7 @@ import java.util.ArrayList;
 
 import smartclass.com.smartclass.R;
 import smartclass.com.smartclass.classroom.students.StudentsFragment;
+import smartclass.com.smartclass.classroom.teacherGoals.goalCreation.GoalCreationActivity;
 import smartclass.com.smartclass.models.Goal;
 import smartclass.com.smartclass.models.Student;
 
@@ -56,12 +60,6 @@ public class TeacherGoalFragment extends Fragment implements TeacherGoalContract
         setHasOptionsMenu(true);
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_teacher_mode_goals, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -84,6 +82,27 @@ public class TeacherGoalFragment extends Fragment implements TeacherGoalContract
         mRecyclerView.setAdapter(mListAdapter);
 
         return rootView;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_teacher_mode_goals, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_create_goal:
+                Context context = getActivity();
+                if (context != null) {
+                    Intent intent = new Intent(getActivity(), GoalCreationActivity.class);
+                    startActivity(intent);
+                }
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     public void setmRecyclerViewLayoutManager(LayoutManagerType layoutManagerType) {

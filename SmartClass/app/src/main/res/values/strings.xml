@@ -3,5 +3,10 @@
     <string name="action_settings">Settings</string>
     <string name="facebook_app_id">1475958282464861</string>
     <string name="fb_login_protocol_scheme">fb1475958282464861</string>
+
+    <!-- Actions -->
     <string name="action_create_a_goal">Create a goal</string>
+    <string name="action_finish">Finish</string>
+
+    <string name="create_a_goal_label">Create a Goal</string>
 </resources>
