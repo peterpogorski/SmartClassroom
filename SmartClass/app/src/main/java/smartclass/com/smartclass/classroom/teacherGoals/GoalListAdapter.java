@@ -28,7 +28,7 @@ public class GoalListAdapter extends RecyclerView.Adapter<GoalListAdapter.GoalVi
 
     @Override
     public GoalViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.student_list_item, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.goal_list_item, parent, false);
         return new GoalViewHolder(itemView);
     }
 
