@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -56,12 +57,6 @@ public class TeacherGoalFragment extends Fragment implements TeacherGoalContract
         setHasOptionsMenu(true);
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_teacher_mode_goals, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -84,6 +79,23 @@ public class TeacherGoalFragment extends Fragment implements TeacherGoalContract
         mRecyclerView.setAdapter(mListAdapter);
 
         return rootView;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_teacher_mode_goals, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_create_goal:
+                // TODO: Display dialog to allow user to create a goal
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     public void setmRecyclerViewLayoutManager(LayoutManagerType layoutManagerType) {
