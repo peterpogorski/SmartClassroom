@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -28,6 +29,8 @@ public class CourseActivity extends FragmentActivity implements CourseContract.V
 
     private CoursePresenter mPresenter;
 
+    private Toolbar actionBar;
+
     private LinearLayout mProgressButton;
     private LinearLayout mQuizButton;
     private LinearLayout mAttendanceButton;
@@ -48,6 +51,8 @@ public class CourseActivity extends FragmentActivity implements CourseContract.V
         setContentView(R.layout.course_activity);
 
         String courseName = getIntent().getStringExtra(COURSE_NAME);
+        actionBar = (Toolbar) findViewById(R.id.action_bar);
+        actionBar.setTitle(courseName);
 
         mPresenter = new CoursePresenter(this);
 
@@ -64,9 +69,6 @@ public class CourseActivity extends FragmentActivity implements CourseContract.V
 
         TextView progressButtonLabel = (TextView) findViewById(R.id.first_tab_label);
         progressButtonLabel.setText("Progress");
-
-        mCourseTitle = (TextView) findViewById(R.id.course_title);
-        mCourseTitle.setText(courseName);
 
         mProgressButton.setOnClickListener(mOnProgressClickListener);
         mAttendanceButton.setOnClickListener(mOnAttendanceClickListener);

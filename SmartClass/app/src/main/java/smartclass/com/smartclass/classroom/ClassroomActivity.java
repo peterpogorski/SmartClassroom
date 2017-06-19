@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -11,8 +12,8 @@ import android.widget.TextView;
 
 import smartclass.com.smartclass.R;
 import smartclass.com.smartclass.classroom.students.StudentsFragment;
+import smartclass.com.smartclass.classroom.teacherGoals.TeacherGoalFragment;
 import smartclass.com.smartclass.course.fragments.AttendanceFragment;
-import smartclass.com.smartclass.course.fragments.ProgressFragment;
 import smartclass.com.smartclass.course.fragments.QuizFragment;
 
 /**
@@ -29,6 +30,8 @@ public class ClassroomActivity extends FragmentActivity implements ClassroomCont
 
     private ClassroomPresenter mPresenter;
 
+    private Toolbar actionBar;
+
     private LinearLayout mStudentsButton;
     private LinearLayout mGoalsButton;
     private LinearLayout mQuizButton;
@@ -42,7 +45,7 @@ public class ClassroomActivity extends FragmentActivity implements ClassroomCont
     private TextView mCourseTitle;
 
     private StudentsFragment mStudentsFragment;
-    private ProgressFragment mGoalsFragment;
+    private TeacherGoalFragment mGoalsFragment;
     private QuizFragment mQuizFragment;
     private AttendanceFragment mAttendanceFragment;
 
@@ -52,6 +55,8 @@ public class ClassroomActivity extends FragmentActivity implements ClassroomCont
         setContentView(R.layout.course_activity);
 
         String courseName = getIntent().getStringExtra(COURSE_NAME);
+        actionBar = (Toolbar) findViewById(R.id.action_bar);
+        actionBar.setTitle(courseName);
 
         mPresenter = new ClassroomPresenter(this);
 
@@ -79,9 +84,6 @@ public class ClassroomActivity extends FragmentActivity implements ClassroomCont
         TextView goalsLabel = (TextView) findViewById(R.id.second_tab_label);
         studentsLabel.setText("Students");
         goalsLabel.setText("Goals");
-
-        mCourseTitle = (TextView) findViewById(R.id.course_title);
-        mCourseTitle.setText(courseName);
 
         mStudentsButton.setOnClickListener(mOnStudentsClickListener);
         mGoalsButton.setOnClickListener(mOnGoalsClickListener);
@@ -149,9 +151,8 @@ public class ClassroomActivity extends FragmentActivity implements ClassroomCont
                 break;
             case GOALS:
                 mGoalsActive.setBackgroundResource(R.color.active_blue);
-                // TODO: Replace this fragment with one that allows the teacher to create goals
                 if(mGoalsFragment == null) {
-                    mGoalsFragment = new ProgressFragment();
+                    mGoalsFragment = new TeacherGoalFragment();
                 }
                 transaction.replace(R.id.fragment_container, mGoalsFragment);
                 break;

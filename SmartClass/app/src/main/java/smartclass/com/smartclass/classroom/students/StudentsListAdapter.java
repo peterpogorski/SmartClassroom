@@ -76,6 +76,5 @@ public class StudentsListAdapter extends RecyclerView.Adapter<StudentsListAdapte
             completedGoalsCount = (TextView) view.findViewById(R.id.completed_goals_count);
             totalPoints = (TextView) view.findViewById(R.id.total_points);
         }
-
     }
 }

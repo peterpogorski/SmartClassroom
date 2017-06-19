@@ -1,8 +1,8 @@
-package smartclass.com.smartclass.classroom.students;
+package smartclass.com.smartclass.classroom.teacherGoals;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,16 +13,18 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import smartclass.com.smartclass.R;
+import smartclass.com.smartclass.classroom.students.StudentsFragment;
+import smartclass.com.smartclass.models.Goal;
 import smartclass.com.smartclass.models.Student;
 
 /**
- * Created by kevinT on 2017-06-15.
+ * Created by kevinT on 2017-06-16.
  */
 
-public class StudentsFragment extends Fragment implements StudentsContract.View {
+public class TeacherGoalFragment extends Fragment implements TeacherGoalContract.View {
 
     /* CONSTANTS */
-    private static final String TAG = "StudentsFragment";
+    private static final String TAG = "TeacherGoalFragment";
     private static final String KEY_LAYOUT_MANAGER = "layoutManager";
     private static final int SPAN_COUNT = 2;
 
@@ -37,8 +39,8 @@ public class StudentsFragment extends Fragment implements StudentsContract.View 
 
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
-    private StudentsListAdapter mListAdapter;
-    private StudentsPresenter mPresenter;
+    private GoalListAdapter mListAdapter;
+    private TeacherGoalPresenter mPresenter;
 
     public static StudentsFragment newInstance() {
         return new StudentsFragment();
@@ -47,7 +49,7 @@ public class StudentsFragment extends Fragment implements StudentsContract.View 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPresenter = new StudentsPresenter(this);
+        mPresenter = new TeacherGoalPresenter(this);
         mPresenter.onCreate();
     }
 
@@ -68,7 +70,8 @@ public class StudentsFragment extends Fragment implements StudentsContract.View 
         }
         setmRecyclerViewLayoutManager(mCurrentLayoutManagerType);
 
-        mListAdapter = new StudentsListAdapter(mStudentList, mPresenter);
+        // TODO: Pass list of goals instead of students
+        mListAdapter = new GoalListAdapter(new ArrayList<Goal>(), mPresenter);
         mRecyclerView.setAdapter(mListAdapter);
 
         return rootView;
@@ -109,23 +112,4 @@ public class StudentsFragment extends Fragment implements StudentsContract.View 
     }
 
     /* Contract methods */
-
-    /**
-     * Add a single student to the students list for this classroom
-     */
-    @Override
-    public void addStudent(Student student) {
-        mStudentList.add(student);
-        if (mListAdapter != null) {
-            mListAdapter.notifyDataSetChanged();
-        }
-    }
-
-    /**
-     * Initializes the fragment with a list of students
-     */
-    @Override
-    public void initStudentsList(ArrayList<Student> students) {
-        mStudentList = students;
-    }
 }
