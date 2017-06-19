@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
@@ -19,7 +20,7 @@ import smartclass.com.smartclass.R;
  * Created by peterpogorski on 2017-06-12.
  */
 
-public class CourseActivity extends FragmentActivity implements CourseContract.View {
+public class CourseActivity extends AppCompatActivity implements CourseContract.View {
 
     private enum CourseTabs {
         PROGRESS, QUIZ, ATTENDANCE
@@ -53,6 +54,7 @@ public class CourseActivity extends FragmentActivity implements CourseContract.V
         String courseName = getIntent().getStringExtra(COURSE_NAME);
         actionBar = (Toolbar) findViewById(R.id.action_bar);
         actionBar.setTitle(courseName);
+        setSupportActionBar(actionBar);
 
         mPresenter = new CoursePresenter(this);
 

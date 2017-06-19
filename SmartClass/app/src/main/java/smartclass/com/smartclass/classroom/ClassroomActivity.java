@@ -1,11 +1,12 @@
 package smartclass.com.smartclass.classroom;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -20,7 +21,7 @@ import smartclass.com.smartclass.course.fragments.QuizFragment;
  * Created by kevinT on 2017-06-15.
  */
 
-public class ClassroomActivity extends FragmentActivity implements ClassroomContract.View {
+public class ClassroomActivity extends AppCompatActivity implements ClassroomContract.View {
 
     private enum ClassroomTabs {
         STUDENTS, GOALS, QUIZ, ATTENDANCE
@@ -57,6 +58,7 @@ public class ClassroomActivity extends FragmentActivity implements ClassroomCont
         String courseName = getIntent().getStringExtra(COURSE_NAME);
         actionBar = (Toolbar) findViewById(R.id.action_bar);
         actionBar.setTitle(courseName);
+        setSupportActionBar(actionBar);
 
         mPresenter = new ClassroomPresenter(this);
 
