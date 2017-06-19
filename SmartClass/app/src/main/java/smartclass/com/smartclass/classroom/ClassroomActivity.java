@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -55,11 +54,13 @@ public class ClassroomActivity extends AppCompatActivity implements ClassroomCon
         super.onCreate(savedInstanceState);
         setContentView(R.layout.course_activity);
 
+        // Set up the action bar
         String courseName = getIntent().getStringExtra(COURSE_NAME);
         actionBar = (Toolbar) findViewById(R.id.action_bar);
         actionBar.setTitle(courseName);
         setSupportActionBar(actionBar);
 
+        // Initialize the presenter for this Activity
         mPresenter = new ClassroomPresenter(this);
 
         mStudentsButton = ((LinearLayout) findViewById(R.id.first_tab));
@@ -67,13 +68,13 @@ public class ClassroomActivity extends AppCompatActivity implements ClassroomCon
         mQuizButton = (LinearLayout) findViewById(R.id.quiz);
         mAttendanceButton = (LinearLayout) findViewById(R.id.attendance);
 
-        // Make the second tab visible (goals tab)
-        mGoalsButton.setVisibility(View.VISIBLE);
-
         mStudentsActive = findViewById(R.id.first_tab_active);
         mGoalsActive = findViewById(R.id.second_tab_active);
         mQuizActive = findViewById(R.id.quiz_active);
         mAttendanceActive = findViewById(R.id.attendance_active);
+
+        // Make the second tab visible (goals tab)
+        mGoalsButton.setVisibility(View.VISIBLE);
 
         // Adjust images on the first and second tabs
         ImageView studentsImageView = (ImageView) findViewById(R.id.first_tab_image);
@@ -87,6 +88,7 @@ public class ClassroomActivity extends AppCompatActivity implements ClassroomCon
         studentsLabel.setText("Students");
         goalsLabel.setText("Goals");
 
+        // Register onClickListeners for the tab buttons
         mStudentsButton.setOnClickListener(mOnStudentsClickListener);
         mGoalsButton.setOnClickListener(mOnGoalsClickListener);
         mAttendanceButton.setOnClickListener(mOnAttendanceClickListener);
