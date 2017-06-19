@@ -28,10 +28,10 @@ import smartclass.com.smartclass.models.Student;
  * Created by kevinT on 2017-06-16.
  */
 
-public class TeacherGoalFragment extends Fragment implements TeacherGoalContract.View {
+public class GoalFragment extends Fragment implements GoalContract.View {
 
     /* CONSTANTS */
-    private static final String TAG = "TeacherGoalFragment";
+    private static final String TAG = "GoalFragment";
     private static final String KEY_LAYOUT_MANAGER = "layoutManager";
     private static final int SPAN_COUNT = 2;
 
@@ -47,12 +47,12 @@ public class TeacherGoalFragment extends Fragment implements TeacherGoalContract
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private GoalListAdapter mListAdapter;
-    private TeacherGoalPresenter mPresenter;
+    private GoalPresenter mPresenter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPresenter = new TeacherGoalPresenter(this);
+        mPresenter = new GoalPresenter(this);
         mPresenter.onCreate();
         setHasOptionsMenu(true);
     }

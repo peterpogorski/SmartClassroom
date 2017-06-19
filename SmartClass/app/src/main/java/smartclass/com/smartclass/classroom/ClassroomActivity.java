@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import smartclass.com.smartclass.R;
 import smartclass.com.smartclass.classroom.students.StudentsFragment;
-import smartclass.com.smartclass.classroom.teacherGoals.TeacherGoalFragment;
+import smartclass.com.smartclass.classroom.teacherGoals.GoalFragment;
 import smartclass.com.smartclass.course.fragments.AttendanceFragment;
 import smartclass.com.smartclass.course.fragments.QuizFragment;
 
@@ -45,7 +45,7 @@ public class ClassroomActivity extends AppCompatActivity implements ClassroomCon
     private TextView mCourseTitle;
 
     private StudentsFragment mStudentsFragment;
-    private TeacherGoalFragment mGoalsFragment;
+    private GoalFragment mGoalsFragment;
     private QuizFragment mQuizFragment;
     private AttendanceFragment mAttendanceFragment;
 
@@ -156,7 +156,7 @@ public class ClassroomActivity extends AppCompatActivity implements ClassroomCon
             case GOALS:
                 mGoalsActive.setBackgroundResource(R.color.active_blue);
                 if(mGoalsFragment == null) {
-                    mGoalsFragment = new TeacherGoalFragment();
+                    mGoalsFragment = new GoalFragment();
                 }
                 transaction.replace(R.id.fragment_container, mGoalsFragment);
                 break;

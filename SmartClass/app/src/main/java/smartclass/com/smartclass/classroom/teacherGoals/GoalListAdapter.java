@@ -18,10 +18,10 @@ import smartclass.com.smartclass.models.Goal;
 public class GoalListAdapter extends RecyclerView.Adapter<GoalListAdapter.GoalViewHolder> {
 
     private List<Goal> goalList;
-    private TeacherGoalContract.View mClassroomView;
-    private TeacherGoalContract.Presenter mPresenter;
+    private GoalContract.View mClassroomView;
+    private GoalContract.Presenter mPresenter;
 
-    public GoalListAdapter(@NonNull List<Goal> goalList, @NonNull TeacherGoalContract.Presenter presenter) {
+    public GoalListAdapter(@NonNull List<Goal> goalList, @NonNull GoalContract.Presenter presenter) {
         this.goalList = goalList;
         mPresenter = presenter;
     }
