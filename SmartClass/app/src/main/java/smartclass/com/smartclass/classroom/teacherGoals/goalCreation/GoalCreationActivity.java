@@ -7,6 +7,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import smartclass.com.smartclass.R;
 
@@ -25,6 +27,12 @@ public class GoalCreationActivity extends AppCompatActivity implements GoalCreat
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+
+        // Set up the goal type spinner
+        Spinner spinner = (Spinner) findViewById(R.id.goal_type_spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.goal_types, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
 
         mPresenter = new GoalCreationPresenter(this);
         mPresenter.onCreate();
