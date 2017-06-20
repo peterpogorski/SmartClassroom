@@ -2,6 +2,7 @@ package smartclass.com.smartclass.classroom.teacherGoals.goalCreation;
 
 import java.util.Date;
 
+import smartclass.com.smartclass.demodata.TeacherModeDataManager;
 import smartclass.com.smartclass.models.Goal;
 
 /**
@@ -44,6 +45,7 @@ public class GoalCreationPresenter implements GoalCreationContract.Presenter {
         Date endDate = new Date();
 
         Goal goal = new Goal(title, description, type, creationDate, startDate, endDate, weight, marks);
+        TeacherModeDataManager.getInstance().addGoal(goal);
 
         return true;
     }

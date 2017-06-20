@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import smartclass.com.smartclass.R;
 import smartclass.com.smartclass.classroom.students.StudentsFragment;
 import smartclass.com.smartclass.classroom.teacherGoals.goalCreation.GoalCreationActivity;
+import smartclass.com.smartclass.demodata.TeacherModeDataManager;
 import smartclass.com.smartclass.models.Goal;
 import smartclass.com.smartclass.models.Student;
 
@@ -39,7 +40,7 @@ public class TeacherGoalFragment extends Fragment implements TeacherGoalContract
         LINEAR_LAYOUT_MANAGER
     }
 
-    private ArrayList<Student> mStudentList = new ArrayList<>();
+    private ArrayList<Goal> goals;
 
     private LayoutManagerType mCurrentLayoutManagerType;
 
@@ -48,16 +49,21 @@ public class TeacherGoalFragment extends Fragment implements TeacherGoalContract
     private GoalListAdapter mListAdapter;
     private TeacherGoalPresenter mPresenter;
 
-    public static StudentsFragment newInstance() {
-        return new StudentsFragment();
-    }
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPresenter = new TeacherGoalPresenter(this);
         mPresenter.onCreate();
         setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        // Refresh the goals list
+        goals = TeacherModeDataManager.getInstance().getGoals();
+        mListAdapter.notifyDataSetChanged();
     }
 
     @Nullable
@@ -77,8 +83,8 @@ public class TeacherGoalFragment extends Fragment implements TeacherGoalContract
         }
         setmRecyclerViewLayoutManager(mCurrentLayoutManagerType);
 
-        // TODO: Pass list of goals instead of students
-        mListAdapter = new GoalListAdapter(new ArrayList<Goal>(), mPresenter);
+        goals = TeacherModeDataManager.getInstance().getGoals();
+        mListAdapter = new GoalListAdapter(goals, mPresenter);
         mRecyclerView.setAdapter(mListAdapter);
 
         return rootView;

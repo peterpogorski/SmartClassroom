@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import smartclass.com.smartclass.models.Classroom;
+import smartclass.com.smartclass.models.Goal;
 import smartclass.com.smartclass.models.Quiz;
 import smartclass.com.smartclass.models.Student;
 import smartclass.com.smartclass.models.StudentGoalHistory;
@@ -22,6 +23,7 @@ public class TeacherModeDataManager {
     private Teacher currentTeacher;
     private ArrayList<Student> students;
     private ArrayList<Classroom> classrooms;
+    private ArrayList<Goal> goals = new ArrayList<>();
 
     private TeacherModeDataManager() {}
 
@@ -55,6 +57,14 @@ public class TeacherModeDataManager {
         }
 
         return classrooms;
+    }
+
+    public void addGoal(Goal goal) {
+        goals.add(goal);
+    }
+
+    public ArrayList<Goal> getGoals() {
+        return goals;
     }
 
     private void createStudentList() {
