@@ -8,5 +8,14 @@
     <string name="action_create_a_goal">Create a goal</string>
     <string name="action_finish">Finish</string>
 
+    <!-- Goal Creation Strings -->
     <string name="create_a_goal_label">Create a Goal</string>
+    <string name="title_label">Title</string>
+    <string name="description_label">Description</string>
+    <string name="goal_type_label">Goal Type</string>
+    <string name="start_date_label">Start Date</string>
+    <string name="end_date_label">End Date</string>
+    <string name="choose_date_button_label">Choose Date</string>
+    <string name="weight_label">Weight</string>
+    <string name="marks_label">Marks</string>
 </resources>
