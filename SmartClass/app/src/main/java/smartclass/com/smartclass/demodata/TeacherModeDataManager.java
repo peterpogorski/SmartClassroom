@@ -64,6 +64,14 @@ public class TeacherModeDataManager {
     }
 
     public ArrayList<Goal> getGoals() {
+
+        Date date = new Date();
+
+        ArrayList<Goal> goals = new ArrayList<Goal>();
+        goals.add(new Goal("Fourier Assignment", "Do stuff", "homework", date, date, date, 10.0, 10.0));
+        goals.add(new Goal("Circuits Assignment", "Do stuff", "homework", date, date, date, 10.0, 10.0));
+        goals.add(new Goal("Fun Assignment", "Do stuff", "homework", date, date, date, 10.0, 10.0));
+
         return goals;
     }
 
