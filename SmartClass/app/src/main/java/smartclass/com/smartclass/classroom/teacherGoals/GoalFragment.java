@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import smartclass.com.smartclass.R;
 import smartclass.com.smartclass.classroom.students.StudentsFragment;
@@ -84,6 +85,8 @@ public class GoalFragment extends Fragment implements GoalContract.View {
         setmRecyclerViewLayoutManager(mCurrentLayoutManagerType);
 
         goals = TeacherModeDataManager.getInstance().getGoals();
+
+        // TODO: Pass list of goals instead of students
         mListAdapter = new GoalListAdapter(goals, mPresenter);
         mRecyclerView.setAdapter(mListAdapter);
 
