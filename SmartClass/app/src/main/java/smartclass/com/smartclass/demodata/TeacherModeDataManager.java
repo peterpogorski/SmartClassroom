@@ -64,15 +64,18 @@ public class TeacherModeDataManager {
     }
 
     public ArrayList<Goal> getGoals() {
-
-        Date date = new Date();
-
-        ArrayList<Goal> goals = new ArrayList<Goal>();
-        goals.add(new Goal("Fourier Assignment", "Do stuff", "homework", date, date, date, 10.0, 10.0));
-        goals.add(new Goal("Circuits Assignment", "Do stuff", "homework", date, date, date, 10.0, 10.0));
-        goals.add(new Goal("Fun Assignment", "Do stuff", "homework", date, date, date, 10.0, 10.0));
+        if (goals.isEmpty()) {
+            createInitialGoals();
+        }
 
         return goals;
+    }
+
+    public void createInitialGoals() {
+        Date date = new Date();
+        goals.add(new Goal("Fourier Assignment", "Do stuff", "assignment", date, date, date, 10.0, 10.0));
+        goals.add(new Goal("Circuits Assignment", "Do stuff", "assignment", date, date, date, 10.0, 10.0));
+        goals.add(new Goal("Fun Assignment", "Do stuff", "assignment", date, date, date, 10.0, 10.0));
     }
 
     private void createStudentList() {
