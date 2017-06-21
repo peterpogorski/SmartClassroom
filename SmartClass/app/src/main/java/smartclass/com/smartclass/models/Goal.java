@@ -13,7 +13,6 @@ public class Goal {
     private Date startDate;
     private Date endDate;
     private Double weight;
-    private Double mark;
 
     /**
      * Constructor
@@ -24,7 +23,6 @@ public class Goal {
      * @param startDate The start date of the goal
      * @param endDate The end date of the goal
      * @param weight The weight of the goal (eg: 0.5 corresponds to a weight of 50%)
-     * @param mark The maximum mark obtainable by the goal (eg: 100)
      */
     public Goal(String title, String description, String type, Date creationDate, Date startDate,
                 Date endDate, Double weight, Double mark) {
@@ -35,7 +33,6 @@ public class Goal {
         this.startDate = startDate;
         this.endDate = endDate;
         this.weight = weight;
-        this.mark = mark;
     }
 
     /* Getter Methods */
@@ -47,5 +44,4 @@ public class Goal {
     public Date getStartDate() { return this.startDate; }
     public Date getEndDate() { return this.endDate; }
     public Double getWeight() { return this.weight; }
-    public Double getMark() { return this.mark; }
 }
