@@ -1,6 +1,7 @@
 package smartclass.com.smartclass.classroom.teacherGoals.goalCreation;
 
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,12 +9,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
 import java.util.Date;
 
+import smartclass.com.smartclass.DatePickerFragment;
 import smartclass.com.smartclass.R;
 
 public class GoalCreationActivity extends AppCompatActivity implements GoalCreationContract.View {
@@ -26,6 +30,8 @@ public class GoalCreationActivity extends AppCompatActivity implements GoalCreat
     private EditText marksField;
     private Spinner goalTypeSpinner;
     // TODO: Add DatePickers
+    private Button startDateButton;
+    private Button endDateButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +55,27 @@ public class GoalCreationActivity extends AppCompatActivity implements GoalCreat
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.goal_types, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         goalTypeSpinner.setAdapter(adapter);
+
+        startDateButton = (Button) findViewById(R.id.start_date_button);
+        endDateButton = (Button) findViewById(R.id.end_date_button);
+
+        startDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO: Display date picker for start date
+                DatePickerFragment datePickerFragment = new DatePickerFragment();
+                datePickerFragment.show(getFragmentManager(), "datePicker");
+            }
+        });
+
+        endDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO: Display date picker for end date
+                DatePickerFragment datePickerFragment = new DatePickerFragment();
+                datePickerFragment.show(getFragmentManager(), "datePicker");
+            }
+        });
 
         mPresenter = new GoalCreationPresenter(this);
         mPresenter.onCreate();
