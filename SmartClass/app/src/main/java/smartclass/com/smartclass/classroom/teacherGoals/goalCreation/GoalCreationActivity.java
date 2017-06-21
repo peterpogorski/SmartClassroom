@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,8 +29,8 @@ public class GoalCreationActivity extends AppCompatActivity implements GoalCreat
     private EditText descriptionField;
     private EditText weightField;
     private EditText marksField;
+
     private Spinner goalTypeSpinner;
-    // TODO: Add DatePickers
     private Button startDateButton;
     private Button endDateButton;
 
@@ -37,6 +38,8 @@ public class GoalCreationActivity extends AppCompatActivity implements GoalCreat
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goal_creation);
+
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.action_bar);
         setSupportActionBar(toolbar);
@@ -62,7 +65,6 @@ public class GoalCreationActivity extends AppCompatActivity implements GoalCreat
         startDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: Display date picker for start date
                 DatePickerFragment datePickerFragment = new DatePickerFragment();
                 datePickerFragment.show(getFragmentManager(), "datePicker");
             }
@@ -71,7 +73,6 @@ public class GoalCreationActivity extends AppCompatActivity implements GoalCreat
         endDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: Display date picker for end date
                 DatePickerFragment datePickerFragment = new DatePickerFragment();
                 datePickerFragment.show(getFragmentManager(), "datePicker");
             }
@@ -95,7 +96,6 @@ public class GoalCreationActivity extends AppCompatActivity implements GoalCreat
                 finish();
                 return true;
             case R.id.action_finish:
-                // TODO: Save Goal
                 if (mPresenter.createGoal()) {
                     finish();
                 }
