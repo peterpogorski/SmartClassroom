@@ -1,5 +1,9 @@
 package smartclass.com.smartclass.models;
 
+import android.hardware.camera2.params.Face;
+
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -13,12 +17,24 @@ import java.util.Date;
 public class User {
 
     private boolean teacherMode;
-    private Facebook facebook;
+
+    @SerializedName("firstName")
     private String firstName;
+
+    @SerializedName("lastName")
     private String lastName;
+
+    @SerializedName("displayName")
     private String displayName;
-    private Date birthday;
+
+
+    /*
+    @SerializedName("classrooms")
     private ArrayList<Classroom> classrooms;
+    */
+
+    private Facebook facebook;
+    private Date birthday;
 
     public User(Facebook facebook, String firstName, String lastName, String displayName,
                    Date birthday, ArrayList<Classroom> classrooms, boolean teacherMode) {
@@ -27,7 +43,7 @@ public class User {
         this.lastName = lastName;
         this.displayName = displayName;
         this.birthday = birthday;
-        this.classrooms = classrooms;
+        //this.classrooms = classrooms;
         this.teacherMode = teacherMode;
     }
 
@@ -38,7 +54,7 @@ public class User {
     public String getLastName() { return this.lastName; }
     public String getDisplayName() { return this.displayName; }
     public Date getBirthday() { return this.birthday; }
-    public ArrayList<Classroom> getClassrooms() { return this.classrooms; }
+    //public ArrayList<Classroom> getClassrooms() { return this.classrooms; }
     public boolean isTeacherMode() { return teacherMode; }
-    public int getClassroomsCount() { return this.classrooms.size(); }
+    //public int getClassroomsCount() { return this.classrooms.size(); }
 }

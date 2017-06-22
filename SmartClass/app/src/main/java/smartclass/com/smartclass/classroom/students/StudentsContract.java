@@ -11,7 +11,7 @@ import smartclass.com.smartclass.models.Student;
 public class StudentsContract {
 
     interface Presenter {
-        void onCreate();
+        void onCreate(ArrayList<Student> students);
         void onStudentSelected(Student student);
     }
 

@@ -1,5 +1,7 @@
 package smartclass.com.smartclass.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -8,8 +10,10 @@ import java.util.Date;
  */
 
 public class Student extends User {
+
+    @SerializedName("quizHistory")
     private ArrayList<StudentQuizHistory> quizHistory;
-    private ArrayList<StudentGoalHistory> goals;
+
 
     /**
      * Constructor
@@ -26,12 +30,11 @@ public class Student extends User {
                    Date birthday, ArrayList<Classroom> classrooms,
                    ArrayList<StudentQuizHistory> quizHistory, ArrayList<StudentGoalHistory> goals) {
         super(facebook, firstName, lastName, displayName, birthday, classrooms, false);
-        this.quizHistory = quizHistory;
-        this.goals = goals;
+        this.quizHistory = quizHistory;//this.goals = goals;
     }
 
     public ArrayList<StudentQuizHistory> getQuizHistory() { return this.quizHistory; }
-    public ArrayList<StudentGoalHistory> getGoals() { return this.goals; }
+    //public ArrayList<StudentGoalHistory> getGoals() { return this.goals; }
     public int getQuizHistoryCount() { return this.quizHistory.size(); }
-    public int getGoalCount() { return this.goals.size(); }
+    //public int getGoalCount() { return this.goals.size(); }
 }

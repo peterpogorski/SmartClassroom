@@ -20,10 +20,11 @@ public class StudentsPresenter implements StudentsContract.Presenter {
     /** Contract methods **/
 
     @Override
-    public void onCreate() {
-        ArrayList<Student> students = TeacherModeDataManager.getInstance().getStudentList();
+    public void onCreate(ArrayList<Student> students) {
         mView.initStudentsList(students);
     }
+
+
 
     @Override
     public void onStudentSelected(Student student) {
