@@ -1,5 +1,7 @@
 package smartclass.com.smartclass.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 
 /**
@@ -7,10 +9,20 @@ import java.util.ArrayList;
  */
 
 public class StudentQuizHistory {
+
+    @SerializedName("title")
     private String title;
+
+    @SerializedName("mark")
     private double mark;
+
+    @SerializedName("weight")
     private double weight;
+
+    @SerializedName("results")
     private ArrayList<StudentQuizResponse> results;
+
+    @SerializedName("quiz")
     private Quiz quiz;
 
     /**

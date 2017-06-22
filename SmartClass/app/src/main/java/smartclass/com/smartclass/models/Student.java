@@ -14,6 +14,8 @@ public class Student extends User {
     @SerializedName("quizHistory")
     private ArrayList<StudentQuizHistory> quizHistory;
 
+    @SerializedName("classroom")
+    private ArrayList<String> classrooms;
 
     /**
      * Constructor
@@ -37,4 +39,5 @@ public class Student extends User {
     //public ArrayList<StudentGoalHistory> getGoals() { return this.goals; }
     public int getQuizHistoryCount() { return this.quizHistory.size(); }
     //public int getGoalCount() { return this.goals.size(); }
+    public ArrayList<String> getClassrooms() { return this.classrooms; }
 }

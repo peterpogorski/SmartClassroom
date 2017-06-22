@@ -5,6 +5,8 @@ package smartclass.com.smartclass.models;
  */
 
 public class StudentQuizResponse {
+
+
     private int questionNumber;
     private String answer;
 

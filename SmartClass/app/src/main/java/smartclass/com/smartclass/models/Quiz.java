@@ -1,5 +1,7 @@
 package smartclass.com.smartclass.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -8,10 +10,20 @@ import java.util.Date;
  */
 
 public class Quiz {
+
+    @SerializedName("title")
     private String title;
+
+    @SerializedName("description")
     private String description;
+
+    @SerializedName("date")
     private Date date;
+
+    @SerializedName("duration")
     private double duration;
+
+    @SerializedName("questions")
     private ArrayList<QuizQuestion> questions;
 
     /**
