@@ -12,7 +12,13 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 import smartclass.com.smartclass.R;
+import smartclass.com.smartclass.demodata.SmartClassRetrofit;
+import smartclass.com.smartclass.demodata.SmartClassService;
 import smartclass.com.smartclass.models.Student;
 
 /**
@@ -39,6 +45,8 @@ public class StudentsFragment extends Fragment implements StudentsContract.View 
     private RecyclerView.LayoutManager mLayoutManager;
     private StudentsListAdapter mListAdapter;
     private StudentsPresenter mPresenter;
+    private Retrofit mRetrofit;
+
 
     public static StudentsFragment newInstance() {
         return new StudentsFragment();
@@ -48,7 +56,8 @@ public class StudentsFragment extends Fragment implements StudentsContract.View 
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPresenter = new StudentsPresenter(this);
-        mPresenter.onCreate();
+
+        mRetrofit = SmartClassRetrofit.getInstance();
     }
 
     @Nullable
@@ -70,6 +79,24 @@ public class StudentsFragment extends Fragment implements StudentsContract.View 
 
         mListAdapter = new StudentsListAdapter(mStudentList, mPresenter);
         mRecyclerView.setAdapter(mListAdapter);
+
+        SmartClassService smartClassService = mRetrofit.create(SmartClassService.class);
+
+        Call<Student> getStudent = smartClassService.getStudent("594abd74dd08c70029b42233");
+
+        Call<ArrayList<Student>> getStudents = smartClassService.getStudents();
+        getStudents.enqueue(new Callback<ArrayList<Student>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Student>> call, Response<ArrayList<Student>> response) {
+                mPresenter.onCreate(response.body());
+                mListAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Student>> call, Throwable t) {
+
+            }
+        });
 
         return rootView;
     }

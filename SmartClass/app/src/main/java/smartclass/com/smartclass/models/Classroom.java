@@ -7,6 +7,8 @@ import java.util.ArrayList;
  */
 
 public class Classroom {
+
+
     private String title;
     private String description;
     private String courseCode;
