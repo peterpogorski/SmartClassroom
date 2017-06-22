@@ -8,8 +8,10 @@ public class GoalContract {
 
     interface Presenter {
         void onCreate();
+        void onGoalsLoaded();
     }
 
     interface View {
+        void hideLoading();
     }
 }

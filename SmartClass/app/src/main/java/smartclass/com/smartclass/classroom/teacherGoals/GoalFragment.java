@@ -14,6 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -47,6 +48,7 @@ public class GoalFragment extends Fragment implements GoalContract.View {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
+    private ProgressBar mLoadingSpinner;
     private GoalListAdapter mListAdapter;
     private GoalPresenter mPresenter;
 
@@ -74,6 +76,7 @@ public class GoalFragment extends Fragment implements GoalContract.View {
         rootView.setTag(TAG);
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.list_view);
+        mLoadingSpinner = (ProgressBar) rootView.findViewById(R.id.loading_spinner);
 
         mLayoutManager = new LinearLayoutManager(getActivity());
 
@@ -89,6 +92,8 @@ public class GoalFragment extends Fragment implements GoalContract.View {
         // TODO: Pass list of goals instead of students
         mListAdapter = new GoalListAdapter(goals, mPresenter);
         mRecyclerView.setAdapter(mListAdapter);
+
+        mPresenter.onGoalsLoaded();
 
         return rootView;
     }
@@ -149,4 +154,10 @@ public class GoalFragment extends Fragment implements GoalContract.View {
     }
 
     /* Contract methods */
+
+    @Override
+    public void hideLoading() {
+        mLoadingSpinner.setVisibility(View.GONE);
+        mRecyclerView.setVisibility(View.VISIBLE);
+    }
 }

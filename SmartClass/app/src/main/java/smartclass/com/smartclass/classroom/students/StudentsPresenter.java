@@ -20,14 +20,18 @@ public class StudentsPresenter implements StudentsContract.Presenter {
     /** Contract methods **/
 
     @Override
-    public void onCreate(ArrayList<Student> students) {
-        mView.initStudentsList(students);
+    public void onCreate() {
+
     }
-
-
 
     @Override
     public void onStudentSelected(Student student) {
         // TODO: Display goals for the selected student
+    }
+
+    @Override
+    public void onStudentListLoaded(ArrayList<Student> students) {
+        mView.hideLoading();
+        mView.initStudentsList(students);
     }
 }

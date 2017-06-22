@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 
@@ -43,6 +44,7 @@ public class StudentsFragment extends Fragment implements StudentsContract.View 
 
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
+    private ProgressBar mLoadingSpinner;
     private StudentsListAdapter mListAdapter;
     private StudentsPresenter mPresenter;
     private Retrofit mRetrofit;
@@ -67,6 +69,7 @@ public class StudentsFragment extends Fragment implements StudentsContract.View 
         rootView.setTag(TAG);
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.list_view);
+        mLoadingSpinner = (ProgressBar) rootView.findViewById(R.id.loading_spinner);
 
         mLayoutManager = new LinearLayoutManager(getActivity());
 
@@ -77,19 +80,13 @@ public class StudentsFragment extends Fragment implements StudentsContract.View 
         }
         setmRecyclerViewLayoutManager(mCurrentLayoutManagerType);
 
-        mListAdapter = new StudentsListAdapter(mStudentList, mPresenter);
-        mRecyclerView.setAdapter(mListAdapter);
-
         SmartClassService smartClassService = mRetrofit.create(SmartClassService.class);
-
-        Call<Student> getStudent = smartClassService.getStudent("594abd74dd08c70029b42233");
 
         Call<ArrayList<Student>> getStudents = smartClassService.getStudents();
         getStudents.enqueue(new Callback<ArrayList<Student>>() {
             @Override
             public void onResponse(Call<ArrayList<Student>> call, Response<ArrayList<Student>> response) {
-                mPresenter.onCreate(response.body());
-                mListAdapter.notifyDataSetChanged();
+                mPresenter.onStudentListLoaded(response.body());
             }
 
             @Override
@@ -154,5 +151,17 @@ public class StudentsFragment extends Fragment implements StudentsContract.View 
     @Override
     public void initStudentsList(ArrayList<Student> students) {
         mStudentList = students;
+        if(mListAdapter != null) {
+            mListAdapter.notifyDataSetChanged();
+        } else {
+            mListAdapter = new StudentsListAdapter(mStudentList, mPresenter);
+            mRecyclerView.setAdapter(mListAdapter);
+        }
+    }
+
+    @Override
+    public void hideLoading() {
+        mLoadingSpinner.setVisibility(View.GONE);
+        mRecyclerView.setVisibility(View.VISIBLE);
     }
 }

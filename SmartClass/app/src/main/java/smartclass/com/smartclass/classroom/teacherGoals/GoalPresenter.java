@@ -14,4 +14,9 @@ public class GoalPresenter implements GoalContract.Presenter {
     public void onCreate() {
 
     }
+
+    @Override
+    public void onGoalsLoaded() {
+        mView.hideLoading();
+    }
 }

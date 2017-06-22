@@ -11,12 +11,14 @@ import smartclass.com.smartclass.models.Student;
 public class StudentsContract {
 
     interface Presenter {
-        void onCreate(ArrayList<Student> students);
+        void onCreate();
         void onStudentSelected(Student student);
+        void onStudentListLoaded(ArrayList<Student> students);
     }
 
     interface View {
         void addStudent(Student student);
         void initStudentsList(ArrayList<Student> students);
+        void hideLoading();
     }
 }

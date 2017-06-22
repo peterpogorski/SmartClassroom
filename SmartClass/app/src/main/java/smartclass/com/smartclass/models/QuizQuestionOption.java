@@ -1,11 +1,17 @@
 package smartclass.com.smartclass.models;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by max on 2017-06-15.
  */
 
 public class QuizQuestionOption {
+
+    @SerializedName("text")
     private String text;
+
+    @SerializedName("correct")
     private Boolean correct;
 
     /**
