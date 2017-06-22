@@ -18,5 +18,4 @@ public interface SmartClassService {
 
     @GET("students/{id}")
     Call<Student> getStudent(@Path("id") String studentId);
-
 }

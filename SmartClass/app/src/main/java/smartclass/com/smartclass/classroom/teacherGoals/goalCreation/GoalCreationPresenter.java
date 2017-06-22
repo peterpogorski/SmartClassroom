@@ -40,9 +40,10 @@ public class GoalCreationPresenter implements GoalCreationContract.Presenter {
         double marks = mView.getMarksInput();
 
         Date creationDate = new Date();
-        // TODO: get start and end dates once the Date Pickers are implemented
-        Date startDate = new Date();
-        Date endDate = new Date();
+        // TODO: Handle null dates
+        // TODO: Handle the case when end date is before the start date
+        Date startDate = mView.getStartDate();
+        Date endDate = mView.getEndDate();
 
         Goal goal = new Goal(title, description, type, creationDate, startDate, endDate, weight, marks);
         TeacherModeDataManager.getInstance().addGoal(goal);

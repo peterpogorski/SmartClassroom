@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.List;
 
 import smartclass.com.smartclass.R;
@@ -46,8 +48,15 @@ public class GoalListAdapter extends RecyclerView.Adapter<GoalListAdapter.GoalVi
         final Goal goal = goalList.get(position);
 
         holder.goalTitle.setText(goal.getTitle());
-        holder.startDate.setText(goal.getStartDate().toString());
-        holder.endDate.setText(goal.getEndDate().toString());
+        Date startDate = goal.getStartDate();
+        Date endDate = goal.getStartDate();
+        if (startDate != null && endDate != null) {
+            holder.startDate.setText(DateFormat.getDateInstance().format(startDate));
+            holder.endDate.setText(DateFormat.getDateInstance().format(endDate));
+        } else {
+            holder.startDateLabel.setVisibility(View.GONE);
+            holder.endDateLabel.setVisibility(View.GONE);
+        }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +74,8 @@ public class GoalListAdapter extends RecyclerView.Adapter<GoalListAdapter.GoalVi
     public class GoalViewHolder extends RecyclerView.ViewHolder{
         public View itemView;
         public TextView goalTitle;
+        public TextView startDateLabel;
+        public TextView endDateLabel;
         public TextView startDate;
         public TextView endDate;
         public ImageView goalType;
@@ -74,6 +85,8 @@ public class GoalListAdapter extends RecyclerView.Adapter<GoalListAdapter.GoalVi
             super(view);
             itemView = view;
             goalTitle = (TextView) view.findViewById(R.id.goal_title);
+            startDateLabel = (TextView) view.findViewById(R.id.start_date_label);
+            endDateLabel = (TextView) view.findViewById(R.id.end_date_label);
             startDate = (TextView) view.findViewById(R.id.start_date);
             endDate = (TextView) view.findViewById(R.id.end_date);
             goalType = (ImageView) view.findViewById(R.id.goal_type);

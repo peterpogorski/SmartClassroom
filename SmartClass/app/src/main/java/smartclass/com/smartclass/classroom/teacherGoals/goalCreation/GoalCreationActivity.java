@@ -1,6 +1,7 @@
 package smartclass.com.smartclass.classroom.teacherGoals.goalCreation;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -16,12 +17,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import java.text.DateFormat;
 import java.util.Date;
 
 import smartclass.com.smartclass.DatePickerFragment;
 import smartclass.com.smartclass.R;
 
 public class GoalCreationActivity extends AppCompatActivity implements GoalCreationContract.View {
+
+    public interface DateSetListener {
+        void onDateSet(Date date);
+    }
 
     private GoalCreationPresenter mPresenter;
 
@@ -33,6 +39,9 @@ public class GoalCreationActivity extends AppCompatActivity implements GoalCreat
     private Spinner goalTypeSpinner;
     private Button startDateButton;
     private Button endDateButton;
+
+    private Date startDate;
+    private Date endDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +75,13 @@ public class GoalCreationActivity extends AppCompatActivity implements GoalCreat
             @Override
             public void onClick(View v) {
                 DatePickerFragment datePickerFragment = new DatePickerFragment();
+                datePickerFragment.dateSetListener = new DateSetListener() {
+                    @Override
+                    public void onDateSet(Date date) {
+                        startDate = date;
+                        startDateButton.setText(DateFormat.getDateInstance().format(date));
+                    }
+                };
                 datePickerFragment.show(getFragmentManager(), "datePicker");
             }
         });
@@ -74,6 +90,13 @@ public class GoalCreationActivity extends AppCompatActivity implements GoalCreat
             @Override
             public void onClick(View v) {
                 DatePickerFragment datePickerFragment = new DatePickerFragment();
+                datePickerFragment.dateSetListener = new DateSetListener() {
+                    @Override
+                    public void onDateSet(Date date) {
+                        endDate = date;
+                        endDateButton.setText(DateFormat.getDateInstance().format(date));
+                    }
+                };
                 datePickerFragment.show(getFragmentManager(), "datePicker");
             }
         });
@@ -130,14 +153,16 @@ public class GoalCreationActivity extends AppCompatActivity implements GoalCreat
         return "";
     }
 
+    @Nullable
     @Override
     public Date getStartDate() {
-        return null;
+        return startDate;
     }
 
+    @Nullable
     @Override
     public Date getEndDate() {
-        return null;
+        return endDate;
     }
 
     @NonNull
