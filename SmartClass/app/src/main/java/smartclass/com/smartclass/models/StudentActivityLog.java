@@ -1,5 +1,7 @@
 package smartclass.com.smartclass.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 
 /**
@@ -7,9 +9,17 @@ import java.util.Date;
  */
 
 public class StudentActivityLog {
+
+    @SerializedName("date")
     private Date date;
+
+    @SerializedName("log")
     private String log;
+
+    @SerializedName("weight")
     private double weight;
+
+    @SerializedName("mark")
     private double grade;
 
     /**
