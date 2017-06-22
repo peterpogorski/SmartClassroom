@@ -1,6 +1,8 @@
 package smartclass.com.smartclass.classroom.teacherGoals.goalCreation;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,15 +10,24 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import java.text.DateFormat;
 import java.util.Date;
 
+import smartclass.com.smartclass.DatePickerFragment;
 import smartclass.com.smartclass.R;
 
 public class GoalCreationActivity extends AppCompatActivity implements GoalCreationContract.View {
+
+    public interface DateSetListener {
+        void onDateSet(Date date);
+    }
 
     private GoalCreationPresenter mPresenter;
 
@@ -24,13 +35,20 @@ public class GoalCreationActivity extends AppCompatActivity implements GoalCreat
     private EditText descriptionField;
     private EditText weightField;
     private EditText marksField;
+
     private Spinner goalTypeSpinner;
-    // TODO: Add DatePickers
+    private Button startDateButton;
+    private Button endDateButton;
+
+    private Date startDate;
+    private Date endDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goal_creation);
+
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.action_bar);
         setSupportActionBar(toolbar);
@@ -50,6 +68,39 @@ public class GoalCreationActivity extends AppCompatActivity implements GoalCreat
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         goalTypeSpinner.setAdapter(adapter);
 
+        startDateButton = (Button) findViewById(R.id.start_date_button);
+        endDateButton = (Button) findViewById(R.id.end_date_button);
+
+        startDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerFragment datePickerFragment = new DatePickerFragment();
+                datePickerFragment.dateSetListener = new DateSetListener() {
+                    @Override
+                    public void onDateSet(Date date) {
+                        startDate = date;
+                        startDateButton.setText(DateFormat.getDateInstance().format(date));
+                    }
+                };
+                datePickerFragment.show(getFragmentManager(), "datePicker");
+            }
+        });
+
+        endDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerFragment datePickerFragment = new DatePickerFragment();
+                datePickerFragment.dateSetListener = new DateSetListener() {
+                    @Override
+                    public void onDateSet(Date date) {
+                        endDate = date;
+                        endDateButton.setText(DateFormat.getDateInstance().format(date));
+                    }
+                };
+                datePickerFragment.show(getFragmentManager(), "datePicker");
+            }
+        });
+
         mPresenter = new GoalCreationPresenter(this);
         mPresenter.onCreate();
     }
@@ -68,7 +119,6 @@ public class GoalCreationActivity extends AppCompatActivity implements GoalCreat
                 finish();
                 return true;
             case R.id.action_finish:
-                // TODO: Save Goal
                 if (mPresenter.createGoal()) {
                     finish();
                 }
@@ -103,14 +153,16 @@ public class GoalCreationActivity extends AppCompatActivity implements GoalCreat
         return "";
     }
 
+    @Nullable
     @Override
     public Date getStartDate() {
-        return null;
+        return startDate;
     }
 
+    @Nullable
     @Override
     public Date getEndDate() {
-        return null;
+        return endDate;
     }
 
     @NonNull
