@@ -1,4 +1,6 @@
 package smartclass.com.smartclass.models;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 
 /**
@@ -6,12 +8,26 @@ import java.util.Date;
  */
 
 public class Goal {
+
+    @SerializedName("title")
     private String title;
+
+    @SerializedName("description")
     private String description;
+
+    @SerializedName("type")
     private String type;
+
+    @SerializedName("creationDate")
     private Date creationDate;
+
+    @SerializedName("startDate")
     private Date startDate;
+
+    @SerializedName("endDate")
     private Date endDate;
+
+    @SerializedName("weight")
     private Double weight;
 
     /**
