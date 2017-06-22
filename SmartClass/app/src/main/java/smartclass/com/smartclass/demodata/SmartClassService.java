@@ -22,7 +22,7 @@ public interface SmartClassService {
 
     @GET("students/{id}")
     Call<Student> getStudent(@Path("id") String studentId);
-
+  
     @POST("/students")
     Call<Student> createStudent(@Body Student student);
 
@@ -43,4 +43,5 @@ public interface SmartClassService {
 
     @DELETE("/goals/{id}")
     Call<Goal> deleteGoal(@Path("id") String goalId);
+
 }
