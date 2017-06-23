@@ -49,7 +49,7 @@ public class GoalListAdapter extends RecyclerView.Adapter<GoalListAdapter.GoalVi
 
         holder.goalTitle.setText(goal.getTitle());
         Date startDate = goal.getStartDate();
-        Date endDate = goal.getStartDate();
+        Date endDate = goal.getEndDate();
         if (startDate != null && endDate != null) {
             holder.startDate.setText(DateFormat.getDateInstance().format(startDate));
             holder.endDate.setText(DateFormat.getDateInstance().format(endDate));
