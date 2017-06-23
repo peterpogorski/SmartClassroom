@@ -164,12 +164,12 @@ public class StudentsFragment extends Fragment implements StudentsContract.View 
     public void initStudentsList(ArrayList<Student> students) {
         mStudentList = students;
         TeacherModeDataManager.getInstance().setStudentsList(students);
-        if(mListAdapter != null) {
-            mListAdapter.notifyDataSetChanged();
-        } else {
+//        if(mListAdapter != null) {
+//            mListAdapter.notifyDataSetChanged();
+//        } else {
             mListAdapter = new StudentsListAdapter(mStudentList, mPresenter);
             mRecyclerView.setAdapter(mListAdapter);
-        }
+//        }
     }
 
     @Override

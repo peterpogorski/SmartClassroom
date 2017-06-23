@@ -68,17 +68,6 @@ public class GoalFragment extends Fragment implements GoalContract.View {
         setHasOptionsMenu(true);
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        // Refresh the goals list
-        if (mListAdapter != null) {
-            goals = TeacherModeDataManager.getInstance().getGoals();
-            mListAdapter.notifyDataSetChanged();
-        }
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -97,38 +86,16 @@ public class GoalFragment extends Fragment implements GoalContract.View {
         }
         setmRecyclerViewLayoutManager(mCurrentLayoutManagerType);
 
-        SmartClassService smartClassService = mRetrofit.create(SmartClassService.class);
-
-        Call<ArrayList<Goal>> getGoals = smartClassService.getGoals();
-        getGoals.enqueue(new Callback<ArrayList<Goal>>() {
-            @Override
-            public void onResponse(Call<ArrayList<Goal>> call, Response<ArrayList<Goal>> response) {
-                goals = response.body();
-                TeacherModeDataManager.getInstance().setGoals(goals);
-
-                if (mListAdapter == null) {
-                    mListAdapter = new GoalListAdapter(goals, mPresenter);
-                    mRecyclerView.setAdapter(mListAdapter);
-                } else {
-                    mListAdapter.notifyDataSetChanged();
-                }
-
-                mPresenter.onGoalsLoaded();
-            }
-
-            @Override
-            public void onFailure(Call<ArrayList<Goal>> call, Throwable t) {
-
-            }
-        });
+        loadGoals();
 
         return rootView;
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        if (TeacherModeDataManager.getInstance().isTeacherModeEnabled()) {
-            inflater.inflate(R.menu.menu_teacher_mode_goals, menu);
+        inflater.inflate(R.menu.menu_teacher_mode_goals, menu);
+        if (!TeacherModeDataManager.getInstance().isTeacherModeEnabled()) {
+            menu.findItem(R.id.action_create_goal).setVisible(false);
         }
         super.onCreateOptionsMenu(menu, inflater);
     }
@@ -136,6 +103,9 @@ public class GoalFragment extends Fragment implements GoalContract.View {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.action_refresh:
+                loadGoals();
+                return true;
             case R.id.action_create_goal:
                 Context context = getActivity();
                 if (context != null) {
@@ -188,5 +158,33 @@ public class GoalFragment extends Fragment implements GoalContract.View {
     public void hideLoading() {
         mLoadingSpinner.setVisibility(View.GONE);
         mRecyclerView.setVisibility(View.VISIBLE);
+    }
+
+    // TODO: Move this to presenter
+    public void loadGoals() {
+        SmartClassService smartClassService = mRetrofit.create(SmartClassService.class);
+
+        Call<ArrayList<Goal>> getGoals = smartClassService.getGoals();
+        getGoals.enqueue(new Callback<ArrayList<Goal>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Goal>> call, Response<ArrayList<Goal>> response) {
+                goals = response.body();
+                TeacherModeDataManager.getInstance().setGoals(goals);
+
+//                if (mListAdapter == null) {
+                mListAdapter = new GoalListAdapter(goals, mPresenter);
+                mRecyclerView.setAdapter(mListAdapter);
+//                } else {
+//                    mListAdapter.notifyDataSetChanged();
+//                }
+
+                mPresenter.onGoalsLoaded();
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Goal>> call, Throwable t) {
+
+            }
+        });
     }
 }
