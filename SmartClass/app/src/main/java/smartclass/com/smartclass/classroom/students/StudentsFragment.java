@@ -167,7 +167,7 @@ public class StudentsFragment extends Fragment implements StudentsContract.View 
 //        if(mListAdapter != null) {
 //            mListAdapter.notifyDataSetChanged();
 //        } else {
-            mListAdapter = new StudentsListAdapter(mStudentList, mPresenter);
+            mListAdapter = new StudentsListAdapter(getActivity(), mStudentList, mPresenter);
             mRecyclerView.setAdapter(mListAdapter);
 //        }
     }
