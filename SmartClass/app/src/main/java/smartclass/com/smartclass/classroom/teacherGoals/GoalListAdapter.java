@@ -68,7 +68,9 @@ public class GoalListAdapter extends RecyclerView.Adapter<GoalListAdapter.GoalVi
 
     @Override
     public int getItemCount() {
-        return goalList.size();
+        int size = goalList != null ? size = goalList.size() : 0;
+
+        return size;
     }
 
     public class GoalViewHolder extends RecyclerView.ViewHolder{

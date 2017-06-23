@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import smartclass.com.smartclass.classroom.ClassroomActivity;
+import smartclass.com.smartclass.demodata.TeacherModeDataManager;
 import smartclass.com.smartclass.models.Course;
 import smartclass.com.smartclass.course.CourseActivity;
 import smartclass.com.smartclass.R;
@@ -19,8 +20,6 @@ import smartclass.com.smartclass.R;
  * Created by peterpogorski on 2017-06-12.
  */
 public class CourseListActivity extends Activity implements CourseListContract.View {
-
-    private boolean teacherMode = true;
 
     private CourseListAdapter mListAdapter;
     private List<Course> mCourseList = new ArrayList<Course>();
@@ -57,7 +56,7 @@ public class CourseListActivity extends Activity implements CourseListContract.V
     @Override
     public void showCourse(String courseName) {
         Intent intent;
-        if (teacherMode) {
+        if (TeacherModeDataManager.getInstance().isTeacherModeEnabled()) {
             intent = new Intent(this, ClassroomActivity.class);
             intent.putExtra(ClassroomActivity.COURSE_NAME, courseName);
         } else {
