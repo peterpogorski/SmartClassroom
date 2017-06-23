@@ -20,7 +20,7 @@ public class TeacherModeDataManager {
 
     private static TeacherModeDataManager instance;
 
-    private boolean teacherModeEnabled = false;
+    private boolean teacherModeEnabled = true;
 
     private Teacher currentTeacher;
     private ArrayList<Student> students = new ArrayList<>();

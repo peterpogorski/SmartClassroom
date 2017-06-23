@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 tools:text="Geography Homework"
                 android:ellipsize="end"
-                android:textSize="24sp"/>
+                android:textSize="18sp"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
