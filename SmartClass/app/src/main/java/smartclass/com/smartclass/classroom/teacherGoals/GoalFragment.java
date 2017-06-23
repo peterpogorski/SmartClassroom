@@ -19,9 +19,15 @@ import android.widget.ProgressBar;
 import java.util.ArrayList;
 import java.util.Date;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 import smartclass.com.smartclass.R;
 import smartclass.com.smartclass.classroom.students.StudentsFragment;
 import smartclass.com.smartclass.classroom.teacherGoals.goalCreation.GoalCreationActivity;
+import smartclass.com.smartclass.demodata.SmartClassRetrofit;
+import smartclass.com.smartclass.demodata.SmartClassService;
 import smartclass.com.smartclass.demodata.TeacherModeDataManager;
 import smartclass.com.smartclass.models.Goal;
 import smartclass.com.smartclass.models.Student;
@@ -51,12 +57,14 @@ public class GoalFragment extends Fragment implements GoalContract.View {
     private ProgressBar mLoadingSpinner;
     private GoalListAdapter mListAdapter;
     private GoalPresenter mPresenter;
+    private Retrofit mRetrofit;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPresenter = new GoalPresenter(this);
         mPresenter.onCreate();
+        mRetrofit = SmartClassRetrofit.getInstance();
         setHasOptionsMenu(true);
     }
 
@@ -65,8 +73,10 @@ public class GoalFragment extends Fragment implements GoalContract.View {
         super.onResume();
 
         // Refresh the goals list
-        goals = TeacherModeDataManager.getInstance().getGoals();
-        mListAdapter.notifyDataSetChanged();
+        if (mListAdapter != null) {
+            goals = TeacherModeDataManager.getInstance().getGoals();
+            mListAdapter.notifyDataSetChanged();
+        }
     }
 
     @Nullable
@@ -87,13 +97,30 @@ public class GoalFragment extends Fragment implements GoalContract.View {
         }
         setmRecyclerViewLayoutManager(mCurrentLayoutManagerType);
 
-        goals = TeacherModeDataManager.getInstance().getGoals();
+        SmartClassService smartClassService = mRetrofit.create(SmartClassService.class);
 
-        // TODO: Pass list of goals instead of students
-        mListAdapter = new GoalListAdapter(goals, mPresenter);
-        mRecyclerView.setAdapter(mListAdapter);
+        Call<ArrayList<Goal>> getGoals = smartClassService.getGoals();
+        getGoals.enqueue(new Callback<ArrayList<Goal>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Goal>> call, Response<ArrayList<Goal>> response) {
+                goals = response.body();
+                TeacherModeDataManager.getInstance().setGoals(goals);
 
-        mPresenter.onGoalsLoaded();
+                if (mListAdapter == null) {
+                    mListAdapter = new GoalListAdapter(goals, mPresenter);
+                    mRecyclerView.setAdapter(mListAdapter);
+                } else {
+                    mListAdapter.notifyDataSetChanged();
+                }
+
+                mPresenter.onGoalsLoaded();
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Goal>> call, Throwable t) {
+
+            }
+        });
 
         return rootView;
     }

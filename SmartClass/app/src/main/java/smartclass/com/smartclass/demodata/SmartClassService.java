@@ -23,25 +23,25 @@ public interface SmartClassService {
     @GET("students/{id}")
     Call<Student> getStudent(@Path("id") String studentId);
   
-    @POST("/students")
+    @POST("students")
     Call<Student> createStudent(@Body Student student);
 
-    @POST("/students/{id}/goals/{goaldId}/activityLogs")
+    @POST("students/{id}/goals/{goaldId}/activityLogs")
     Call<Student> createGoal(@Path("id") String studentId, @Body Goal goal);
 
-    @DELETE("/students/{id}")
+    @DELETE("students/{id}")
     Call<Student> deleteStudent();
 
-    @GET("/goals")
+    @GET("goals")
     Call<ArrayList<Goal>> getGoals();
 
-    @GET("/goals/{id}")
+    @GET("goals/{id}")
     Call<Goal> getGoal(@Path("id") String studentId);
 
-    @POST("/goals")
+    @POST("goals")
     Call<Goal> createGoal(@Body Goal goal);
 
-    @DELETE("/goals/{id}")
+    @DELETE("goals/{id}")
     Call<Goal> deleteGoal(@Path("id") String goalId);
 
 }

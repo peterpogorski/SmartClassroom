@@ -20,6 +20,7 @@ import retrofit2.Retrofit;
 import smartclass.com.smartclass.R;
 import smartclass.com.smartclass.demodata.SmartClassRetrofit;
 import smartclass.com.smartclass.demodata.SmartClassService;
+import smartclass.com.smartclass.demodata.TeacherModeDataManager;
 import smartclass.com.smartclass.models.Student;
 
 /**
@@ -98,6 +99,17 @@ public class StudentsFragment extends Fragment implements StudentsContract.View 
         return rootView;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        // Refresh the students list
+        if (mListAdapter != null) {
+            mStudentList = TeacherModeDataManager.getInstance().getStudentList();
+            mListAdapter.notifyDataSetChanged();
+        }
+    }
+
     public void setmRecyclerViewLayoutManager(LayoutManagerType layoutManagerType) {
         int scrollPosition = 0;
 
@@ -151,6 +163,7 @@ public class StudentsFragment extends Fragment implements StudentsContract.View 
     @Override
     public void initStudentsList(ArrayList<Student> students) {
         mStudentList = students;
+        TeacherModeDataManager.getInstance().setStudentsList(students);
         if(mListAdapter != null) {
             mListAdapter.notifyDataSetChanged();
         } else {

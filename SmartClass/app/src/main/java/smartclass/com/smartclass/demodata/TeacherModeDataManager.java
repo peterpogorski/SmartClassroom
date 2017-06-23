@@ -21,7 +21,7 @@ public class TeacherModeDataManager {
     private static TeacherModeDataManager instance;
 
     private Teacher currentTeacher;
-    private ArrayList<Student> students;
+    private ArrayList<Student> students = new ArrayList<>();
     private ArrayList<Classroom> classrooms;
     private ArrayList<Goal> goals = new ArrayList<>();
 
@@ -44,11 +44,18 @@ public class TeacherModeDataManager {
     }
 
     public ArrayList<Student> getStudentList() {
+//        if (students == null) {
+//            createStudentList();
+//        }
         if (students == null) {
-            createStudentList();
+            students = new ArrayList<>();
         }
 
         return students;
+    }
+
+    public void setStudentsList(ArrayList<Student> students) {
+        this.students = students;
     }
 
     public ArrayList<Classroom> getClassrooms() {
@@ -60,15 +67,26 @@ public class TeacherModeDataManager {
     }
 
     public void addGoal(Goal goal) {
+        if (goals == null) {
+            goals = new ArrayList<>();
+        }
+
         goals.add(goal);
     }
 
     public ArrayList<Goal> getGoals() {
-        if (goals.isEmpty()) {
-            createInitialGoals();
+//        if (goals.isEmpty()) {
+//            createInitialGoals();
+//        }
+        if (goals == null) {
+            goals = new ArrayList<>();
         }
 
         return goals;
+    }
+
+    public void setGoals(ArrayList<Goal> goals) {
+        this.goals = goals;
     }
 
     public void createInitialGoals() {
