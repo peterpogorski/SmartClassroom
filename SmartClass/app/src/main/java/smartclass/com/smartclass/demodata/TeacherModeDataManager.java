@@ -20,6 +20,8 @@ public class TeacherModeDataManager {
 
     private static TeacherModeDataManager instance;
 
+    private boolean teacherModeEnabled = false;
+
     private Teacher currentTeacher;
     private ArrayList<Student> students = new ArrayList<>();
     private ArrayList<Classroom> classrooms;
@@ -33,6 +35,10 @@ public class TeacherModeDataManager {
         }
 
         return instance;
+    }
+
+    public boolean isTeacherModeEnabled() {
+        return teacherModeEnabled;
     }
 
     private Teacher getTeacher() {

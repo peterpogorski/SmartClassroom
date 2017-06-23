@@ -127,7 +127,9 @@ public class GoalFragment extends Fragment implements GoalContract.View {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_teacher_mode_goals, menu);
+        if (TeacherModeDataManager.getInstance().isTeacherModeEnabled()) {
+            inflater.inflate(R.menu.menu_teacher_mode_goals, menu);
+        }
         super.onCreateOptionsMenu(menu, inflater);
     }
 

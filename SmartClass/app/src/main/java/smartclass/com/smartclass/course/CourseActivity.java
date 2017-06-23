@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import smartclass.com.smartclass.classroom.teacherGoals.GoalFragment;
 import smartclass.com.smartclass.course.fragments.AttendanceFragment;
 import smartclass.com.smartclass.course.fragments.ProgressFragment;
 import smartclass.com.smartclass.course.fragments.QuizFragment;
@@ -23,7 +24,7 @@ import smartclass.com.smartclass.R;
 public class CourseActivity extends AppCompatActivity implements CourseContract.View {
 
     private enum CourseTabs {
-        PROGRESS, QUIZ, ATTENDANCE
+        GOALS, QUIZ, ATTENDANCE
     }
 
     public final static String COURSE_NAME = "courseName";
@@ -32,17 +33,17 @@ public class CourseActivity extends AppCompatActivity implements CourseContract.
 
     private Toolbar actionBar;
 
-    private LinearLayout mProgressButton;
+    private LinearLayout mGoalsButton;
     private LinearLayout mQuizButton;
     private LinearLayout mAttendanceButton;
 
-    private View mProgressActive;
+    private View mGoalsActive;
     private View mQuizActive;
     private View mAttendanceActive;
 
     private TextView mCourseTitle;
 
-    private ProgressFragment mProgressFragment;
+    private GoalFragment mGoalFragment;
     private AttendanceFragment mAttendanceFragment;
     private QuizFragment mQuizFragment;
 
@@ -58,11 +59,11 @@ public class CourseActivity extends AppCompatActivity implements CourseContract.
 
         mPresenter = new CoursePresenter(this);
 
-        mProgressButton = (LinearLayout) findViewById(R.id.first_tab);
+        mGoalsButton = (LinearLayout) findViewById(R.id.first_tab);
         mQuizButton = (LinearLayout) findViewById(R.id.quiz);
         mAttendanceButton = (LinearLayout) findViewById(R.id.attendance);
 
-        mProgressActive = findViewById(R.id.first_tab_active);
+        mGoalsActive = findViewById(R.id.first_tab_active);
         mQuizActive = findViewById(R.id.quiz_active);
         mAttendanceActive = findViewById(R.id.attendance_active);
 
@@ -70,9 +71,9 @@ public class CourseActivity extends AppCompatActivity implements CourseContract.
         progressButtonImage.setImageResource(R.drawable.goals_icon);
 
         TextView progressButtonLabel = (TextView) findViewById(R.id.first_tab_label);
-        progressButtonLabel.setText("Progress");
+        progressButtonLabel.setText("Goals");
 
-        mProgressButton.setOnClickListener(mOnProgressClickListener);
+        mGoalsButton.setOnClickListener(mOnProgressClickListener);
         mAttendanceButton.setOnClickListener(mOnAttendanceClickListener);
         mQuizButton.setOnClickListener(mOnQuizClickListener);
 
@@ -81,12 +82,12 @@ public class CourseActivity extends AppCompatActivity implements CourseContract.
 
     @Override
     public void disableProgressTab() {
-        mProgressActive.setBackgroundResource(0);
+        mGoalsActive.setBackgroundResource(0);
     }
 
     @Override
     public void enableProgressTab() {
-        changeTab(CourseTabs.PROGRESS);
+        changeTab(CourseTabs.GOALS);
     }
 
     @Override
@@ -118,12 +119,12 @@ public class CourseActivity extends AppCompatActivity implements CourseContract.
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
         switch(tab) {
-            case PROGRESS:
-                mProgressActive.setBackgroundResource(R.color.active_blue);
-                if(mProgressFragment == null) {
-                    mProgressFragment = new ProgressFragment();
+            case GOALS:
+                mGoalsActive.setBackgroundResource(R.color.active_blue);
+                if(mGoalFragment == null) {
+                    mGoalFragment = new GoalFragment();
                 }
-                transaction.replace(R.id.fragment_container, mProgressFragment);
+                transaction.replace(R.id.fragment_container, mGoalFragment);
                 break;
             case ATTENDANCE:
                 mAttendanceActive.setBackgroundResource(R.color.active_blue);
