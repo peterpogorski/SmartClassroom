@@ -100,6 +100,9 @@ public class GoalFragment extends Fragment implements GoalContract.View {
         super.onCreateOptionsMenu(menu, inflater);
     }
 
+    /**
+     * Handles action bar button clicks
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
