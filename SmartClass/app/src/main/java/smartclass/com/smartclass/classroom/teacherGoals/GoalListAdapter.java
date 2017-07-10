@@ -61,7 +61,7 @@ public class GoalListAdapter extends RecyclerView.Adapter<GoalListAdapter.GoalVi
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                mPresenter.onStudentSelected(student);
+                mPresenter.onGoalSelected(goal);
             }
         });
     }

@@ -1,4 +1,7 @@
 package smartclass.com.smartclass.models;
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
@@ -7,7 +10,7 @@ import java.util.Date;
  * Created by max on 2017-06-15.
  */
 
-public class Goal {
+public class Goal implements Parcelable {
 
     @SerializedName("title")
     private String title;
@@ -60,4 +63,40 @@ public class Goal {
     public Date getStartDate() { return this.startDate; }
     public Date getEndDate() { return this.endDate; }
     public Double getWeight() { return this.weight; }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel out, int flags) {
+        out.writeString(title);
+        out.writeString(description);
+        out.writeString(type);
+        out.writeString(creationDate.toString());
+        out.writeString(startDate.toString());
+        out.writeString(endDate.toString());
+        out.writeDouble(weight);
+    }
+
+    public static final Parcelable.Creator<Goal> CREATOR = new Parcelable.Creator<Goal>() {
+        public Goal createFromParcel(Parcel in) {
+            return new Goal(in);
+        }
+
+        public Goal[] newArray(int size) {
+            return new Goal[size];
+        }
+    };
+
+    private Goal(Parcel in) {
+        title = in.readString();
+        description = in.readString();
+        type = in.readString();
+        creationDate = new Date(in.readString());
+        startDate = new Date(in.readString());
+        endDate = new Date(in.readString());
+        weight = in.readDouble();
+    }
 }
