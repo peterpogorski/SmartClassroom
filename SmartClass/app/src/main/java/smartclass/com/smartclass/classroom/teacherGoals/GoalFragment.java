@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -29,6 +30,7 @@ import smartclass.com.smartclass.classroom.teacherGoals.goalCreation.GoalCreatio
 import smartclass.com.smartclass.demodata.SmartClassRetrofit;
 import smartclass.com.smartclass.demodata.SmartClassService;
 import smartclass.com.smartclass.demodata.TeacherModeDataManager;
+import smartclass.com.smartclass.goalViewing.ViewGoalActivity;
 import smartclass.com.smartclass.models.Goal;
 import smartclass.com.smartclass.models.Student;
 
@@ -186,5 +188,18 @@ public class GoalFragment extends Fragment implements GoalContract.View {
 
             }
         });
+    }
+
+    @Override
+    public void showGoal(Goal goal) {
+        FragmentActivity activity = getActivity();
+        if (activity == null) { return; }
+
+        Intent intent = new Intent(activity, ViewGoalActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("goal", goal);
+        intent.putExtras(bundle);
+
+        startActivity(intent);
     }
 }
