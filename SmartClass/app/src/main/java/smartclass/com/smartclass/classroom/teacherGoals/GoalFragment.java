@@ -18,21 +18,18 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import smartclass.com.smartclass.R;
-import smartclass.com.smartclass.classroom.students.StudentsFragment;
 import smartclass.com.smartclass.classroom.teacherGoals.goalCreation.GoalCreationActivity;
 import smartclass.com.smartclass.demodata.SmartClassRetrofit;
 import smartclass.com.smartclass.demodata.SmartClassService;
 import smartclass.com.smartclass.demodata.TeacherModeDataManager;
 import smartclass.com.smartclass.goalViewing.ViewGoalActivity;
 import smartclass.com.smartclass.models.Goal;
-import smartclass.com.smartclass.models.Student;
 
 /**
  * Created by kevinT on 2017-06-16.
@@ -95,9 +92,10 @@ public class GoalFragment extends Fragment implements GoalContract.View {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_teacher_mode_goals, menu);
+        inflater.inflate(R.menu.menu_goals, menu);
         if (!TeacherModeDataManager.getInstance().isTeacherModeEnabled()) {
             menu.findItem(R.id.action_create_goal).setVisible(false);
+            menu.findItem(R.id.action_total_progress).setVisible(true);
         }
         super.onCreateOptionsMenu(menu, inflater);
     }
@@ -108,6 +106,9 @@ public class GoalFragment extends Fragment implements GoalContract.View {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.action_total_progress:
+                // TODO: Open activity to view total goal progress for the student
+                return true;
             case R.id.action_refresh:
                 loadGoals();
                 return true;
