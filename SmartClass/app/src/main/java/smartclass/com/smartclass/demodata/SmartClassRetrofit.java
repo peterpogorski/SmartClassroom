@@ -1,5 +1,8 @@
 package smartclass.com.smartclass.demodata;
 
+import com.facebook.stetho.okhttp3.StethoInterceptor;
+
+import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -13,8 +16,13 @@ public class SmartClassRetrofit {
 
     public static Retrofit getInstance() {
         if (instance == null) {
+            OkHttpClient client = new OkHttpClient.Builder()
+                    .addNetworkInterceptor(new StethoInterceptor())
+                    .build();
+
             instance = new Retrofit.Builder().baseUrl("https://smart-classroom-ece452.mybluemix.net/api/v1/")
             .addConverterFactory(GsonConverterFactory.create())
+            .client(client)
             .build();
         }
         return instance;

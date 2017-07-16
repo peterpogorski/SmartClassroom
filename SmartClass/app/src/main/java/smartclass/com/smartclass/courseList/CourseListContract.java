@@ -10,9 +10,14 @@ public class CourseListContract {
 
     interface Presenter {
         void onCourseSelected(Course course);
+        void onLogoutClicked();
+        void onLogoutConfirmed();
     }
 
     interface View {
         void showCourse(String courseName);
+        void confirmLogout();
+        void clearCredentials();
+        void showLoginScreen();
     }
 }

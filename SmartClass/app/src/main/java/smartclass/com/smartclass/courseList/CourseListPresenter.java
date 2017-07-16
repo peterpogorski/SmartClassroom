@@ -18,4 +18,15 @@ public class CourseListPresenter implements CourseListContract.Presenter {
     public void onCourseSelected(Course course) {
         mCourseView.showCourse(course.getClassName());
     }
+
+    @Override
+    public void onLogoutClicked() {
+        mCourseView.confirmLogout();
+    }
+
+    @Override
+    public void onLogoutConfirmed() {
+        mCourseView.clearCredentials();
+        mCourseView.showLoginScreen();
+    }
 }
