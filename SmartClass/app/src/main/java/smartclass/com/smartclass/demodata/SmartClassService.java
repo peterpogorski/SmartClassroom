@@ -8,7 +8,9 @@ import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import smartclass.com.smartclass.models.AuthenticatedUser;
 import smartclass.com.smartclass.models.Goal;
+import smartclass.com.smartclass.models.LoginUser;
 import smartclass.com.smartclass.models.Student;
 
 /**
@@ -16,6 +18,9 @@ import smartclass.com.smartclass.models.Student;
  */
 
 public interface SmartClassService {
+
+    @POST("authenticate")
+    Call<AuthenticatedUser> authenticateUser(@Body LoginUser loginUser);
 
     @GET("students")
     Call<ArrayList<Student>> getStudents();

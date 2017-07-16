@@ -64,6 +64,10 @@ public class TeacherModeDataManager {
         this.students = students;
     }
 
+    public void init(boolean isTeacher) {
+        teacherModeEnabled = isTeacher;
+    }
+
     public ArrayList<Classroom> getClassrooms() {
         if (classrooms == null) {
             createClassroomsList();
