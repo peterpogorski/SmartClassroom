@@ -43,7 +43,7 @@ public class LoginActivity extends Activity implements LoginContract.View {
 
         mPresenter = new LoginPresenter(this);
         mRetrofit = SmartClassRetrofit.getInstance();
-        mSharedPreferences = getPreferences(Context.MODE_PRIVATE);
+        mSharedPreferences = getSharedPreferences(getString(R.string.pref_name), Context.MODE_PRIVATE);
 
         String tokenValue = mSharedPreferences.getString(getString(R.string.saved_user_token), null);
         if(tokenValue != null) {

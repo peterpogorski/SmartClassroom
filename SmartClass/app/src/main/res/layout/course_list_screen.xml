@@ -3,20 +3,33 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:background="@color/colorPrimary"
-        android:gravity="center">
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/logout"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:padding="8dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/logout"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="36dp"
+            android:textStyle="bold"
+            android:layout_centerInParent="true"
             android:textColor="@color/white"
             android:text="Select a course"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/course_list_view"
