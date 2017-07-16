@@ -70,7 +70,7 @@ public class StudentsListAdapter extends RecyclerView.Adapter<StudentsListAdapte
 
     @Override
     public int getItemCount() {
-        return studentsList.size();
+        return studentsList == null ? 0 : studentsList.size();
     }
 
     public class StudentViewHolder extends RecyclerView.ViewHolder{
