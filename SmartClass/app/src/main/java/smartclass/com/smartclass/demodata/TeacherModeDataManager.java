@@ -26,6 +26,7 @@ public class TeacherModeDataManager {
     private ArrayList<Student> students = new ArrayList<>();
     private ArrayList<Classroom> classrooms;
     private ArrayList<Goal> goals = new ArrayList<>();
+    private ArrayList<Quiz> quizzes = new ArrayList<>();
 
     private TeacherModeDataManager() {}
 
@@ -133,5 +134,15 @@ public class TeacherModeDataManager {
                 TeacherModeDataManager.getInstance().getTeacher(),
                 new ArrayList<Student>(),
                 new ArrayList<Quiz>()));
+    }
+
+    // Quizzes
+
+    private ArrayList<Quiz> getQuizzes() {
+        return quizzes;
+    }
+
+    private void addQuiz(Quiz quiz) {
+        quizzes.add(quiz);
     }
 }

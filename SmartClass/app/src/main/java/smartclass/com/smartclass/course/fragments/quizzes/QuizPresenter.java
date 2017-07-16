@@ -18,7 +18,7 @@ public class QuizPresenter implements QuizContract.Presenter {
 
     @Override
     public void onQuizzesLoaded() {
-        // TODO
+        mView.hideLoading();
     }
 
     @Override

@@ -9,6 +9,7 @@
     <string name="action_create_a_goal">Create a goal</string>
     <string name="action_refresh">Refresh</string>
     <string name="action_finish">Finish</string>
+    <string name="action_create_a_quiz">Create a quiz</string>
 
     <!-- Goal Creation Strings -->
     <string name="create_a_goal_label">Create a Goal</string>

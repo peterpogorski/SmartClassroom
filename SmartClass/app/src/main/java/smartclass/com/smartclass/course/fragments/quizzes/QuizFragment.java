@@ -1,5 +1,7 @@
 package smartclass.com.smartclass.course.fragments.quizzes;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -7,6 +9,9 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
@@ -16,7 +21,9 @@ import java.util.ArrayList;
 import retrofit2.Retrofit;
 import smartclass.com.smartclass.R;
 import smartclass.com.smartclass.classroom.teacherGoals.GoalFragment;
+import smartclass.com.smartclass.course.fragments.quizzes.quizCreation.QuizCreationActivity;
 import smartclass.com.smartclass.demodata.SmartClassRetrofit;
+import smartclass.com.smartclass.demodata.TeacherModeDataManager;
 import smartclass.com.smartclass.models.Quiz;
 
 /**
@@ -78,6 +85,37 @@ public class QuizFragment extends Fragment implements  QuizContract.View {
         return rootView;
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_quizzes, menu);
+        if (!TeacherModeDataManager.getInstance().isTeacherModeEnabled()) {
+            menu.findItem(R.id.action_create_quiz).setVisible(false);
+        }
+
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    /**
+     * Handles action bar button clicks
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_refresh:
+                loadQuizzes();
+                return true;
+            case R.id.action_create_quiz:
+                Context context = getActivity();
+                if (context != null) {
+                    Intent intent = new Intent(getActivity(), QuizCreationActivity.class);
+                    startActivity(intent);
+                }
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     public void setmRecyclerViewLayoutManager(QuizFragment.LayoutManagerType layoutManagerType) {
         int scrollPosition = 0;
 
@@ -106,7 +144,8 @@ public class QuizFragment extends Fragment implements  QuizContract.View {
     }
 
     private void loadQuizzes() {
-        // TODO
+        // TODO: Load goals
+        mPresenter.onQuizzesLoaded();
     }
 
     // CONTRACT METHODS
