@@ -20,4 +20,14 @@
     <string name="choose_date_button_label">Choose Date</string>
     <string name="weight_label">Weight</string>
     <string name="marks_label">Marks</string>
+
+    <!-- Login Strings -->
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="saved_user_token">User Token</string>
+    <string name="saved_teacher_field">Teacher Field</string>
+    <string name="are_you_teacher">Are you a teacher?</string>
+    <string name="username_empty">Please enter a username.</string>
+    <string name="password_empty">Please enter a password.</string>
+    <string name="login_error">Sorry something went wrong. Please try again.</string>
 </resources>
