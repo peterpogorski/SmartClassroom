@@ -113,11 +113,12 @@ public class QuizFragment extends Fragment implements  QuizContract.View {
 
     @Override
     public void hideLoading() {
-
+        mLoadingSpinner.setVisibility(View.GONE);
+        mRecyclerView.setVisibility(View.VISIBLE);
     }
 
     @Override
-    public void showGoal(Quiz quiz) {
+    public void showQuiz(Quiz quiz) {
         // TODO
     }
 }

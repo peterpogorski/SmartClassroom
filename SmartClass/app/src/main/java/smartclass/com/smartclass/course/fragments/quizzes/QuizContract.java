@@ -10,12 +10,12 @@ public class QuizContract {
 
     interface Presenter {
         void onCreate();
-        void onGoalsLoaded();
-        void onGoalSelected(Quiz quiz);
+        void onQuizzesLoaded();
+        void onQuizSelected(Quiz quiz);
     }
 
     interface View {
         void hideLoading();
-        void showGoal(Quiz quiz);
+        void showQuiz(Quiz quiz);
     }
 }

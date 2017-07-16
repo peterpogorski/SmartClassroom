@@ -14,16 +14,15 @@ public class QuizPresenter implements QuizContract.Presenter {
 
     @Override
     public void onCreate() {
-
     }
 
     @Override
-    public void onGoalsLoaded() {
+    public void onQuizzesLoaded() {
         // TODO
     }
 
     @Override
-    public void onGoalSelected(Quiz quiz) {
+    public void onQuizSelected(Quiz quiz) {
         // TODO
     }
 }
