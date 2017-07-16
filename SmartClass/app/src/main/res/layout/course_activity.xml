@@ -16,6 +16,12 @@
         android:theme="@style/AppTheme.AppBarOverlay"
         app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="4dp"
+        android:background="@color/colorPrimary"/>
+
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
@@ -23,47 +29,60 @@
         android:layout_weight="1" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginBottom="4dp"
-        android:background="@color/grey"/>
-
-    <LinearLayout
         android:layout_gravity="bottom"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="64dp">
+        android:background="@color/colorPrimaryDark"
+        android:layout_height="72dp">
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/first_tab"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/first_tab_image"
-                android:layout_gravity="center_horizontal"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:src="@drawable/goals_icon"/>
+                android:orientation="vertical"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:gravity="center">
 
-            <TextView
-                android:id="@+id/first_tab_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_gravity="center_horizontal"
-                tools:text="Progress"/>
+                <ImageView
+                    android:id="@+id/first_tab_image"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    tools:src="@drawable/trophy_white"/>
+
+                <TextView
+                    android:id="@+id/first_tab_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_horizontal"
+                    tools:text="Progress"/>
+
+            </LinearLayout>
 
             <View
                 android:id="@+id/first_tab_active"
+                android:layout_alignParentBottom="true"
                 android:layout_gravity="bottom"
                 android:layout_width="match_parent"
                 android:layout_height="4dp"/>
 
-        </LinearLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/white"/>
 
         <LinearLayout
             android:id="@+id/second_tab"
@@ -97,61 +116,95 @@
 
         </LinearLayout>
 
-        <LinearLayout
+
+        <RelativeLayout
             android:id="@+id/quiz"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <ImageView
-                android:layout_gravity="center_horizontal"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/quiz_icon"/>
+                android:orientation="vertical"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:gravity="center">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_gravity="center_horizontal"
-                android:text="Quiz"/>
+                <ImageView
+                    android:id="@+id/quiz_icon"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/quiz_white"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/quiz_icon"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:text="Quiz"/>
+
+            </LinearLayout>
 
             <View
                 android:id="@+id/quiz_active"
+                android:layout_alignParentBottom="true"
                 android:layout_width="match_parent"
                 android:layout_height="4dp"/>
 
-        </LinearLayout>
+        </RelativeLayout>
 
         <LinearLayout
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/white"/>
+
+        <RelativeLayout
             android:id="@+id/attendance"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <ImageView
-                android:layout_gravity="center_horizontal"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/attendance"/>
+                android:orientation="vertical"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:gravity="center">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_gravity="center_horizontal"
-                android:text="Attendance"/>
+                <ImageView
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/attendance_white"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:text="Attendance"/>
+
+            </LinearLayout>
+
 
             <View
+                android:layout_alignParentBottom="true"
                 android:id="@+id/attendance_active"
                 android:layout_width="match_parent"
                 android:layout_height="4dp"/>
 
-        </LinearLayout>
+        </RelativeLayout>
 
     </LinearLayout>
 
