@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import smartclass.com.smartclass.classroom.teacherGoals.GoalFragment;
@@ -33,9 +34,9 @@ public class CourseActivity extends AppCompatActivity implements CourseContract.
 
     private Toolbar actionBar;
 
-    private LinearLayout mGoalsButton;
-    private LinearLayout mQuizButton;
-    private LinearLayout mAttendanceButton;
+    private RelativeLayout mGoalsButton;
+    private RelativeLayout mQuizButton;
+    private RelativeLayout mAttendanceButton;
 
     private View mGoalsActive;
     private View mQuizActive;
@@ -59,16 +60,16 @@ public class CourseActivity extends AppCompatActivity implements CourseContract.
 
         mPresenter = new CoursePresenter(this);
 
-        mGoalsButton = (LinearLayout) findViewById(R.id.first_tab);
-        mQuizButton = (LinearLayout) findViewById(R.id.quiz);
-        mAttendanceButton = (LinearLayout) findViewById(R.id.attendance);
+        mGoalsButton = (RelativeLayout) findViewById(R.id.first_tab);
+        mQuizButton = (RelativeLayout) findViewById(R.id.quiz);
+        mAttendanceButton = (RelativeLayout) findViewById(R.id.attendance);
 
         mGoalsActive = findViewById(R.id.first_tab_active);
         mQuizActive = findViewById(R.id.quiz_active);
         mAttendanceActive = findViewById(R.id.attendance_active);
 
         ImageView progressButtonImage = (ImageView) findViewById(R.id.first_tab_image);
-        progressButtonImage.setImageResource(R.drawable.goals_icon);
+        progressButtonImage.setImageResource(R.drawable.trophy_white);
 
         TextView progressButtonLabel = (TextView) findViewById(R.id.first_tab_label);
         progressButtonLabel.setText("Goals");
@@ -120,21 +121,21 @@ public class CourseActivity extends AppCompatActivity implements CourseContract.
         FragmentTransaction transaction = fm.beginTransaction();
         switch(tab) {
             case GOALS:
-                mGoalsActive.setBackgroundResource(R.color.active_blue);
+                mGoalsActive.setBackgroundResource(R.color.colorAccent);
                 if(mGoalFragment == null) {
                     mGoalFragment = new GoalFragment();
                 }
                 transaction.replace(R.id.fragment_container, mGoalFragment);
                 break;
             case ATTENDANCE:
-                mAttendanceActive.setBackgroundResource(R.color.active_blue);
+                mAttendanceActive.setBackgroundResource(R.color.colorAccent);
                 if(mAttendanceFragment == null) {
                     mAttendanceFragment = new AttendanceFragment();
                 }
                 transaction.replace(R.id.fragment_container, mAttendanceFragment);
                 break;
             case QUIZ:
-                mQuizActive.setBackgroundResource(R.color.active_blue);
+                mQuizActive.setBackgroundResource(R.color.colorAccent);
                 if(mQuizFragment == null) {
                     mQuizFragment = new QuizFragment();
                 }
