@@ -98,9 +98,8 @@ public class LoginActivity extends Activity implements LoginContract.View {
             @Override
             public void onResponse(Call<AuthenticatedUser> call, Response<AuthenticatedUser> response) {
                 AuthenticatedUser user = response.body();
-                String token = user.getToken();
-                if(token != null) {
-                    mPresenter.onAuthenticationSuccess(token, isTeacher);
+                if(user != null && user.getToken() != null) {
+                    mPresenter.onAuthenticationSuccess(user.getToken(), isTeacher);
                 } else {
                     Toast.makeText(LoginActivity.this, getResources().getString(R.string.login_error), Toast.LENGTH_LONG).show();
                 }
