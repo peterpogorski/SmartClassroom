@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import smartclass.com.smartclass.R;
@@ -32,10 +33,10 @@ public class ClassroomActivity extends AppCompatActivity implements ClassroomCon
 
     private Toolbar actionBar;
 
-    private LinearLayout mStudentsButton;
-    private LinearLayout mGoalsButton;
-    private LinearLayout mQuizButton;
-    private LinearLayout mAttendanceButton;
+    private RelativeLayout mStudentsButton;
+    private RelativeLayout mGoalsButton;
+    private RelativeLayout mQuizButton;
+    private RelativeLayout mAttendanceButton;
 
     private View mStudentsActive;
     private View mGoalsActive;
@@ -63,10 +64,10 @@ public class ClassroomActivity extends AppCompatActivity implements ClassroomCon
         // Initialize the presenter for this Activity
         mPresenter = new ClassroomPresenter(this);
 
-        mStudentsButton = ((LinearLayout) findViewById(R.id.first_tab));
-        mGoalsButton = (LinearLayout) findViewById(R.id.second_tab);
-        mQuizButton = (LinearLayout) findViewById(R.id.quiz);
-        mAttendanceButton = (LinearLayout) findViewById(R.id.attendance);
+        mStudentsButton = ((RelativeLayout) findViewById(R.id.first_tab));
+        mGoalsButton = (RelativeLayout) findViewById(R.id.second_tab);
+        mQuizButton = (RelativeLayout) findViewById(R.id.quiz);
+        mAttendanceButton = (RelativeLayout) findViewById(R.id.attendance);
 
         mStudentsActive = findViewById(R.id.first_tab_active);
         mGoalsActive = findViewById(R.id.second_tab_active);
@@ -79,8 +80,8 @@ public class ClassroomActivity extends AppCompatActivity implements ClassroomCon
         // Adjust images on the first and second tabs
         ImageView studentsImageView = (ImageView) findViewById(R.id.first_tab_image);
         ImageView goalsImageView = (ImageView) findViewById(R.id.second_tab_image);
-        studentsImageView.setImageResource(R.drawable.students_icon);
-        goalsImageView.setImageResource(R.drawable.goals_icon);
+        studentsImageView.setImageResource(R.drawable.children);
+        goalsImageView.setImageResource(R.drawable.trophy_white);
 
         // Adjust labels on the first and second tabs
         TextView studentsLabel = (TextView) findViewById(R.id.first_tab_label);
@@ -147,28 +148,28 @@ public class ClassroomActivity extends AppCompatActivity implements ClassroomCon
         FragmentTransaction transaction = fm.beginTransaction();
         switch(tab) {
             case STUDENTS:
-                mStudentsActive.setBackgroundResource(R.color.active_blue);
+                mStudentsActive.setBackgroundResource(R.color.colorAccent);
                 if(mStudentsFragment == null) {
                     mStudentsFragment = StudentsFragment.newInstance();
                 }
                 transaction.replace(R.id.fragment_container, mStudentsFragment);
                 break;
             case GOALS:
-                mGoalsActive.setBackgroundResource(R.color.active_blue);
+                mGoalsActive.setBackgroundResource(R.color.colorAccent);
                 if(mGoalsFragment == null) {
                     mGoalsFragment = new GoalFragment();
                 }
                 transaction.replace(R.id.fragment_container, mGoalsFragment);
                 break;
             case ATTENDANCE:
-                mAttendanceActive.setBackgroundResource(R.color.active_blue);
+                mAttendanceActive.setBackgroundResource(R.color.colorAccent);
                 if(mAttendanceFragment == null) {
                     mAttendanceFragment = new AttendanceFragment();
                 }
                 transaction.replace(R.id.fragment_container, mAttendanceFragment);
                 break;
             case QUIZ:
-                mQuizActive.setBackgroundResource(R.color.active_blue);
+                mQuizActive.setBackgroundResource(R.color.colorAccent);
                 if(mQuizFragment == null) {
                     mQuizFragment = new QuizFragment();
                 }
