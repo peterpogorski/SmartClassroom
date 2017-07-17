@@ -68,7 +68,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:text="Date:"/>
+                    android:text="Created on:"/>
 
                 <TextView
                     android:id="@+id/quiz_date"

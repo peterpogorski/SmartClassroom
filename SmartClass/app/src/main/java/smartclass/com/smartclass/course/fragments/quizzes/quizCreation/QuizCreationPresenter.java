@@ -3,6 +3,11 @@ package smartclass.com.smartclass.course.fragments.quizzes.quizCreation;
 import java.util.ArrayList;
 import java.util.Date;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import smartclass.com.smartclass.demodata.SmartClassRetrofit;
+import smartclass.com.smartclass.demodata.SmartClassService;
 import smartclass.com.smartclass.demodata.TeacherModeDataManager;
 import smartclass.com.smartclass.models.Quiz;
 import smartclass.com.smartclass.models.QuizQuestion;
@@ -68,6 +73,21 @@ public class QuizCreationPresenter implements QuizCreationContract.Presenter {
 
         Quiz quiz = new Quiz(title, description, date, duration, questions);
         TeacherModeDataManager.getInstance().addQuiz(quiz);
+
+        SmartClassService smartClassService = SmartClassRetrofit.getInstance().create(SmartClassService.class);
+
+        Call<Quiz> createQuiz = smartClassService.createQuiz(TeacherModeDataManager.getInstance().getCurrentClassroomId(), quiz);
+        createQuiz.enqueue(new Callback<Quiz>() {
+            @Override
+            public void onResponse(Call<Quiz> call, Response<Quiz> response) {
+                // TODO: Do something, perhaps finish activity here
+            }
+
+            @Override
+            public void onFailure(Call<Quiz> call, Throwable t) {
+                // TODO: Handle failure
+            }
+        });
 
         return true;
     }

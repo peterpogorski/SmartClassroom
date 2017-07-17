@@ -56,10 +56,11 @@ public class QuizListAdapter extends RecyclerView.Adapter<QuizListAdapter.QuizVi
             Date date = quiz.getDate();
             holder.dateLabel.setText(date == null ? "N/A" : DateFormat.getDateInstance().format(date));
         }
-        // TODO: Set quiz status
+
         if (holder.statusLabel != null && context != null) {
-            holder.statusLabel.setText("Inactive");
-            holder.statusLabel.setTextColor(context.getResources().getColor(R.color.red));
+            boolean quizIsActive = quiz.isActivated();
+            holder.statusLabel.setText(quizIsActive ? "Active" : "Inactive");
+            holder.statusLabel.setTextColor(context.getResources().getColor(quizIsActive ? R.color.green : R.color.red));
         }
 //        holder.itemView.setOnClickListener(new View.OnClickListener() {
 //            @Override

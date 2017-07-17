@@ -17,7 +17,7 @@ public class Quiz {
     @SerializedName("description")
     private String description;
 
-    @SerializedName("date")
+    @SerializedName("createdDate")
     private Date date;
 
     @SerializedName("duration")
@@ -25,6 +25,9 @@ public class Quiz {
 
     @SerializedName("questions")
     private ArrayList<QuizQuestion> questions;
+
+    @SerializedName("activated")
+    private boolean activated;
 
     /**
      * Constructor
@@ -40,6 +43,8 @@ public class Quiz {
         this.date = date;
         this.duration = duration;
         this.questions = questions;
+        // Quizzes are not activated when created by default
+        this.activated = false;
     }
 
     public String getTitle() { return this.title; }
@@ -48,4 +53,5 @@ public class Quiz {
     public double getDuration() { return this.duration; }
     public ArrayList<QuizQuestion> getQuestions() { return this.questions; }
     public int getQuestionsCount() { return this.questions.size(); }
+    public boolean isActivated() { return activated; }
 }

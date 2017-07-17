@@ -11,6 +11,7 @@ import retrofit2.http.Path;
 import smartclass.com.smartclass.models.AuthenticatedUser;
 import smartclass.com.smartclass.models.Goal;
 import smartclass.com.smartclass.models.LoginUser;
+import smartclass.com.smartclass.models.Quiz;
 import smartclass.com.smartclass.models.Student;
 
 /**
@@ -49,4 +50,23 @@ public interface SmartClassService {
     @DELETE("goals/{id}")
     Call<Goal> deleteGoal(@Path("id") String goalId);
 
+    // Quizzes
+
+    @POST("classrooms/{id}/quizzes")
+    Call<Quiz> createQuiz(@Path("id") String classroomId, @Body Quiz quiz);
+
+    @GET("classrooms/{id}/quizzes")
+    Call<ArrayList<Quiz>> getQuizzes(@Path("id") String classroomId);
+
+    @GET("quizzes/{id}")
+    Call<Quiz> getQuiz(@Path("id") String quizId);
+
+    @POST("quizzes/{id}/start")
+    Call<Quiz> startQuiz(@Path("id") String quizId);
+
+    @POST("quizzes/{id}/stop")
+    Call<Quiz> stopQuiz(@Path("id") String quizId);
+
+    @DELETE("quizzes/{id}")
+    Call<Quiz> deleteQuiz(@Path("id") String quizId);
 }

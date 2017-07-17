@@ -18,12 +18,18 @@ import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import smartclass.com.smartclass.R;
 import smartclass.com.smartclass.classroom.teacherGoals.GoalFragment;
+import smartclass.com.smartclass.classroom.teacherGoals.GoalListAdapter;
 import smartclass.com.smartclass.course.fragments.quizzes.quizCreation.QuizCreationActivity;
 import smartclass.com.smartclass.demodata.SmartClassRetrofit;
+import smartclass.com.smartclass.demodata.SmartClassService;
 import smartclass.com.smartclass.demodata.TeacherModeDataManager;
+import smartclass.com.smartclass.models.Goal;
 import smartclass.com.smartclass.models.Quiz;
 
 /**
@@ -119,7 +125,11 @@ public class QuizFragment extends Fragment implements  QuizContract.View {
     @Override
     public void onResume() {
         super.onResume();
-        loadQuizzes();
+        quizzes = TeacherModeDataManager.getInstance().getQuizzes();
+        mListAdapter = new QuizListAdapter(getContext(), quizzes, mPresenter);
+        mRecyclerView.setAdapter(mListAdapter);
+
+        mPresenter.onQuizzesLoaded();
     }
 
     public void setmRecyclerViewLayoutManager(QuizFragment.LayoutManagerType layoutManagerType) {
@@ -150,11 +160,29 @@ public class QuizFragment extends Fragment implements  QuizContract.View {
     }
 
     private void loadQuizzes() {
-        // TODO: Load goals
-        quizzes = TeacherModeDataManager.getInstance().getQuizzes();
-        mListAdapter = new QuizListAdapter(getContext(), quizzes, mPresenter);
-        mRecyclerView.setAdapter(mListAdapter);
-        mPresenter.onQuizzesLoaded();
+        SmartClassService smartClassService = mRetrofit.create(SmartClassService.class);
+
+        Call<ArrayList<Quiz>> getQuizzes = smartClassService.getQuizzes(TeacherModeDataManager.getInstance().getCurrentClassroomId());
+        getQuizzes.enqueue(new Callback<ArrayList<Quiz>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Quiz>> call, Response<ArrayList<Quiz>> response) {
+                quizzes = response.body();
+                if (quizzes == null) {
+                    quizzes = new ArrayList<>();
+                }
+                TeacherModeDataManager.getInstance().setQuizzes(quizzes);
+
+                mListAdapter = new QuizListAdapter(getContext(), quizzes, mPresenter);
+                mRecyclerView.setAdapter(mListAdapter);
+
+                mPresenter.onQuizzesLoaded();
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Quiz>> call, Throwable t) {
+
+            }
+        });
     }
 
     // CONTRACT METHODS

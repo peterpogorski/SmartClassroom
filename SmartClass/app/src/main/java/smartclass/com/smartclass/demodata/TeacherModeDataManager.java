@@ -1,5 +1,7 @@
 package smartclass.com.smartclass.demodata;
 
+import android.support.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,6 +23,7 @@ public class TeacherModeDataManager {
     private static TeacherModeDataManager instance;
 
     private boolean teacherModeEnabled = true;
+    private String currentClassroomId = "596ba65a50d5880032e80cf3";
 
     private Teacher currentTeacher;
     private ArrayList<Student> students = new ArrayList<>();
@@ -41,6 +44,12 @@ public class TeacherModeDataManager {
     public boolean isTeacherModeEnabled() {
         return teacherModeEnabled;
     }
+
+    public String getCurrentClassroomId() {
+        return currentClassroomId;
+    }
+
+    public void setCurrentClassroomId(String classroomId) { currentClassroomId = classroomId; }
 
     private Teacher getTeacher() {
         if (currentTeacher == null) {
@@ -144,5 +153,9 @@ public class TeacherModeDataManager {
 
     public void addQuiz(Quiz quiz) {
         quizzes.add(quiz);
+    }
+
+    public void setQuizzes(@NonNull ArrayList<Quiz> quizzes) {
+        this.quizzes = quizzes;
     }
 }
