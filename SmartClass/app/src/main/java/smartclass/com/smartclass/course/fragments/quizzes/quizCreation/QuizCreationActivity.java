@@ -1,5 +1,6 @@
 package smartclass.com.smartclass.course.fragments.quizzes.quizCreation;
 
+import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,11 +14,20 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import java.util.ArrayList;
+
 import smartclass.com.smartclass.R;
+import smartclass.com.smartclass.demodata.TeacherModeDataManager;
+import smartclass.com.smartclass.models.Quiz;
+import smartclass.com.smartclass.models.QuizQuestion;
+import smartclass.com.smartclass.models.QuizQuestionOption;
 
 public class QuizCreationActivity extends AppCompatActivity implements QuizCreationContract.View{
 
     private QuizCreationContract.Presenter mPresenter;
+
+    // Specifies whether we're viewing an existing quiz or creating a new one
+    private boolean viewingQuiz = false;
 
     private EditText titleField;
     private EditText descriptionField;
@@ -58,35 +68,73 @@ public class QuizCreationActivity extends AppCompatActivity implements QuizCreat
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         correctAnswerSpinner.setAdapter(adapter);
 
+        Bundle bundle = this.getIntent().getExtras();
+        if (bundle != null) {
+            viewingQuiz = bundle.getBoolean("viewing_quiz");
+        }
+
         mPresenter = new QuizCreationPresenter(this);
-        mPresenter.onCreate();
+        if (viewingQuiz) {
+            setTitle("Quiz Details");
+            Quiz quiz = TeacherModeDataManager.getInstance().getSelectedQuiz();
+            mPresenter.onCreate(quiz);
+        } else {
+            mPresenter.onCreate(null);
+        }
     }
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
+        if (menu != null) {
+            menu.clear();
+        }
+
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_quiz_creation, menu);
+        if (viewingQuiz) {
+            inflater.inflate(R.menu.menu_quiz_view, menu);
+        } else {
+            inflater.inflate(R.menu.menu_quiz_creation, menu);
+        }
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                return true;
-            case R.id.action_finish:
-                if (mPresenter.createQuiz()) {
+        if (viewingQuiz) {
+            switch (item.getItemId()) {
+                case android.R.id.home:
                     finish();
-                }
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+                    return true;
+                case R.id.action_save_changes:
+//                    if (mPresenter.createQuiz()) {
+//                        finish();
+//                    }
+                    // TODO: Save changes
+                    return true;
+                case R.id.action_start_quiz:
+                    // TODO: start quiz
+                case R.id.action_stop_quiz:
+                    // TODO: stop quiz
+                default:
+                    return super.onOptionsItemSelected(item);
+            }
+        } else {
+            switch (item.getItemId()) {
+                case android.R.id.home:
+                    finish();
+                    return true;
+                case R.id.action_finish:
+                    if (mPresenter.createQuiz()) {
+                        finish();
+                    }
+                    return true;
+                default:
+                    return super.onOptionsItemSelected(item);
+            }
         }
     }
 
     // CONTRACT METHODS
-
 
     @Override
     public String getTitleInput() {
@@ -159,6 +207,25 @@ public class QuizCreationActivity extends AppCompatActivity implements QuizCreat
         }
 
         return "";
+    }
+
+    @Override
+    public void presetInputFields(@NonNull Quiz quiz) {
+        titleField.setText(quiz.getTitle());
+        descriptionField.setText(quiz.getDescription());
+        QuizQuestion question = quiz.getQuestions().get(0);
+        questionField.setText(question.getQuestion());
+        ArrayList<QuizQuestionOption> questionOptions = question.getOptions();
+        answer1Field.setText(questionOptions.get(0).getText());
+        answer2Field.setText(questionOptions.get(1).getText());
+        answer3Field.setText(questionOptions.get(2).getText());
+        answer4Field.setText(questionOptions.get(3).getText());
+        answer5Field.setText(questionOptions.get(4).getText());
+        for (int i = 0; i < questionOptions.size(); i++) {
+            if (questionOptions.get(i).isCorrect()) {
+                correctAnswerSpinner.setSelection(i);
+            }
+        }
     }
 
     /**

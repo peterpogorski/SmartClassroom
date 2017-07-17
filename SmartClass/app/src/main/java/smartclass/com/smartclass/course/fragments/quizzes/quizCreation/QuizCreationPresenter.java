@@ -1,5 +1,7 @@
 package smartclass.com.smartclass.course.fragments.quizzes.quizCreation;
 
+import android.support.annotation.Nullable;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -20,12 +22,16 @@ import smartclass.com.smartclass.models.QuizQuestionOption;
 public class QuizCreationPresenter implements QuizCreationContract.Presenter {
 
     private QuizCreationContract.View mView;
+    private Quiz quiz;
 
     public QuizCreationPresenter(QuizCreationContract.View view) { mView = view; }
 
     @Override
-    public void onCreate() {
-        // TODO
+    public void onCreate(@Nullable Quiz quiz) {
+        if (quiz != null) {
+            this.quiz = quiz;
+            mView.presetInputFields(quiz);
+        }
     }
 
     @Override
@@ -50,14 +56,19 @@ public class QuizCreationPresenter implements QuizCreationContract.Presenter {
         switch (correctAnswer) {
             case 1:
                 option1.setCorrect(true);
+                break;
             case 2:
                 option2.setCorrect(true);
+                break;
             case 3:
                 option3.setCorrect(true);
+                break;
             case 4:
                 option4.setCorrect(true);
+                break;
             default:
                 option5.setCorrect(true);
+                break;
         }
 
         questionOptions.add(option1);

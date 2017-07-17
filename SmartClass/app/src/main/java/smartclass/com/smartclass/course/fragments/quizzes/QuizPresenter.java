@@ -23,6 +23,6 @@ public class QuizPresenter implements QuizContract.Presenter {
 
     @Override
     public void onQuizSelected(Quiz quiz) {
-        // TODO
+        mView.showQuiz(quiz);
     }
 }
