@@ -47,7 +47,8 @@ public class LoginActivity extends Activity implements LoginContract.View {
 
         String tokenValue = mSharedPreferences.getString(getString(R.string.saved_user_token), null);
         if(tokenValue != null) {
-            UserToken.getInstance().init(tokenValue);
+            String userId = mSharedPreferences.getString(getString(R.string.saved_user_id), null);
+            UserToken.getInstance().init(tokenValue, userId);
             boolean isTeacher = mSharedPreferences.getBoolean(getString(R.string.saved_teacher_field), false);
             TeacherModeDataManager.getInstance().init(isTeacher);
             mPresenter.onAlreadyLoggedIn();
@@ -72,11 +73,12 @@ public class LoginActivity extends Activity implements LoginContract.View {
     }
 
     @Override
-    public void saveTokenValue(String tokenValue) {
+    public void saveTokenValue(String tokenValue, String userId) {
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putString(getString(R.string.saved_user_token), tokenValue);
+        editor.putString(getString(R.string.saved_user_id), userId);
         editor.commit();
-        UserToken.getInstance().init(tokenValue);
+        UserToken.getInstance().init(tokenValue, userId);
     }
 
     @Override
@@ -99,7 +101,7 @@ public class LoginActivity extends Activity implements LoginContract.View {
             public void onResponse(Call<AuthenticatedUser> call, Response<AuthenticatedUser> response) {
                 AuthenticatedUser user = response.body();
                 if(user != null && user.getToken() != null) {
-                    mPresenter.onAuthenticationSuccess(user.getToken(), isTeacher);
+                    mPresenter.onAuthenticationSuccess(user.getToken(), user.getUserId(), isTeacher);
                 } else {
                     Toast.makeText(LoginActivity.this, getResources().getString(R.string.login_error), Toast.LENGTH_LONG).show();
                 }

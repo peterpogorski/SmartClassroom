@@ -31,6 +31,7 @@ import smartclass.com.smartclass.course.fragments.quizzes.quizViewing.QuizViewAc
 import smartclass.com.smartclass.demodata.SmartClassRetrofit;
 import smartclass.com.smartclass.demodata.SmartClassService;
 import smartclass.com.smartclass.demodata.TeacherModeDataManager;
+import smartclass.com.smartclass.demodata.UserToken;
 import smartclass.com.smartclass.models.Goal;
 import smartclass.com.smartclass.models.Quiz;
 
@@ -164,7 +165,9 @@ public class QuizFragment extends Fragment implements  QuizContract.View {
     private void loadQuizzes() {
         SmartClassService smartClassService = mRetrofit.create(SmartClassService.class);
 
-        Call<ArrayList<Quiz>> getQuizzes = smartClassService.getQuizzes(TeacherModeDataManager.getInstance().getCurrentClassroomId());
+        Call<ArrayList<Quiz>> getQuizzes
+                = smartClassService
+                .getQuizzes(TeacherModeDataManager.getInstance().getCurrentClassroomId(), UserToken.getInstance().getTokenValue());
         getQuizzes.enqueue(new Callback<ArrayList<Quiz>>() {
             @Override
             public void onResponse(Call<ArrayList<Quiz>> call, Response<ArrayList<Quiz>> response) {

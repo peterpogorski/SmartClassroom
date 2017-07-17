@@ -6,6 +6,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import smartclass.com.smartclass.models.AuthenticatedUser;
@@ -56,7 +57,7 @@ public interface SmartClassService {
     Call<Quiz> createQuiz(@Path("id") String classroomId, @Body Quiz quiz);
 
     @GET("classrooms/{id}/quizzes")
-    Call<ArrayList<Quiz>> getQuizzes(@Path("id") String classroomId);
+    Call<ArrayList<Quiz>> getQuizzes(@Path("id") String classroomId, @Header("token") String token);
 
     @GET("quizzes/{id}")
     Call<Quiz> getQuiz(@Path("id") String quizId);
