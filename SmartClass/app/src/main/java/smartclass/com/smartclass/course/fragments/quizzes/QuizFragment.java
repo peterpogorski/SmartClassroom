@@ -89,8 +89,6 @@ public class QuizFragment extends Fragment implements  QuizContract.View {
         }
         setmRecyclerViewLayoutManager(mCurrentLayoutManagerType);
 
-        loadQuizzes();
-
         return rootView;
     }
 
@@ -128,11 +126,12 @@ public class QuizFragment extends Fragment implements  QuizContract.View {
     @Override
     public void onResume() {
         super.onResume();
-        quizzes = TeacherModeDataManager.getInstance().getQuizzes();
-        mListAdapter = new QuizListAdapter(getContext(), quizzes, mPresenter);
-        mRecyclerView.setAdapter(mListAdapter);
-
-        mPresenter.onQuizzesLoaded();
+        loadQuizzes();
+//        quizzes = TeacherModeDataManager.getInstance().getQuizzes();
+//        mListAdapter = new QuizListAdapter(getContext(), quizzes, mPresenter);
+//        mRecyclerView.setAdapter(mListAdapter);
+//
+//        mPresenter.onQuizzesLoaded();
     }
 
     public void setmRecyclerViewLayoutManager(QuizFragment.LayoutManagerType layoutManagerType) {

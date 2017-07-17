@@ -9,10 +9,13 @@ import android.text.Editable;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -29,6 +32,7 @@ public class QuizCreationActivity extends AppCompatActivity implements QuizCreat
     // Specifies whether we're viewing an existing quiz or creating a new one
     private boolean viewingQuiz = false;
 
+    private TextView quizStatus;
     private EditText titleField;
     private EditText descriptionField;
     private EditText questionField;
@@ -53,6 +57,7 @@ public class QuizCreationActivity extends AppCompatActivity implements QuizCreat
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
+        quizStatus = (TextView) findViewById(R.id.quiz_status);
         titleField = (EditText) findViewById(R.id.title_field);
         descriptionField = (EditText) findViewById(R.id.description_field);
         questionField = (EditText) findViewById(R.id.question_field);
@@ -76,6 +81,8 @@ public class QuizCreationActivity extends AppCompatActivity implements QuizCreat
         mPresenter = new QuizCreationPresenter(this);
         if (viewingQuiz) {
             setTitle("Quiz Details");
+            LinearLayout statusContainer = (LinearLayout) findViewById(R.id.status_container);
+            statusContainer.setVisibility(View.VISIBLE);
             Quiz quiz = TeacherModeDataManager.getInstance().getSelectedQuiz();
             mPresenter.onCreate(quiz);
         } else {
@@ -101,20 +108,27 @@ public class QuizCreationActivity extends AppCompatActivity implements QuizCreat
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (viewingQuiz) {
+            Quiz quiz = TeacherModeDataManager.getInstance().getSelectedQuiz();
+            String id = quiz != null ? quiz.getQuizId() : null;
             switch (item.getItemId()) {
                 case android.R.id.home:
                     finish();
                     return true;
-                case R.id.action_save_changes:
-//                    if (mPresenter.createQuiz()) {
-//                        finish();
-//                    }
-                    // TODO: Save changes
+                case R.id.action_delete_quiz:
+                    if (id != null && mPresenter.deleteQuiz(id)) {
+                        finish();
+                    }
                     return true;
                 case R.id.action_start_quiz:
-                    // TODO: start quiz
+                    if (id != null) {
+                        mPresenter.startQuiz(id);
+                    }
+                    return true;
                 case R.id.action_stop_quiz:
-                    // TODO: stop quiz
+                    if (id != null) {
+                        mPresenter.stopQuiz(id);
+                    }
+                    return true;
                 default:
                     return super.onOptionsItemSelected(item);
             }
@@ -211,6 +225,7 @@ public class QuizCreationActivity extends AppCompatActivity implements QuizCreat
 
     @Override
     public void presetInputFields(@NonNull Quiz quiz) {
+        updateQuizStatusLabel(quiz.isActivated());
         titleField.setText(quiz.getTitle());
         descriptionField.setText(quiz.getDescription());
         QuizQuestion question = quiz.getQuestions().get(0);
@@ -226,6 +241,12 @@ public class QuizCreationActivity extends AppCompatActivity implements QuizCreat
                 correctAnswerSpinner.setSelection(i);
             }
         }
+    }
+
+    @Override
+    public void updateQuizStatusLabel(boolean isActive) {
+        quizStatus.setText(isActive ? "Active" : "Inactive");
+        quizStatus.setTextColor(getResources().getColor(isActive ? R.color.green : R.color.red));
     }
 
     /**

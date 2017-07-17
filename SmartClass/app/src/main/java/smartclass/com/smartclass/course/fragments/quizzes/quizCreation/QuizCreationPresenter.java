@@ -1,5 +1,6 @@
 package smartclass.com.smartclass.course.fragments.quizzes.quizCreation;
 
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import java.util.ArrayList;
@@ -83,7 +84,7 @@ public class QuizCreationPresenter implements QuizCreationContract.Presenter {
         questions.add(quizQuestion);
 
         Quiz quiz = new Quiz(title, description, date, duration, questions);
-        TeacherModeDataManager.getInstance().addQuiz(quiz);
+//        TeacherModeDataManager.getInstance().addQuiz(quiz);
 
         SmartClassService smartClassService = SmartClassRetrofit.getInstance().create(SmartClassService.class);
 
@@ -101,5 +102,65 @@ public class QuizCreationPresenter implements QuizCreationContract.Presenter {
         });
 
         return true;
+    }
+
+    @Override
+    public boolean deleteQuiz(@NonNull String quizId) {
+        SmartClassService smartClassService = SmartClassRetrofit.getInstance().create(SmartClassService.class);
+
+        Call<Quiz> createQuiz = smartClassService.deleteQuiz(quizId);
+        createQuiz.enqueue(new Callback<Quiz>() {
+            @Override
+            public void onResponse(Call<Quiz> call, Response<Quiz> response) {
+                // TODO: Do something, perhaps finish activity here
+            }
+
+            @Override
+            public void onFailure(Call<Quiz> call, Throwable t) {
+                // TODO: Handle failure
+            }
+        });
+
+        return true;
+    }
+
+    @Override
+    public void startQuiz(@NonNull String quizId) {
+        SmartClassService smartClassService = SmartClassRetrofit.getInstance().create(SmartClassService.class);
+
+        Call<Quiz> createQuiz = smartClassService.startQuiz(quizId);
+        createQuiz.enqueue(new Callback<Quiz>() {
+            @Override
+            public void onResponse(Call<Quiz> call, Response<Quiz> response) {
+                // TODO: Do something, perhaps finish activity here
+            }
+
+            @Override
+            public void onFailure(Call<Quiz> call, Throwable t) {
+                // TODO: Handle failure
+            }
+        });
+
+        mView.updateQuizStatusLabel(true);
+    }
+
+    @Override
+    public void stopQuiz(@NonNull String quizId) {
+        SmartClassService smartClassService = SmartClassRetrofit.getInstance().create(SmartClassService.class);
+
+        Call<Quiz> createQuiz = smartClassService.stopQuiz(quizId);
+        createQuiz.enqueue(new Callback<Quiz>() {
+            @Override
+            public void onResponse(Call<Quiz> call, Response<Quiz> response) {
+                // TODO: Do something, perhaps finish activity here
+            }
+
+            @Override
+            public void onFailure(Call<Quiz> call, Throwable t) {
+                // TODO: Handle failure
+            }
+        });
+
+        mView.updateQuizStatusLabel(false);
     }
 }
