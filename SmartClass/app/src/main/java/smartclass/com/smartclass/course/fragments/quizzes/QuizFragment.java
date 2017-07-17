@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -26,6 +27,7 @@ import smartclass.com.smartclass.R;
 import smartclass.com.smartclass.classroom.teacherGoals.GoalFragment;
 import smartclass.com.smartclass.classroom.teacherGoals.GoalListAdapter;
 import smartclass.com.smartclass.course.fragments.quizzes.quizCreation.QuizCreationActivity;
+import smartclass.com.smartclass.course.fragments.quizzes.quizViewing.QuizViewActivity;
 import smartclass.com.smartclass.demodata.SmartClassRetrofit;
 import smartclass.com.smartclass.demodata.SmartClassService;
 import smartclass.com.smartclass.demodata.TeacherModeDataManager;
@@ -87,8 +89,6 @@ public class QuizFragment extends Fragment implements  QuizContract.View {
         }
         setmRecyclerViewLayoutManager(mCurrentLayoutManagerType);
 
-        loadQuizzes();
-
         return rootView;
     }
 
@@ -126,11 +126,12 @@ public class QuizFragment extends Fragment implements  QuizContract.View {
     @Override
     public void onResume() {
         super.onResume();
-        quizzes = TeacherModeDataManager.getInstance().getQuizzes();
-        mListAdapter = new QuizListAdapter(getContext(), quizzes, mPresenter);
-        mRecyclerView.setAdapter(mListAdapter);
-
-        mPresenter.onQuizzesLoaded();
+        loadQuizzes();
+//        quizzes = TeacherModeDataManager.getInstance().getQuizzes();
+//        mListAdapter = new QuizListAdapter(getContext(), quizzes, mPresenter);
+//        mRecyclerView.setAdapter(mListAdapter);
+//
+//        mPresenter.onQuizzesLoaded();
     }
 
     public void setmRecyclerViewLayoutManager(QuizFragment.LayoutManagerType layoutManagerType) {
@@ -198,6 +199,22 @@ public class QuizFragment extends Fragment implements  QuizContract.View {
 
     @Override
     public void showQuiz(Quiz quiz) {
-        // TODO
+        FragmentActivity activity = getActivity();
+        if (activity == null) { return; }
+
+        Intent intent;
+        if (TeacherModeDataManager.getInstance().isTeacherModeEnabled()) {
+            intent = new Intent(activity, QuizCreationActivity.class);
+            if (quiz != null) {
+                Bundle bundle = new Bundle();
+                bundle.putBoolean("viewing_quiz", true);
+                intent.putExtras(bundle);
+                TeacherModeDataManager.getInstance().setSelectedQuiz(quiz);
+            }
+        } else {
+            intent = new Intent(activity, QuizViewActivity.class);
+        }
+
+        startActivity(intent);
     }
 }

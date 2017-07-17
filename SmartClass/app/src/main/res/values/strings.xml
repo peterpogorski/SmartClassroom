@@ -10,9 +10,14 @@
     <string name="action_refresh">Refresh</string>
     <string name="action_finish">Finish</string>
     <string name="action_create_a_quiz">Create a quiz</string>
+    <string name="action_save_changes">Save Changes</string>
+    <string name="action_delete_quiz">Delete Quiz</string>
+    <string name="action_start_quiz">Start Quiz</string>
+    <string name="action_stop_quiz">Stop Quiz</string>
 
     <!-- Goal Creation Strings -->
     <string name="create_a_goal_label">Create a Goal</string>
+    <string name="status_label">Status: </string>
     <string name="title_label">Title</string>
     <string name="description_label">Description</string>
     <string name="goal_type_label">Goal Type</string>
@@ -38,6 +43,9 @@
     <string name="create_a_quiz_label">Create a Quiz</string>
     <string name="question_label">Question</string>
 
+    <!-- Quiz View Strings -->
+    <string name="quiz_view_label">Quiz</string>
+    
     <!-- Goal Progress -->
     <string name="goal_progress">Goal Progress</string>
 

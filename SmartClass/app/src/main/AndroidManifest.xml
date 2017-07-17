@@ -65,8 +65,13 @@
         </activity>
         <activity android:name=".goalViewing.ViewGoalActivity">
         </activity>
-        <activity android:name=".course.fragments.quizzes.quizCreation.QuizCreationActivity"
-                  android:label="@string/create_a_quiz_label"
+        <activity
+            android:name=".course.fragments.quizzes.quizCreation.QuizCreationActivity"
+            android:label="@string/create_a_quiz_label"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity android:name=".course.fragments.quizzes.quizViewing.QuizViewActivity"
+                  android:label="@string/quiz_view_label"
                   android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>

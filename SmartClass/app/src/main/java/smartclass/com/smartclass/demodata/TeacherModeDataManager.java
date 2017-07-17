@@ -1,6 +1,7 @@
 package smartclass.com.smartclass.demodata;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,6 +31,8 @@ public class TeacherModeDataManager {
     private ArrayList<Classroom> classrooms;
     private ArrayList<Goal> goals = new ArrayList<>();
     private ArrayList<Quiz> quizzes = new ArrayList<>();
+
+    private Quiz selectedQuiz = null;
 
     private TeacherModeDataManager() {}
 
@@ -157,5 +160,14 @@ public class TeacherModeDataManager {
 
     public void setQuizzes(@NonNull ArrayList<Quiz> quizzes) {
         this.quizzes = quizzes;
+    }
+
+    public void setSelectedQuiz(@NonNull Quiz quiz) {
+        selectedQuiz = quiz;
+    }
+
+    @Nullable
+    public Quiz getSelectedQuiz() {
+        return selectedQuiz;
     }
 }

@@ -11,6 +11,9 @@ import java.util.Date;
 
 public class Quiz {
 
+    @SerializedName("_id")
+    private String id;
+
     @SerializedName("title")
     private String title;
 
@@ -38,6 +41,7 @@ public class Quiz {
      * @param questions List of questions
      */
     public Quiz(String title, String description, Date date, double duration, ArrayList<QuizQuestion> questions) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.date = date;
@@ -47,6 +51,7 @@ public class Quiz {
         this.activated = false;
     }
 
+    public String getQuizId() { return this.id; }
     public String getTitle() { return this.title; }
     public String getDescription() { return this.description; }
     public Date getDate() { return this.date; }
