@@ -1,7 +1,6 @@
 package smartclass.com.smartclass.course;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -14,8 +13,7 @@ import android.widget.TextView;
 
 import smartclass.com.smartclass.classroom.teacherGoals.GoalFragment;
 import smartclass.com.smartclass.course.fragments.AttendanceFragment;
-import smartclass.com.smartclass.course.fragments.ProgressFragment;
-import smartclass.com.smartclass.course.fragments.QuizFragment;
+import smartclass.com.smartclass.course.fragments.quizzes.QuizFragment;
 import smartclass.com.smartclass.R;
 
 /**

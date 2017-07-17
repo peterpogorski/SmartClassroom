@@ -15,7 +15,7 @@ import smartclass.com.smartclass.R;
 import smartclass.com.smartclass.classroom.students.StudentsFragment;
 import smartclass.com.smartclass.classroom.teacherGoals.GoalFragment;
 import smartclass.com.smartclass.course.fragments.AttendanceFragment;
-import smartclass.com.smartclass.course.fragments.QuizFragment;
+import smartclass.com.smartclass.course.fragments.quizzes.QuizFragment;
 
 /**
  * Created by kevinT on 2017-06-15.

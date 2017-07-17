@@ -70,6 +70,7 @@ public class CourseListActivity extends Activity implements CourseListContract.V
         if (TeacherModeDataManager.getInstance().isTeacherModeEnabled()) {
             intent = new Intent(this, ClassroomActivity.class);
             intent.putExtra(ClassroomActivity.COURSE_NAME, courseName);
+            // TODO: set the currentClassroomId in TeacherModeDataManager when we fetch real classrooms
         } else {
             intent = new Intent(this, CourseActivity.class);
             intent.putExtra(CourseActivity.COURSE_NAME, courseName);
