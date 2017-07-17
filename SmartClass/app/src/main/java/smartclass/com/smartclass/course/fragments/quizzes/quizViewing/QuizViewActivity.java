@@ -8,6 +8,13 @@ import java.util.ArrayList;
 import smartclass.com.smartclass.R;
 import smartclass.com.smartclass.models.QuizQuestionOption;
 
+/**
+ * This Activity is for viewing the details of a quiz in teacher mode.
+ * From this activity a teacher can start or stop a quiz.
+ *
+ * Created by kevinT on 2017-07-17.
+ */
+
 public class QuizViewActivity extends AppCompatActivity implements QuizViewContract.View {
 
     private QuizViewPresenter mPresenter;
