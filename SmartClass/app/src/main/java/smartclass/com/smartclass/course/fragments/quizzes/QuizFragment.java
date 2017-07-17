@@ -116,6 +116,12 @@ public class QuizFragment extends Fragment implements  QuizContract.View {
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadQuizzes();
+    }
+
     public void setmRecyclerViewLayoutManager(QuizFragment.LayoutManagerType layoutManagerType) {
         int scrollPosition = 0;
 
@@ -145,6 +151,9 @@ public class QuizFragment extends Fragment implements  QuizContract.View {
 
     private void loadQuizzes() {
         // TODO: Load goals
+        quizzes = TeacherModeDataManager.getInstance().getQuizzes();
+        mListAdapter = new QuizListAdapter(getContext(), quizzes, mPresenter);
+        mRecyclerView.setAdapter(mListAdapter);
         mPresenter.onQuizzesLoaded();
     }
 

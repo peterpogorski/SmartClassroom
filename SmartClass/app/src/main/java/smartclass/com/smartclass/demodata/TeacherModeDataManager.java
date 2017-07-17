@@ -138,11 +138,11 @@ public class TeacherModeDataManager {
 
     // Quizzes
 
-    private ArrayList<Quiz> getQuizzes() {
+    public ArrayList<Quiz> getQuizzes() {
         return quizzes;
     }
 
-    private void addQuiz(Quiz quiz) {
+    public void addQuiz(Quiz quiz) {
         quizzes.add(quiz);
     }
 }

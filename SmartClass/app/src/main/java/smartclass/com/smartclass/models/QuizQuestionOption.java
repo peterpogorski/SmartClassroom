@@ -35,4 +35,5 @@ public class QuizQuestionOption {
 
     public String getText() { return this.text; }
     private Boolean getCorrect() { return this.correct; }
+    public void setCorrect(boolean correct) { this.correct = correct; }
 }

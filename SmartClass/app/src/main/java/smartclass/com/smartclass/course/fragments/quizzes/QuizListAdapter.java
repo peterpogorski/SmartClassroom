@@ -1,5 +1,6 @@
 package smartclass.com.smartclass.course.fragments.quizzes;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -21,18 +22,20 @@ import smartclass.com.smartclass.models.Quiz;
 
 public class QuizListAdapter extends RecyclerView.Adapter<QuizListAdapter.QuizViewHolder> {
 
+    private Context context;
     private List<Quiz> quizList;
     private QuizContract.View mView;
     private QuizContract.Presenter mPresenter;
 
-    public QuizListAdapter(@NonNull List<Quiz> quizList, @NonNull QuizContract.Presenter presenter) {
+    public QuizListAdapter(Context context, @NonNull List<Quiz> quizList, @NonNull QuizContract.Presenter presenter) {
+        this.context = context;
         this.quizList = quizList;
         mPresenter = presenter;
     }
 
     @Override
     public QuizViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.goal_list_item, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.quiz_list_item, parent, false);
         return new QuizViewHolder(itemView);
     }
 
@@ -45,12 +48,19 @@ public class QuizListAdapter extends RecyclerView.Adapter<QuizListAdapter.QuizVi
     public void onBindViewHolder(QuizViewHolder holder, int position) {
         final Quiz quiz = quizList.get(position);
 
-        String title = quiz.getTitle();
-        holder.titleLabel.setText(title == null ? "N/A" : title);
+        if (holder.titleLabel != null) {
+            String title = quiz.getTitle();
+            holder.titleLabel.setText(title == null ? "N/A" : title);
+        }
+        if (holder.dateLabel != null) {
+            Date date = quiz.getDate();
+            holder.dateLabel.setText(date == null ? "N/A" : DateFormat.getDateInstance().format(date));
+        }
         // TODO: Set quiz status
-        Date date = quiz.getDate();
-        holder.dateLabel.setText(date == null ? "N/A" : DateFormat.getDateInstance().format(date));
-
+        if (holder.statusLabel != null && context != null) {
+            holder.statusLabel.setText("Inactive");
+            holder.statusLabel.setTextColor(context.getResources().getColor(R.color.red));
+        }
 //        holder.itemView.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
