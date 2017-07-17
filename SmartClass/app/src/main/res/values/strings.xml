@@ -37,4 +37,7 @@
     <string name="create_a_quiz_label">Create a Quiz</string>
     <string name="question_label">Question</string>
 
+    <!-- Quiz View Strings -->
+    <string name="quiz_view_label">Quiz</string>
+
 </resources>
