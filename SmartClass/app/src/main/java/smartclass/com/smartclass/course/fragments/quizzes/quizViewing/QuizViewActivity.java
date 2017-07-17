@@ -25,7 +25,7 @@ public class QuizViewActivity extends AppCompatActivity implements QuizViewContr
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quiz_creation);
+        setContentView(R.layout.activity_quiz_view);
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
