@@ -22,7 +22,7 @@ public class QuizViewActivity extends AppCompatActivity implements QuizViewContr
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quiz_view);
+        setContentView(R.layout.activity_quiz_creation);
 
         mPresenter = new QuizViewPresenter(this);
         mPresenter.onCreate();
