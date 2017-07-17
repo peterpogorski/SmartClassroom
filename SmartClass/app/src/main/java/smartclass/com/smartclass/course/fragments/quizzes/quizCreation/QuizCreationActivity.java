@@ -114,6 +114,9 @@ public class QuizCreationActivity extends AppCompatActivity implements QuizCreat
                 case android.R.id.home:
                     finish();
                     return true;
+                case R.id.action_save_changes:
+                    // API doesn't currently support this
+                    return true;
                 case R.id.action_delete_quiz:
                     if (id != null && mPresenter.deleteQuiz(id)) {
                         finish();
