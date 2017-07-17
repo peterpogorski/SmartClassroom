@@ -8,6 +8,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class AuthenticatedUser {
 
+    @SerializedName("id")
+    private String userId;
+
     @SerializedName("success")
     private boolean success;
 
@@ -16,5 +19,9 @@ public class AuthenticatedUser {
 
     public String getToken() {
         return token;
+    }
+
+    public String getUserId() {
+        return userId;
     }
 }
