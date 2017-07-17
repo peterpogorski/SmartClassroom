@@ -31,8 +31,8 @@ public class LoginPresenter implements LoginContract.Presenter {
     }
 
     @Override
-    public void onAuthenticationSuccess(String token, boolean isTeacher) {
-        mLoginView.saveTokenValue(token);
+    public void onAuthenticationSuccess(String token, String userId, boolean isTeacher) {
+        mLoginView.saveTokenValue(token, userId);
         mLoginView.saveTeacherField(isTeacher);
         mLoginView.showClassList();
     }
