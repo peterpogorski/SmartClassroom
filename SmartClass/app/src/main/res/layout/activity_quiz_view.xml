@@ -104,4 +104,61 @@
         android:textSize="20sp"
         tools:text="Example Question"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:background="@color/grey"/>
+
+    <RadioGroup
+        android:id="@+id/answers_radio_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp">
+
+        <RadioButton
+            android:id="@+id/answer1_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Answer 1"/>
+
+        <RadioButton
+            android:id="@+id/answer2_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Answer 2"/>
+
+        <RadioButton
+            android:id="@+id/answer3_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Answer 3"/>
+
+        <RadioButton
+            android:id="@+id/answer4_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Answer 4"/>
+
+        <RadioButton
+            android:id="@+id/answer5_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Answer 5"/>
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/submit_buton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginRight="36dp"
+        android:text="@string/submit_button"
+        style="@style/custom_button"/>
+
 </LinearLayout>

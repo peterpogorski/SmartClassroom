@@ -46,6 +46,7 @@
 
     <!-- Quiz View Strings -->
     <string name="quiz_view_label">Quiz</string>
+    <string name="submit_button">Submit</string>
     
     <!-- Goal Progress -->
     <string name="goal_progress">Goal Progress</string>
