@@ -8,6 +8,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.PieChart;
@@ -40,6 +42,7 @@ public class GoalProgressActivity extends AppCompatActivity implements GoalProgr
     private PieChart mChart;
     private TextView mQuizCompleted;
     private TextView mAverageGrade;
+    private ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -62,6 +65,7 @@ public class GoalProgressActivity extends AppCompatActivity implements GoalProgr
         mChart = (PieChart) findViewById(R.id.pie_chart);
         mQuizCompleted = (TextView) findViewById(R.id.quiz_completed);
         mAverageGrade = (TextView) findViewById(R.id.average_grade);
+        mProgressBar = (ProgressBar) findViewById(R.id.loading_spinner);
 
         mPreseneter.onCreate();
     }
@@ -78,6 +82,7 @@ public class GoalProgressActivity extends AppCompatActivity implements GoalProgr
             public void onResponse(Call<Student> call, Response<Student> response) {
                 Student student = response.body();
                 mPreseneter.onStudentLoaded(student);
+                mProgressBar.setVisibility(View.GONE);
             }
 
             @Override
@@ -112,6 +117,8 @@ public class GoalProgressActivity extends AppCompatActivity implements GoalProgr
         PieData data = new PieData(dataSet);
         data.setValueTextSize(11f);
         data.setValueTextColor(Color.WHITE);
+
+        mChart.setVisibility(View.VISIBLE);
         mChart.setData(data);
     }
 

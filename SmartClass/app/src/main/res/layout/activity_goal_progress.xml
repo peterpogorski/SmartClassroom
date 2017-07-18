@@ -13,12 +13,25 @@
         android:theme="@style/AppTheme.AppBarOverlay"
         app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.6">
+
+    <ProgressBar
+        android:id="@+id/loading_spinner"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/pie_chart"
         android:layout_marginTop="16dp"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.6"/>
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
