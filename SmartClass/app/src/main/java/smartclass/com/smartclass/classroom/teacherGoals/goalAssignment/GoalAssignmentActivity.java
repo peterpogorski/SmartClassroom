@@ -9,7 +9,10 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -18,7 +21,11 @@ import retrofit2.Retrofit;
 import smartclass.com.smartclass.R;
 import smartclass.com.smartclass.demodata.SmartClassRetrofit;
 import smartclass.com.smartclass.demodata.SmartClassService;
+import smartclass.com.smartclass.demodata.UserToken;
+import smartclass.com.smartclass.models.AssignGoalStudents;
 import smartclass.com.smartclass.models.Goal;
+import smartclass.com.smartclass.models.GoalAssignedResponse;
+import smartclass.com.smartclass.models.GoalCreate;
 import smartclass.com.smartclass.models.Student;
 
 /**
@@ -68,7 +75,10 @@ public class GoalAssignmentActivity extends Activity implements GoalAssignmentCo
     public void loadStudentList() {
         SmartClassService smartClassService = mRetrofit.create(SmartClassService.class);
 
-        Call<ArrayList<Student>> getStudents = smartClassService.getStudents();
+        String classroomId = UserToken.getInstance().getClassroomId();
+        String token = UserToken.getInstance().getTokenValue();
+
+        Call<ArrayList<Student>> getStudents = smartClassService.getClassroomStudents(classroomId, token);
         getStudents.enqueue(new Callback<ArrayList<Student>>() {
             @Override
             public void onResponse(Call<ArrayList<Student>> call, Response<ArrayList<Student>> response) {
@@ -91,12 +101,38 @@ public class GoalAssignmentActivity extends Activity implements GoalAssignmentCo
 
     @Override
     public void addGoalToStudents(ArrayList<String> studentIds) {
-        // Make network call with goal
+        Date date = new Date();
+
+        GoalCreate goalCreate = new GoalCreate(mGoalTitle, date ,mGoalId);
+        AssignGoalStudents assignGoalStudents = new AssignGoalStudents(studentIds, goalCreate);
+        String token = UserToken.getInstance().getTokenValue();
+
+        SmartClassService smartClassService = mRetrofit.create(SmartClassService.class);
+        Call<GoalAssignedResponse> assignGoalToStudents = smartClassService.assignGoalToStudents(assignGoalStudents, token);
+        assignGoalToStudents.enqueue(new Callback<GoalAssignedResponse>() {
+            @Override
+            public void onResponse(Call<GoalAssignedResponse> call, Response<GoalAssignedResponse> response) {
+                if(response.body().isAccepted()) {
+                    mPresenter.onGoalAssignedSuccessfully();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GoalAssignedResponse> call, Throwable t) {
+                Toast.makeText(GoalAssignmentActivity.this, "Sorry an error occurred", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
     public void showErrorToast() {
         Toast.makeText(this, "Sorry, something went wrong.", Toast.LENGTH_SHORT);
+    }
+
+    @Override
+    public void showSuccess() {
+        Toast.makeText(GoalAssignmentActivity.this, "Goal assigned successfully!", Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     private View.OnClickListener mOnAcceptClicked = new View.OnClickListener() {

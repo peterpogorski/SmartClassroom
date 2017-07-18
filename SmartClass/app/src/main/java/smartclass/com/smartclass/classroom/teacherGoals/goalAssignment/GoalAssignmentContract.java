@@ -16,6 +16,7 @@ public class GoalAssignmentContract {
         void onStudentListLoaded(ArrayList<Student> studentList);
         void onErrorLoading();
         void onStudentsAccepted(ArrayList<Student> students);
+        void onGoalAssignedSuccessfully();
     }
 
     interface View {
@@ -23,5 +24,6 @@ public class GoalAssignmentContract {
         void showErrorToast();
         void showListOfStudents(ArrayList<Student> studentList);
         void addGoalToStudents(ArrayList<String> studentIds);
+        void showSuccess();
     }
 }

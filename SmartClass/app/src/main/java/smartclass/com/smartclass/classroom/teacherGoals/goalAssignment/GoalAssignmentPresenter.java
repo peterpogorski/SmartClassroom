@@ -42,4 +42,9 @@ public class GoalAssignmentPresenter implements GoalAssignmentContract.Presenter
         }
         mView.addGoalToStudents(studentIds);
     }
+
+    @Override
+    public void onGoalAssignedSuccessfully() {
+        mView.showSuccess();
+    }
 }
