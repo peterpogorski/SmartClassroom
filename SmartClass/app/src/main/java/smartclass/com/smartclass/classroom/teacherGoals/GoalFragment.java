@@ -30,6 +30,7 @@ import smartclass.com.smartclass.demodata.SmartClassService;
 import smartclass.com.smartclass.demodata.TeacherModeDataManager;
 import smartclass.com.smartclass.demodata.UserToken;
 import smartclass.com.smartclass.goalViewing.ViewGoalActivity;
+import smartclass.com.smartclass.goalprogress.GoalProgressActivity;
 import smartclass.com.smartclass.models.Goal;
 
 /**
@@ -108,7 +109,10 @@ public class GoalFragment extends Fragment implements GoalContract.View {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_total_progress:
-                // TODO: Open activity to view total goal progress for the student
+                if(getActivity() != null) {
+                    Intent intent = new Intent(getActivity(), GoalProgressActivity.class);
+                    startActivity(intent);
+                }
                 return true;
             case R.id.action_refresh:
                 loadGoals();

@@ -36,6 +36,8 @@ public class Goal implements Parcelable {
     @SerializedName("weight")
     private Double weight;
 
+    @SerializedName("completed")
+    private boolean completed;
     /**
      * Constructor
      * @param title Title of the goal
@@ -68,6 +70,9 @@ public class Goal implements Parcelable {
     public Double getWeight() { return this.weight; }
     public String getGoalId() {
         return goalId;
+    }
+    public boolean getCompleted() {
+        return completed;
     }
 
     @Override
@@ -105,9 +110,9 @@ public class Goal implements Parcelable {
         String creationDateString = in.readString();
         String startDateString = in.readString();
         String endDateString = in.readString();
-        creationDate = creationDateString.isEmpty() ? null : new Date();
-        startDate = startDateString.isEmpty() ? null : new Date(in.readString());
-        endDate = endDateString.isEmpty() ? null : new Date(in.readString());
+        creationDate = creationDateString.isEmpty() ? null : new Date(creationDateString);
+        startDate = startDateString.isEmpty() ? null : new Date(startDateString);
+        endDate = endDateString.isEmpty() ? null : new Date(endDateString);
         weight = in.readDouble();
     }
 }

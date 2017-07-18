@@ -15,6 +15,8 @@ public class GoalProgressContract {
 
     interface View {
         void getStudentModel();
-        void populatePieChart();
+        void populatePieChart(int goalsCompleted, int goalsInProgress);
+        void showQuizzesCompleted(int quizCompleted);
+        void showAverageGrade(double averageGrade);
     }
 }
