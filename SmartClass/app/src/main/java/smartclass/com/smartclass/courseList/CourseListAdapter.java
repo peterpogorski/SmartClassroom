@@ -6,8 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import smartclass.com.smartclass.models.Classroom;
 import smartclass.com.smartclass.models.Course;
 import smartclass.com.smartclass.R;
 
@@ -17,12 +19,12 @@ import smartclass.com.smartclass.R;
 
 public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.CourseViewHolder> {
 
-    private List<Course> courseList;
+    private ArrayList<Classroom> classrooms;
     private CourseListContract.View mCourseView;
     private CourseListContract.Presenter mPresenter;
 
-    public CourseListAdapter(List<Course> courseList, CourseListContract.Presenter presenter) {
-        this.courseList = courseList;
+    public CourseListAdapter(ArrayList<Classroom> courseList, CourseListContract.Presenter presenter) {
+        this.classrooms = courseList;
         mPresenter = presenter;
     }
 
@@ -39,20 +41,20 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
 
     @Override
     public void onBindViewHolder(CourseViewHolder holder, int position) {
-        final Course course = courseList.get(position);
-        holder.courseTitle.setText(course.getClassName());
-        holder.professorName.setText(course.getTeacherName());
+        final Classroom classroom = classrooms.get(position);
+        holder.courseTitle.setText(classroom.getTitle());
+        holder.professorName.setText(classroom.getCourseCode());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPresenter.onCourseSelected(course);
+                mPresenter.onCourseSelected(classroom);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return courseList.size();
+        return classrooms.size();
     }
 
     public class CourseViewHolder extends RecyclerView.ViewHolder{

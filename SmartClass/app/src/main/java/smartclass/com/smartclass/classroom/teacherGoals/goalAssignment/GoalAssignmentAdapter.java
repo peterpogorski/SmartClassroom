@@ -45,7 +45,7 @@ public class GoalAssignmentAdapter extends RecyclerView.Adapter<GoalAssignmentAd
         }
 
         if (context != null) {
-            Picasso.with(context).load(student.getFacebook().getProfilePicture()).into(holder.studentPicture);
+            //Picasso.with(context).load(student.getFacebook().getProfilePicture()).into(holder.studentPicture);
         }
         holder.studentName.setText(student.getFirstName() + " " + student.getLastName());
         // TODO: Show real data

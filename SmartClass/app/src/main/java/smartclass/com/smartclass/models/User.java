@@ -28,33 +28,25 @@ public class User {
     private String displayName;
 
 
-    /*
-    @SerializedName("classrooms")
-    private ArrayList<Classroom> classrooms;
-    */
-
-    private Facebook facebook;
-    private Date birthday;
-
-    public User(Facebook facebook, String firstName, String lastName, String displayName,
-                   Date birthday, ArrayList<Classroom> classrooms, boolean teacherMode) {
-        this.facebook = facebook;
+    public User(String firstName, String lastName, String displayName, boolean teacherMode) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.displayName = displayName;
-        this.birthday = birthday;
-        //this.classrooms = classrooms;
         this.teacherMode = teacherMode;
     }
 
     /** Getter functions **/
 
-    public Facebook getFacebook() { return this.facebook; }
     public String getFirstName() { return this.firstName; }
     public String getLastName() { return this.lastName; }
     public String getDisplayName() { return this.displayName; }
-    public Date getBirthday() { return this.birthday; }
     //public ArrayList<Classroom> getClassrooms() { return this.classrooms; }
     public boolean isTeacherMode() { return teacherMode; }
     //public int getClassroomsCount() { return this.classrooms.size(); }
+
+    /*
+    public ArrayList<Classroom> getClassrooms() {
+        return classrooms;
+    }
+    */
 }

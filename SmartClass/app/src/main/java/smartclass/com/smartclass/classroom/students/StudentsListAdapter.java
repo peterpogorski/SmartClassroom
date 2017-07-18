@@ -53,7 +53,7 @@ public class StudentsListAdapter extends RecyclerView.Adapter<StudentsListAdapte
         }
 
         if (context != null) {
-            Picasso.with(context).load(student.getFacebook().getProfilePicture()).into(holder.studentPicture);
+            //Picasso.with(context).load(student.getFacebook().getProfilePicture()).into(holder.studentPicture);
         }
         holder.studentName.setText(student.getFirstName() + " " + student.getLastName());
         // TODO: Show real data

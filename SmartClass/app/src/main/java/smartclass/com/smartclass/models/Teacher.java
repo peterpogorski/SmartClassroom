@@ -1,5 +1,7 @@
 package smartclass.com.smartclass.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -8,17 +10,21 @@ import java.util.Date;
  */
 
 public class Teacher extends User {
+
+    //@SerializedName("classrooms")
+    private ArrayList<Classroom> classrooms;
+
     /**
      * Constructor
-     * @param facebook Facebook details
      * @param firstName Teacher first name
      * @param lastName Teacher last name
      * @param displayName Teacher display name
-     * @param birthday Teacher birthday
-     * @param classrooms Classrooms of which the teacher teaches
      */
-    public Teacher(Facebook facebook, String firstName, String lastName, String displayName,
-                   Date birthday, ArrayList<Classroom> classrooms) {
-        super(facebook, firstName, lastName, displayName, birthday, classrooms, true);
+    public Teacher(String firstName, String lastName, String displayName) {
+        super(firstName, lastName, displayName, true);
+    }
+
+    public ArrayList<Classroom> getClassrooms() {
+        return classrooms;
     }
 }
