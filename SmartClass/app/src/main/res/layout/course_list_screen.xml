@@ -11,8 +11,8 @@
 
         <ImageButton
             android:id="@+id/logout"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:padding="8dp"
             android:layout_marginLeft="8dp"
             android:background="@drawable/logout"
@@ -27,7 +27,7 @@
             android:textStyle="bold"
             android:layout_centerInParent="true"
             android:textColor="@color/white"
-            android:text="Select a course"/>
+            android:text="Select Course"/>
 
     </RelativeLayout>
 
