@@ -56,7 +56,7 @@ public class GoalProgressActivity extends AppCompatActivity implements GoalProgr
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        toolbar.setTitle("Progress");
+        actionBar.setTitle("Progress");
 
 
         mRetrofit = SmartClassRetrofit.getInstance();

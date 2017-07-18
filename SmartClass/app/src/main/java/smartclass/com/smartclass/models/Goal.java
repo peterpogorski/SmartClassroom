@@ -90,7 +90,6 @@ public class Goal implements Parcelable {
         out.writeString(startDate == null ? "" : startDate.toString());
         out.writeString(endDate == null ? "" : endDate.toString());
         out.writeDouble(weight);
-        out.writeByte((byte) (completed ? 1 : 0));
     }
 
     public static final Parcelable.Creator<Goal> CREATOR = new Parcelable.Creator<Goal>() {
@@ -115,6 +114,5 @@ public class Goal implements Parcelable {
         startDate = startDateString.isEmpty() ? null : new Date(in.readString());
         endDate = endDateString.isEmpty() ? null : new Date(in.readString());
         weight = in.readDouble();
-        completed = in.readByte() != 0;
     }
 }
