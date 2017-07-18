@@ -1,5 +1,8 @@
 package smartclass.com.smartclass.courseList;
 
+import java.util.ArrayList;
+
+import smartclass.com.smartclass.models.Classroom;
 import smartclass.com.smartclass.models.Course;
 
 /**
@@ -9,9 +12,11 @@ import smartclass.com.smartclass.models.Course;
 public class CourseListContract {
 
     interface Presenter {
-        void onCourseSelected(Course course);
+        void onCreate();
+        void onCourseSelected(Classroom classroom);
         void onLogoutClicked();
         void onLogoutConfirmed();
+        void onClassroomsLoaded(ArrayList<Classroom> classrooms);
     }
 
     interface View {
@@ -19,5 +24,7 @@ public class CourseListContract {
         void confirmLogout();
         void clearCredentials();
         void showLoginScreen();
+        void loadClassrooms();
+        void displayClassrooms(ArrayList<Classroom> classrooms);
     }
 }

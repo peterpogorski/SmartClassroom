@@ -8,6 +8,8 @@ import java.util.Date;
  */
 
 public class StudentGoalHistory {
+
+
     private String title;
     private boolean completed;
     private boolean active;

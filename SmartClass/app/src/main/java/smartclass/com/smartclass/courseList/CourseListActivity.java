@@ -16,12 +16,22 @@ import android.widget.ImageButton;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 import smartclass.com.smartclass.classroom.ClassroomActivity;
+import smartclass.com.smartclass.demodata.SmartClassRetrofit;
+import smartclass.com.smartclass.demodata.SmartClassService;
 import smartclass.com.smartclass.demodata.TeacherModeDataManager;
+import smartclass.com.smartclass.demodata.UserToken;
 import smartclass.com.smartclass.login.LoginActivity;
+import smartclass.com.smartclass.models.Classroom;
 import smartclass.com.smartclass.models.Course;
 import smartclass.com.smartclass.course.CourseActivity;
 import smartclass.com.smartclass.R;
+import smartclass.com.smartclass.models.Student;
+import smartclass.com.smartclass.models.Teacher;
 
 /**
  * Created by peterpogorski on 2017-06-12.
@@ -33,35 +43,27 @@ public class CourseListActivity extends Activity implements CourseListContract.V
     private RecyclerView mRecyclerView;
     private CourseListPresenter mPresenter;
     private ImageButton mLogout;
+    private Retrofit mRetrofit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.course_list_screen);
 
+        mRetrofit = SmartClassRetrofit.getInstance();
+
         mRecyclerView = (RecyclerView) findViewById(R.id.course_list_view);
         mLogout = (ImageButton) findViewById(R.id.logout);
 
         mLogout.setOnClickListener(mOnLogoutClickListener);
 
-        Course course1 = new Course("ECE 105", "James Smith", 25);
-        Course course2 = new Course("ECE 116", "James Kennings", 25);
-        Course course3 = new Course("ECE 125", "Arthur Kennings", 25);
-        Course course4 = new Course("ECE 135", "Tim Smith", 25);
-        Course course5 = new Course("ECE 149", "Able John", 25);
-
-        mCourseList.add(course1);
-        mCourseList.add(course2);
-        mCourseList.add(course3);
-        mCourseList.add(course4);
-        mCourseList.add(course5);
-
         mPresenter = new CourseListPresenter(this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-        mListAdapter = new CourseListAdapter(mCourseList, mPresenter);
+
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerView.setAdapter(mListAdapter);
+
+        mPresenter.onCreate();
     }
 
     @Override
@@ -113,6 +115,47 @@ public class CourseListActivity extends Activity implements CourseListContract.V
         Intent intent = new Intent(CourseListActivity.this, LoginActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void loadClassrooms() {
+        SmartClassService smartClassService = mRetrofit.create(SmartClassService.class);
+        String userId = UserToken.getInstance().getUserId();
+        String token = UserToken.getInstance().getTokenValue();
+
+        if(TeacherModeDataManager.getInstance().isTeacherModeEnabled()) {
+            Call<Teacher> getTeacher = smartClassService.getTeacher(userId, token);
+            getTeacher.enqueue(new Callback<Teacher>() {
+                @Override
+                public void onResponse(Call<Teacher> call, Response<Teacher> response) {
+                    mPresenter.onClassroomsLoaded(response.body().getClassrooms());
+                }
+
+                @Override
+                public void onFailure(Call<Teacher> call, Throwable t) {
+
+                }
+            });
+        } else {
+            Call<Student> getStudent = smartClassService.getStudent(userId, token);
+            getStudent.enqueue(new Callback<Student>() {
+                @Override
+                public void onResponse(Call<Student> call, Response<Student> response) {
+                    mPresenter.onClassroomsLoaded(response.body().getClassrooms());
+                }
+
+                @Override
+                public void onFailure(Call<Student> call, Throwable t) {
+
+                }
+            });
+        }
+    }
+
+    @Override
+    public void displayClassrooms(ArrayList<Classroom> classrooms) {
+        mListAdapter = new CourseListAdapter(classrooms, mPresenter);
+        mRecyclerView.setAdapter(mListAdapter);
     }
 
     private View.OnClickListener mOnLogoutClickListener = new View.OnClickListener() {

@@ -14,6 +14,7 @@ import smartclass.com.smartclass.models.Goal;
 import smartclass.com.smartclass.models.LoginUser;
 import smartclass.com.smartclass.models.Quiz;
 import smartclass.com.smartclass.models.Student;
+import smartclass.com.smartclass.models.Teacher;
 
 /**
  * Created by peterpogorski on 2017-06-21.
@@ -28,7 +29,10 @@ public interface SmartClassService {
     Call<ArrayList<Student>> getStudents();
 
     @GET("students/{id}")
-    Call<Student> getStudent(@Path("id") String studentId);
+    Call<Student> getStudent(@Path("id") String studentId, @Header("token") String token);
+
+    @GET("teachers/{id}")
+    Call<Teacher> getTeacher(@Path("id") String teacherId, @Header("token") String token);
   
     @POST("students")
     Call<Student> createStudent(@Body Student student);

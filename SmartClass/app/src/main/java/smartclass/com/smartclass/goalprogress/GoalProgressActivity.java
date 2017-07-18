@@ -41,8 +41,9 @@ public class GoalProgressActivity extends Activity implements GoalProgressContra
     public void getStudentModel() {
         SmartClassService smartClassService = mRetrofit.create(SmartClassService.class);
         String userId = UserToken.getInstance().getUserId();
+        String token = UserToken.getInstance().getTokenValue();
 
-        Call<Student> getStudent = smartClassService.getStudent(userId);
+        Call<Student> getStudent = smartClassService.getStudent(userId, token);
         getStudent.enqueue(new Callback<Student>() {
             @Override
             public void onResponse(Call<Student> call, Response<Student> response) {

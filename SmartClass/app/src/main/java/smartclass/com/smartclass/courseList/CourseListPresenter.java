@@ -1,5 +1,8 @@
 package smartclass.com.smartclass.courseList;
 
+import java.util.ArrayList;
+
+import smartclass.com.smartclass.models.Classroom;
 import smartclass.com.smartclass.models.Course;
 
 /**
@@ -15,11 +18,6 @@ public class CourseListPresenter implements CourseListContract.Presenter {
     }
 
     @Override
-    public void onCourseSelected(Course course) {
-        mCourseView.showCourse(course.getClassName());
-    }
-
-    @Override
     public void onLogoutClicked() {
         mCourseView.confirmLogout();
     }
@@ -28,5 +26,20 @@ public class CourseListPresenter implements CourseListContract.Presenter {
     public void onLogoutConfirmed() {
         mCourseView.clearCredentials();
         mCourseView.showLoginScreen();
+    }
+
+    @Override
+    public void onCreate() {
+        mCourseView.loadClassrooms();
+    }
+
+    @Override
+    public void onCourseSelected(Classroom classroom) {
+        mCourseView.showCourse(classroom.getTitle());
+    }
+
+    @Override
+    public void onClassroomsLoaded(ArrayList<Classroom> classrooms) {
+        mCourseView.displayClassrooms(classrooms);
     }
 }

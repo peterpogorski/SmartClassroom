@@ -5,17 +5,20 @@
     
     <TextView
         android:id="@+id/course_title"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="2dp"
+        android:textStyle="bold"
         android:text="ECE 105"
+        android:gravity="center"
         android:textSize="34sp" />
 
     <TextView
         android:id="@+id/professor_name"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="2dp"
+        android:gravity="center"
         android:text="Professor Andrew Kennings"
         android:textSize="24sp" />
 

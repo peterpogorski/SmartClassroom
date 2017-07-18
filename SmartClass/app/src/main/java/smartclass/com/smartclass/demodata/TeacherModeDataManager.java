@@ -53,7 +53,7 @@ public class TeacherModeDataManager {
 
     private Teacher getTeacher() {
         if (currentTeacher == null) {
-            currentTeacher = new Teacher(null, "Charlie", "Brown", "CBrown", new Date(1984, 8, 12), new ArrayList<Classroom>());
+            //currentTeacher = new Teacher(null, "Charlie", "Brown", "CBrown", new Date(1984, 8, 12), new ArrayList<Classroom>());
         }
 
         return currentTeacher;
@@ -118,6 +118,7 @@ public class TeacherModeDataManager {
 
     private void createStudentList() {
         students = new ArrayList<>();
+        /*
         Student student1 = new Student(null, "John", "Doe", "JohnDoe", new Date(2000, 10, 14),
                 getClassrooms(), new ArrayList<StudentQuizHistory>(), new ArrayList<StudentGoalHistory>());
         Student student2 = new Student(null, "Bob", "Bee", "BobBee", new Date(2000, 5, 4),
@@ -127,22 +128,25 @@ public class TeacherModeDataManager {
         students.add(0, student1);
         students.add(1, student2);
         students.add(2, student3);
+        */
     }
 
     private void createClassroomsList() {
         classrooms = new ArrayList<>();
+        /*
         classrooms.add(0, new Classroom("English", "English class ", "ENG101", 1, "academic",
                 TeacherModeDataManager.getInstance().getTeacher(),
-                new ArrayList<Student>(),
-                new ArrayList<Quiz>()));
+                new ArrayList<String>(),
+                new ArrayList<String>()));
         classrooms.add(1, new Classroom("Chemistry", "Chemistry class ", "CHE101", 1, "academic",
                 TeacherModeDataManager.getInstance().getTeacher(),
-                new ArrayList<Student>(),
-                new ArrayList<Quiz>()));
+                new ArrayList<String>(),
+                new ArrayList<String>()));
         classrooms.add(2, new Classroom("Biology", "Biology class ", "BIO101", 1, "academic",
                 TeacherModeDataManager.getInstance().getTeacher(),
-                new ArrayList<Student>(),
-                new ArrayList<Quiz>()));
+                new ArrayList<String>(),
+                new ArrayList<String>()));
+                */
     }
 
     // Quizzes
