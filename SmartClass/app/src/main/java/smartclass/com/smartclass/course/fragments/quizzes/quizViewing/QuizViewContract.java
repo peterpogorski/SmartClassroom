@@ -1,5 +1,7 @@
 package smartclass.com.smartclass.course.fragments.quizzes.quizViewing;
 
+import android.support.annotation.NonNull;
+
 import java.util.ArrayList;
 
 import smartclass.com.smartclass.models.Quiz;
@@ -13,14 +15,10 @@ public class QuizViewContract {
 
     interface Presenter {
         void onCreate();
-        void startQuiz(Quiz quiz);
-        void stopQuiz(Quiz quiz);
+        void submitQuiz(@NonNull Quiz quiz);
     }
 
     interface View {
-        void updateQuizTitle(String title);
-        void updateQuizDescription(String description);
-        void updateQuizQuestion(String question);
-        void updateAnswers(ArrayList<QuizQuestionOption> questionOptions);
+        void setupQuizUI(@NonNull Quiz quiz);
     }
 }

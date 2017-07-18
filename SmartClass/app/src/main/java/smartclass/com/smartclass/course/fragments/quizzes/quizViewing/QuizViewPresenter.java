@@ -1,5 +1,7 @@
 package smartclass.com.smartclass.course.fragments.quizzes.quizViewing;
 
+import android.support.annotation.NonNull;
+
 import smartclass.com.smartclass.models.Quiz;
 
 /**
@@ -22,12 +24,7 @@ public class QuizViewPresenter implements QuizViewContract.Presenter {
     }
 
     @Override
-    public void startQuiz(Quiz quiz) {
-        // TODO
-    }
-
-    @Override
-    public void stopQuiz(Quiz quiz) {
+    public void submitQuiz(@NonNull Quiz quiz) {
         // TODO
     }
 }
