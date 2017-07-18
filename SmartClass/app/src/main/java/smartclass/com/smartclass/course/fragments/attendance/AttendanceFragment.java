@@ -1,4 +1,4 @@
-package smartclass.com.smartclass.course.fragments;
+package smartclass.com.smartclass.course.fragments.attendance;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
