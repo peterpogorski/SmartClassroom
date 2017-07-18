@@ -150,7 +150,7 @@ public class CourseListActivity extends Activity implements CourseListContract.V
             getStudent.enqueue(new Callback<Student>() {
                 @Override
                 public void onResponse(Call<Student> call, Response<Student> response) {
-                    if (mPresenter != null) {
+                    if (mPresenter != null && response.body() != null) {
                         mPresenter.onClassroomsLoaded(response.body().getClassrooms());
                     }
                 }

@@ -23,6 +23,9 @@ public class Student {
     @SerializedName("quizHistory")
     private ArrayList<StudentQuizHistory> quizHistory;
 
+    @SerializedName("goals")
+    private ArrayList<Goal> goals;
+
     private boolean assignGoal = false;
 
     /**
@@ -63,6 +66,18 @@ public class Student {
 
     public String getStudentId() {
         return studentId;
+    }
+
+    public ArrayList<Goal> getGoals() {
+        return goals;
+    }
+
+    public ArrayList<StudentQuizHistory> getQuizHistory() {
+        return quizHistory;
+    }
+
+    public int getCompletedQuizCount() {
+        return quizHistory.size();
     }
 
 }
