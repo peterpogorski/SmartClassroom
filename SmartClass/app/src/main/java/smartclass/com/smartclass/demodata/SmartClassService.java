@@ -16,6 +16,7 @@ import smartclass.com.smartclass.models.GoalAssignedResponse;
 import smartclass.com.smartclass.models.LoginUser;
 import smartclass.com.smartclass.models.Quiz;
 import smartclass.com.smartclass.models.Student;
+import smartclass.com.smartclass.models.StudentQuizHistory;
 import smartclass.com.smartclass.models.Teacher;
 
 /**
@@ -62,6 +63,7 @@ public interface SmartClassService {
 
     @POST("students/goals")
     Call<GoalAssignedResponse> assignGoalToStudents(@Body AssignGoalStudents assignGoalStudents, @Header("token") String token);
+
     // Quizzes
 
     @POST("classrooms/{id}/quizzes")
@@ -71,7 +73,7 @@ public interface SmartClassService {
     Call<ArrayList<Quiz>> getQuizzes(@Path("id") String classroomId, @Header("token") String token);
 
     @GET("quizzes/{id}")
-    Call<Quiz> getQuiz(@Path("id") String quizId);
+    Call<Quiz> getQuiz(@Path("id") String quizId, @Header("token") String token);
 
     @POST("quizzes/{id}/start")
     Call<Quiz> startQuiz(@Path("id") String quizId);
@@ -81,4 +83,7 @@ public interface SmartClassService {
 
     @DELETE("quizzes/{id}")
     Call<Quiz> deleteQuiz(@Path("id") String quizId);
+
+    @POST("students/{id}/quizzes")
+    Call<Student> submitQuiz(@Path("id") String studentId, @Header("token") String token, @Body StudentQuizHistory response);
 }
