@@ -10,6 +10,7 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import smartclass.com.smartclass.models.AssignGoalStudents;
+import smartclass.com.smartclass.models.Attendance;
 import smartclass.com.smartclass.models.AuthenticatedUser;
 import smartclass.com.smartclass.models.Goal;
 import smartclass.com.smartclass.models.GoalAssignedResponse;
@@ -86,4 +87,20 @@ public interface SmartClassService {
 
     @POST("students/{id}/quizzes")
     Call<Student> submitQuiz(@Path("id") String studentId, @Header("token") String token, @Body StudentQuizHistory response);
+
+    // Attendance
+
+    @POST("classrooms/{id}/attendances")
+    Call<Attendance> startAttendancePoll(@Path("id") String classroomId, @Header("token") String token);
+
+    @POST("classrooms/{id}/attendances/{attendanceId}/start")
+    Call<Attendance> startExistingAttendancePoll(@Path("id") String classroomId,
+                                                 @Path("attendanceId") String attendanceId,
+                                                 @Header("token") String token);
+
+    @POST("classrooms/{id}/attendances/{attendanceId}/stop")
+    Call<Attendance> stopAttendancePoll(@Path("id") String classroomId, @Path("attendanceId") String attendanceId, @Header("token") String token);
+
+    @POST("classrooms/{id}/{studentId}/signin")
+    Call<Attendance> respondToAttendancePoll(@Path("id") String classroomId, @Path("studentId") String studentId, @Header("token") String token);
 }
