@@ -81,9 +81,9 @@ public class Goal implements Parcelable {
         out.writeString(title);
         out.writeString(description);
         out.writeString(type);
-        out.writeString(creationDate.toString());
-        out.writeString(startDate.toString());
-        out.writeString(endDate.toString());
+        out.writeString(creationDate == null ? "" : creationDate.toString());
+        out.writeString(startDate == null ? "" : startDate.toString());
+        out.writeString(endDate == null ? "" : endDate.toString());
         out.writeDouble(weight);
     }
 
@@ -102,9 +102,12 @@ public class Goal implements Parcelable {
         title = in.readString();
         description = in.readString();
         type = in.readString();
-        creationDate = new Date(in.readString());
-        startDate = new Date(in.readString());
-        endDate = new Date(in.readString());
+        String creationDateString = in.readString();
+        String startDateString = in.readString();
+        String endDateString = in.readString();
+        creationDate = creationDateString.isEmpty() ? null : new Date();
+        startDate = startDateString.isEmpty() ? null : new Date(in.readString());
+        endDate = endDateString.isEmpty() ? null : new Date(in.readString());
         weight = in.readDouble();
     }
 }

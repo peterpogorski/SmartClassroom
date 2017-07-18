@@ -65,7 +65,7 @@ public interface SmartClassService {
     // Quizzes
 
     @POST("classrooms/{id}/quizzes")
-    Call<Quiz> createQuiz(@Path("id") String classroomId, @Body Quiz quiz);
+    Call<Quiz> createQuiz(@Path("id") String classroomId, @Header("token") String token, @Body Quiz quiz);
 
     @GET("classrooms/{id}/quizzes")
     Call<ArrayList<Quiz>> getQuizzes(@Path("id") String classroomId, @Header("token") String token);

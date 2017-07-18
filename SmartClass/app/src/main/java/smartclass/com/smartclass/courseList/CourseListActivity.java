@@ -78,10 +78,11 @@ public class CourseListActivity extends Activity implements CourseListContract.V
         if (TeacherModeDataManager.getInstance().isTeacherModeEnabled()) {
             intent = new Intent(this, ClassroomActivity.class);
             intent.putExtra(ClassroomActivity.COURSE_NAME, courseName);
-            // TODO: set the currentClassroomId in TeacherModeDataManager when we fetch real classrooms
+            TeacherModeDataManager.getInstance().setCurrentClassroomId(classroomId);
         } else {
             intent = new Intent(this, CourseActivity.class);
             intent.putExtra(CourseActivity.COURSE_NAME, courseName);
+            TeacherModeDataManager.getInstance().setCurrentClassroomId(classroomId);
         }
         startActivity(intent);
     }
@@ -134,7 +135,9 @@ public class CourseListActivity extends Activity implements CourseListContract.V
             getTeacher.enqueue(new Callback<Teacher>() {
                 @Override
                 public void onResponse(Call<Teacher> call, Response<Teacher> response) {
-                    mPresenter.onClassroomsLoaded(response.body().getClassrooms());
+                    if (mPresenter != null) {
+                        mPresenter.onClassroomsLoaded(response.body().getClassrooms());
+                    }
                 }
 
                 @Override
@@ -147,7 +150,9 @@ public class CourseListActivity extends Activity implements CourseListContract.V
             getStudent.enqueue(new Callback<Student>() {
                 @Override
                 public void onResponse(Call<Student> call, Response<Student> response) {
-                    mPresenter.onClassroomsLoaded(response.body().getClassrooms());
+                    if (mPresenter != null) {
+                        mPresenter.onClassroomsLoaded(response.body().getClassrooms());
+                    }
                 }
 
                 @Override

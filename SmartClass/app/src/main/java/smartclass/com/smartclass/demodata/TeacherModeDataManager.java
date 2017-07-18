@@ -24,7 +24,7 @@ public class TeacherModeDataManager {
     private static TeacherModeDataManager instance;
 
     private boolean teacherModeEnabled = true;
-    private String currentClassroomId = "596ba65a50d5880032e80cf3";
+    private String currentClassroomId = "";
 
     private Teacher currentTeacher;
     private ArrayList<Student> students = new ArrayList<>();
