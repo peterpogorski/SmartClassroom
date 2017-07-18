@@ -26,6 +26,9 @@ public class Student {
     @SerializedName("goals")
     private ArrayList<Goal> goals;
 
+    @SerializedName("attendanceHistory")
+    private ArrayList<String> attendanceHistory;
+
     private boolean assignGoal = false;
 
     /**
