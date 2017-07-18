@@ -34,6 +34,8 @@ public class TeacherModeDataManager {
 
     private Quiz selectedQuiz = null;
 
+    private String currentAttendanceId = "";
+
     private TeacherModeDataManager() {}
 
     public static TeacherModeDataManager getInstance() {
@@ -184,4 +186,7 @@ public class TeacherModeDataManager {
         quizzes = new ArrayList<>();
         selectedQuiz = null;
     }
+
+    public void setCurrentAttendanceId(@NonNull String id) { currentAttendanceId = id; }
+    public String getCurrentAttendanceId() { return currentAttendanceId;}
 }
