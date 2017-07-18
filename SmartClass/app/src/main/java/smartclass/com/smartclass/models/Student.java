@@ -17,16 +17,29 @@ public class Student {
     @SerializedName("lastName")
     private String lastName;
 
-    //@SerializedName("quizHistory")
-    //private ArrayList<String> quizHistory;
+    @SerializedName("_id")
+    private String studentId;
+
+    @SerializedName("quizHistory")
+    private ArrayList<StudentQuizHistory> quizHistory;
+
+    private boolean assignGoal = false;
+
+    /**
+     * Constructor
+     * @param facebook Facebook details
+     * @param firstName Student's first name
+     * @param lastName Students's last name
+     * @param displayName Student's display name
+     * @param birthday Student's birthday
+     * @param classrooms Classrooms the student is a part of
+     * @param quizHistory Student's quiz history
+     * @param goals Student's goals
+     */
+
 
     @SerializedName("classrooms")
     private ArrayList<Classroom> classrooms;
-
-    //public ArrayList<String> getQuizHistory() { return this.quizHistory; }
-    //public ArrayList<StudentGoalHistory> getGoals() { return this.goals; }
-    //public int getQuizHistoryCount() { return this.quizHistory.size(); }
-    //public int getGoalCount() { return this.goals.size(); }
 
     public ArrayList<Classroom> getClassrooms() {
         return classrooms;
@@ -39,4 +52,17 @@ public class Student {
     public String getLastName() {
         return lastName;
     }
+
+    public void setAssignGoal(boolean assignGoal) {
+        this.assignGoal = assignGoal;
+    }
+
+    public boolean getAssignGoal() {
+        return assignGoal;
+    }
+
+    public String getStudentId() {
+        return studentId;
+    }
+
 }
