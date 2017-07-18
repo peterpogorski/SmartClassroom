@@ -174,4 +174,14 @@ public class TeacherModeDataManager {
     public Quiz getSelectedQuiz() {
         return selectedQuiz;
     }
+
+    public void clearData() {
+        currentClassroomId = "";
+        currentTeacher = null;
+        students = new ArrayList<>();
+        classrooms = new ArrayList<>();
+        goals = new ArrayList<>();
+        quizzes = new ArrayList<>();
+        selectedQuiz = null;
+    }
 }

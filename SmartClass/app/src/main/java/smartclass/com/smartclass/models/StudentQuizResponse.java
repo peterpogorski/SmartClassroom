@@ -7,19 +7,22 @@ package smartclass.com.smartclass.models;
 public class StudentQuizResponse {
 
 
-    private int questionNumber;
+    private String question;
     private String answer;
+    private boolean correct;
 
     /**
      * Constructor
-     * @param questionNumber Question number
+     * @param question Quiz question
      * @param answer Student's answer
      */
-    public StudentQuizResponse(int questionNumber, String answer) {
-        this.questionNumber = questionNumber;
+    public StudentQuizResponse(String question, String answer, boolean correct) {
+        this.question = question;
         this.answer = answer;
+        this.correct = correct;
     }
 
-    public int getQuestionNumber() { return this.questionNumber; }
+    public String getQuestionNumber() { return this.question; }
     public String getAnswer() { return this.answer; }
+    public boolean isCorrect() { return this.correct; }
 }

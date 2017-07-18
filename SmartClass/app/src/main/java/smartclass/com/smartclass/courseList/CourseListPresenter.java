@@ -2,6 +2,7 @@ package smartclass.com.smartclass.courseList;
 
 import java.util.ArrayList;
 
+import smartclass.com.smartclass.demodata.TeacherModeDataManager;
 import smartclass.com.smartclass.models.Classroom;
 import smartclass.com.smartclass.models.Course;
 
@@ -26,6 +27,7 @@ public class CourseListPresenter implements CourseListContract.Presenter {
     public void onLogoutConfirmed() {
         mCourseView.clearCredentials();
         mCourseView.showLoginScreen();
+        TeacherModeDataManager.getInstance().clearData();
     }
 
     @Override
