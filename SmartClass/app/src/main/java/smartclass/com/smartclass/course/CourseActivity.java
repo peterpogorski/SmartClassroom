@@ -7,12 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import smartclass.com.smartclass.classroom.teacherGoals.GoalFragment;
-import smartclass.com.smartclass.course.fragments.AttendanceFragment;
+import smartclass.com.smartclass.course.fragments.attendance.AttendanceFragment;
 import smartclass.com.smartclass.course.fragments.quizzes.QuizFragment;
 import smartclass.com.smartclass.R;
 

@@ -10,12 +10,14 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import smartclass.com.smartclass.models.AssignGoalStudents;
+import smartclass.com.smartclass.models.Attendance;
 import smartclass.com.smartclass.models.AuthenticatedUser;
 import smartclass.com.smartclass.models.Goal;
 import smartclass.com.smartclass.models.GoalAssignedResponse;
 import smartclass.com.smartclass.models.LoginUser;
 import smartclass.com.smartclass.models.Quiz;
 import smartclass.com.smartclass.models.Student;
+import smartclass.com.smartclass.models.StudentQuizHistory;
 import smartclass.com.smartclass.models.Teacher;
 
 /**
@@ -62,6 +64,7 @@ public interface SmartClassService {
 
     @POST("students/goals")
     Call<GoalAssignedResponse> assignGoalToStudents(@Body AssignGoalStudents assignGoalStudents, @Header("token") String token);
+
     // Quizzes
 
     @POST("classrooms/{id}/quizzes")
@@ -71,7 +74,7 @@ public interface SmartClassService {
     Call<ArrayList<Quiz>> getQuizzes(@Path("id") String classroomId, @Header("token") String token);
 
     @GET("quizzes/{id}")
-    Call<Quiz> getQuiz(@Path("id") String quizId);
+    Call<Quiz> getQuiz(@Path("id") String quizId, @Header("token") String token);
 
     @POST("quizzes/{id}/start")
     Call<Quiz> startQuiz(@Path("id") String quizId);
@@ -81,4 +84,26 @@ public interface SmartClassService {
 
     @DELETE("quizzes/{id}")
     Call<Quiz> deleteQuiz(@Path("id") String quizId);
+
+    @POST("students/{id}/quizzes")
+    Call<Student> submitQuiz(@Path("id") String studentId, @Header("token") String token, @Body StudentQuizHistory response);
+
+    // Attendance
+
+    @POST("classrooms/{id}/attendances")
+    Call<Attendance> startAttendancePoll(@Path("id") String classroomId, @Header("token") String token);
+
+    @POST("classrooms/{id}/attendances/{attendanceId}/start")
+    Call<Attendance> startExistingAttendancePoll(@Path("id") String classroomId,
+                                                 @Path("attendanceId") String attendanceId,
+                                                 @Header("token") String token);
+
+    @POST("classrooms/{id}/attendances/{attendanceId}/stop")
+    Call<Attendance> stopAttendancePoll(@Path("id") String classroomId, @Path("attendanceId") String attendanceId, @Header("token") String token);
+
+    @POST("classrooms/{id}/students/{studentId}/signin")
+    Call<Attendance> respondToAttendancePoll(@Path("id") String classroomId, @Path("studentId") String studentId, @Header("token") String token);
+
+    @GET("classrooms/{id}/attendances")
+    Call<ArrayList<Attendance>> getAttendances(@Path("id") String classroomId, @Header("token") String token);
 }

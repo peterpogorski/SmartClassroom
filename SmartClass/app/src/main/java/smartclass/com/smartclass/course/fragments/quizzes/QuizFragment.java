@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -210,11 +211,18 @@ public class QuizFragment extends Fragment implements  QuizContract.View {
                 bundle.putBoolean("viewing_quiz", true);
                 intent.putExtras(bundle);
                 TeacherModeDataManager.getInstance().setSelectedQuiz(quiz);
+
+                startActivity(intent);
             }
         } else {
-            intent = new Intent(activity, QuizViewActivity.class);
-        }
+            if (quiz.isActivated()) {
+                TeacherModeDataManager.getInstance().setSelectedQuiz(quiz);
+                intent = new Intent(activity, QuizViewActivity.class);
 
-        startActivity(intent);
+                startActivity(intent);
+            } else {
+                Toast.makeText(activity, "This quiz isn't active at the moment", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }
