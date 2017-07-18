@@ -11,7 +11,7 @@ import java.util.Date;
 
 public class Teacher extends User {
 
-    //@SerializedName("classrooms")
+    @SerializedName("classrooms")
     private ArrayList<Classroom> classrooms;
 
     /**

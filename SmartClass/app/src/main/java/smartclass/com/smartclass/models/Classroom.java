@@ -10,6 +10,9 @@ import java.util.ArrayList;
 
 public class Classroom {
 
+    @SerializedName("_id")
+    private String classroomId;
+
     @SerializedName("title")
     private String title;
 
@@ -46,4 +49,7 @@ public class Classroom {
     public ArrayList<String> getQuizHistory() { return this.quizHistory; }
     public int getStudentsCount() { return this.students.size(); }
     public int getQuizHistoryCount() { return this.quizHistory.size(); }
+    public String getClassroomId() {
+        return classroomId;
+    }
 }

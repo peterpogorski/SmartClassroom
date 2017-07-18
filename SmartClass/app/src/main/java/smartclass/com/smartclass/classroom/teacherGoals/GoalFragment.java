@@ -28,6 +28,7 @@ import smartclass.com.smartclass.classroom.teacherGoals.goalCreation.GoalCreatio
 import smartclass.com.smartclass.demodata.SmartClassRetrofit;
 import smartclass.com.smartclass.demodata.SmartClassService;
 import smartclass.com.smartclass.demodata.TeacherModeDataManager;
+import smartclass.com.smartclass.demodata.UserToken;
 import smartclass.com.smartclass.goalViewing.ViewGoalActivity;
 import smartclass.com.smartclass.models.Goal;
 
@@ -170,7 +171,7 @@ public class GoalFragment extends Fragment implements GoalContract.View {
     public void loadGoals() {
         SmartClassService smartClassService = mRetrofit.create(SmartClassService.class);
 
-        Call<ArrayList<Goal>> getGoals = smartClassService.getGoals();
+        Call<ArrayList<Goal>> getGoals = smartClassService.getGoals(UserToken.getInstance().getTokenValue());
         getGoals.enqueue(new Callback<ArrayList<Goal>>() {
             @Override
             public void onResponse(Call<ArrayList<Goal>> call, Response<ArrayList<Goal>> response) {

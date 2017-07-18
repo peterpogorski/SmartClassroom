@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -37,7 +38,7 @@ public class GoalAssignmentAdapter extends RecyclerView.Adapter<GoalAssignmentAd
     }
 
     @Override
-    public void onBindViewHolder(GoalAssignmentViewHolder holder, int position) {
+    public void onBindViewHolder(GoalAssignmentViewHolder holder, final int position) {
         final Student student = studentsList.get(position);
         if (holder.studentName == null || holder.currentGoalsCount == null
                 || holder.completedGoalsCount == null || holder.studentSelected == null || holder.itemView == null) {
@@ -48,13 +49,11 @@ public class GoalAssignmentAdapter extends RecyclerView.Adapter<GoalAssignmentAd
             //Picasso.with(context).load(student.getFacebook().getProfilePicture()).into(holder.studentPicture);
         }
         holder.studentName.setText(student.getFirstName() + " " + student.getLastName());
-        // TODO: Show real data
-        holder.currentGoalsCount.setText("5");
         holder.completedGoalsCount.setText(String.format(Locale.CANADA, "%d", (position+3)*3+5));
-        holder.studentSelected.setOnClickListener(new View.OnClickListener() {
+        holder.studentSelected.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                studentsList.get(position).setAssignGoal(isChecked);
             }
         });
     }
@@ -62,7 +61,7 @@ public class GoalAssignmentAdapter extends RecyclerView.Adapter<GoalAssignmentAd
 
     @Override
     public GoalAssignmentAdapter.GoalAssignmentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.student_list_item, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.goal_assignment_item, parent, false);
         return new GoalAssignmentAdapter.GoalAssignmentViewHolder(itemView);
     }
 

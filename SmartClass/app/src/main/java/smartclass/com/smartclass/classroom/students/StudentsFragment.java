@@ -21,6 +21,7 @@ import smartclass.com.smartclass.R;
 import smartclass.com.smartclass.demodata.SmartClassRetrofit;
 import smartclass.com.smartclass.demodata.SmartClassService;
 import smartclass.com.smartclass.demodata.TeacherModeDataManager;
+import smartclass.com.smartclass.demodata.UserToken;
 import smartclass.com.smartclass.models.Student;
 
 /**
@@ -83,8 +84,11 @@ public class StudentsFragment extends Fragment implements StudentsContract.View 
 
         SmartClassService smartClassService = mRetrofit.create(SmartClassService.class);
 
-        Call<ArrayList<Student>> getStudents = smartClassService.getStudents();
-        getStudents.enqueue(new Callback<ArrayList<Student>>() {
+        String classroomId = UserToken.getInstance().getClassroomId();
+        String token = UserToken.getInstance().getTokenValue();
+
+        Call<ArrayList<Student>> getClassroomStudents = smartClassService.getClassroomStudents(classroomId, token);
+        getClassroomStudents.enqueue(new Callback<ArrayList<Student>>() {
             @Override
             public void onResponse(Call<ArrayList<Student>> call, Response<ArrayList<Student>> response) {
                 mPresenter.onStudentListLoaded(response.body());
@@ -95,7 +99,6 @@ public class StudentsFragment extends Fragment implements StudentsContract.View 
 
             }
         });
-
         return rootView;
     }
 

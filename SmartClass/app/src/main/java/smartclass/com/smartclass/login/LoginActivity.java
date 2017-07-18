@@ -51,6 +51,8 @@ public class LoginActivity extends Activity implements LoginContract.View {
             UserToken.getInstance().init(tokenValue, userId);
             boolean isTeacher = mSharedPreferences.getBoolean(getString(R.string.saved_teacher_field), false);
             TeacherModeDataManager.getInstance().init(isTeacher);
+            String classroomId = mSharedPreferences.getString(getString(R.string.saved_classroom_id), null);
+            UserToken.getInstance().initClassroomId(classroomId);
             mPresenter.onAlreadyLoggedIn();
         }
 

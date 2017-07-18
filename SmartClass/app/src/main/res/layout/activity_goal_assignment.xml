@@ -9,21 +9,10 @@
         android:background="@color/colorPrimary"
         android:orientation="horizontal">
 
-        <ImageButton
-            android:id="@+id/back"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:padding="8dp"
-            android:layout_marginLeft="8dp"
-            android:background="@drawable/ic_back"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"/>
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="36dp"
+            android:textSize="28dp"
             android:textStyle="bold"
             android:layout_centerInParent="true"
             android:textColor="@color/white"
@@ -34,7 +23,7 @@
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:padding="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginRight="16dp"
             android:background="@drawable/ic_checkmark"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
@@ -43,7 +32,7 @@
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/list_view"
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

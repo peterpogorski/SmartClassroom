@@ -10,6 +10,7 @@ import retrofit2.Retrofit;
 import smartclass.com.smartclass.demodata.SmartClassRetrofit;
 import smartclass.com.smartclass.demodata.SmartClassService;
 import smartclass.com.smartclass.demodata.TeacherModeDataManager;
+import smartclass.com.smartclass.demodata.UserToken;
 import smartclass.com.smartclass.models.Goal;
 import smartclass.com.smartclass.models.Student;
 
@@ -60,11 +61,11 @@ public class GoalCreationPresenter implements GoalCreationContract.Presenter {
 
         SmartClassService smartClassService = mRetrofit.create(SmartClassService.class);
 
-        Call<Goal> createGoal = smartClassService.createGoal(goal);
+        Call<Goal> createGoal = smartClassService.createGoal(goal, UserToken.getInstance().getTokenValue());
         createGoal.enqueue(new Callback<Goal>() {
             @Override
             public void onResponse(Call<Goal> call, Response<Goal> response) {
-                // TODO: Do something, perhaps finish activity here
+                mView.assignToStudents(response.body());
             }
 
             @Override

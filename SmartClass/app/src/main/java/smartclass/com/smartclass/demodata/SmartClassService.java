@@ -9,8 +9,10 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import smartclass.com.smartclass.models.AssignGoalStudents;
 import smartclass.com.smartclass.models.AuthenticatedUser;
 import smartclass.com.smartclass.models.Goal;
+import smartclass.com.smartclass.models.GoalAssignedResponse;
 import smartclass.com.smartclass.models.LoginUser;
 import smartclass.com.smartclass.models.Quiz;
 import smartclass.com.smartclass.models.Student;
@@ -44,17 +46,22 @@ public interface SmartClassService {
     Call<Student> deleteStudent();
 
     @GET("goals")
-    Call<ArrayList<Goal>> getGoals();
+    Call<ArrayList<Goal>> getGoals(@Header("token") String token);
 
     @GET("goals/{id}")
     Call<Goal> getGoal(@Path("id") String studentId);
 
     @POST("goals")
-    Call<Goal> createGoal(@Body Goal goal);
+    Call<Goal> createGoal(@Body Goal goal, @Header("token") String token);
 
     @DELETE("goals/{id}")
     Call<Goal> deleteGoal(@Path("id") String goalId);
 
+    @GET("classrooms/{id}/students")
+    Call<ArrayList<Student>> getClassroomStudents(@Path("id") String classroomId, @Header("token") String token);
+
+    @POST("students/goals")
+    Call<GoalAssignedResponse> assignGoalToStudents(@Body AssignGoalStudents assignGoalStudents, @Header("token") String token);
     // Quizzes
 
     @POST("classrooms/{id}/quizzes")

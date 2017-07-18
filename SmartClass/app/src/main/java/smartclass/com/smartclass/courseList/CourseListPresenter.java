@@ -35,7 +35,7 @@ public class CourseListPresenter implements CourseListContract.Presenter {
 
     @Override
     public void onCourseSelected(Classroom classroom) {
-        mCourseView.showCourse(classroom.getTitle());
+        mCourseView.showCourse(classroom.getTitle(), classroom.getClassroomId());
     }
 
     @Override
