@@ -23,7 +23,7 @@ public class StudentQuizHistory {
     private ArrayList<StudentQuizResponse> results;
 
     @SerializedName("quiz")
-    private String quiz;
+    private String quizId;
 
     /**
      * Constructor
@@ -31,15 +31,15 @@ public class StudentQuizHistory {
      * @param mark Student's mark on the quiz
      * @param weight Weight of quiz
      * @param results Students answers
-     * @param quiz Quiz details and questions
+     * @param quizId Quiz details and questions
      */
     public StudentQuizHistory(String title, double mark, double weight,
-                       ArrayList<StudentQuizResponse> results, String quiz) {
+                       ArrayList<StudentQuizResponse> results, String quizId) {
         this.title = title;
         this.mark = mark;
         this.weight = weight;
         this.results = results;
-        this.quiz = quiz;
+        this.quizId = quizId;
     }
 
     public String getTitle() { return this.title; }
@@ -47,5 +47,5 @@ public class StudentQuizHistory {
     public double getWeight() { return this.weight; }
     public ArrayList<StudentQuizResponse> getResults() { return this.results; }
     public int getResultsCount() { return this.results.size(); }
-    public String getQuiz() { return this.quiz; }
+    public String getQuizId() { return this.quizId; }
 }

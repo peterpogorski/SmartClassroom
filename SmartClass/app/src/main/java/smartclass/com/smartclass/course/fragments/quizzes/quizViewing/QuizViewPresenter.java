@@ -62,8 +62,7 @@ public class QuizViewPresenter implements QuizViewContract.Presenter {
                 ArrayList<StudentQuizResponse> studentQuizResponses = new ArrayList<>();
                 studentQuizResponses.add(studentQuizResponse);
 
-                /*
-                StudentQuizHistory quizHistory = new StudentQuizHistory(quiz.getTitle(), earnedMarks, 0.1, studentQuizResponses, quiz);
+                StudentQuizHistory quizHistory = new StudentQuizHistory(quiz.getTitle(), earnedMarks, 0.1, studentQuizResponses, quiz.getQuizId());
 
                 Call<Student> submitQuiz = smartClassService.submitQuiz(UserToken.getInstance().getUserId(),
                         UserToken.getInstance().getTokenValue(), quizHistory);
@@ -86,7 +85,6 @@ public class QuizViewPresenter implements QuizViewContract.Presenter {
                         // TODO: Handle failure
                     }
                 });
-                */
             }
 
             @Override
