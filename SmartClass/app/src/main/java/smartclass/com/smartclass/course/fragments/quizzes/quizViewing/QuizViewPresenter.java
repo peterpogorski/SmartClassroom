@@ -64,7 +64,7 @@ public class QuizViewPresenter implements QuizViewContract.Presenter {
 
                 StudentQuizHistory quizHistory = new StudentQuizHistory(quiz.getTitle(), earnedMarks, 0.1, studentQuizResponses, quiz);
 
-                Call<Student> submitQuiz = smartClassService.submitQuiz(TeacherModeDataManager.getInstance().getCurrentClassroomId(),
+                Call<Student> submitQuiz = smartClassService.submitQuiz(UserToken.getInstance().getUserId(),
                         UserToken.getInstance().getTokenValue(), quizHistory);
                 submitQuiz.enqueue(new Callback<Student>() {
                     @Override

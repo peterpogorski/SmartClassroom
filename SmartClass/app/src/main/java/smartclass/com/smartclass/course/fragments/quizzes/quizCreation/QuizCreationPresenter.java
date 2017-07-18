@@ -11,7 +11,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import smartclass.com.smartclass.demodata.SmartClassRetrofit;
 import smartclass.com.smartclass.demodata.SmartClassService;
-import smartclass.com.smartclass.demodata.TeacherModeDataManager;
 import smartclass.com.smartclass.demodata.UserToken;
 import smartclass.com.smartclass.models.Quiz;
 import smartclass.com.smartclass.models.QuizQuestion;
@@ -89,7 +88,7 @@ public class QuizCreationPresenter implements QuizCreationContract.Presenter {
 
         SmartClassService smartClassService = SmartClassRetrofit.getInstance().create(SmartClassService.class);
 
-        Call<Quiz> createQuiz = smartClassService.createQuiz(TeacherModeDataManager.getInstance().getCurrentClassroomId(),
+        Call<Quiz> createQuiz = smartClassService.createQuiz(UserToken.getInstance().getClassroomId(),
                 UserToken.getInstance().getTokenValue(), quiz);
         createQuiz.enqueue(new Callback<Quiz>() {
             @Override

@@ -101,6 +101,9 @@ public interface SmartClassService {
     @POST("classrooms/{id}/attendances/{attendanceId}/stop")
     Call<Attendance> stopAttendancePoll(@Path("id") String classroomId, @Path("attendanceId") String attendanceId, @Header("token") String token);
 
-    @POST("classrooms/{id}/{studentId}/signin")
+    @POST("classrooms/{id}/students/{studentId}/signin")
     Call<Attendance> respondToAttendancePoll(@Path("id") String classroomId, @Path("studentId") String studentId, @Header("token") String token);
+
+    @GET("classrooms/{id}/attendances")
+    Call<ArrayList<Attendance>> getAttendances(@Path("id") String classroomId, @Header("token") String token);
 }

@@ -52,5 +52,5 @@ public class Attendance {
     public ArrayList<Student> getPresentStudentsList() { return presentStudents; }
     public boolean isActive() { return isActivated; }
     public void setActiveStatus(boolean isActive) { this.isActivated = isActive; }
-    private boolean getAttendanceAcceptance() { return accepted; }
+    public boolean getAttendanceAcceptance() { return accepted; }
 }
