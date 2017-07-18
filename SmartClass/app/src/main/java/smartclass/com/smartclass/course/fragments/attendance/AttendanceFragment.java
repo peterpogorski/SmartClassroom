@@ -6,6 +6,9 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -32,6 +35,12 @@ public class AttendanceFragment extends Fragment implements AttendanceContract.V
 
     private boolean polling = false;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -54,7 +63,7 @@ public class AttendanceFragment extends Fragment implements AttendanceContract.V
                         attendanceButton.setText("Finish Polling");
                         attendancePollStatus.setText("Active");
                         attendancePollStatus.setTextColor(getResources().getColor(R.color.green));
-                        
+
                         if (mPresenter != null) {
                             mPresenter.startAttendancePoll();
                         }
@@ -72,8 +81,7 @@ public class AttendanceFragment extends Fragment implements AttendanceContract.V
             view.findViewById(R.id.attendance_status_label).setVisibility(View.GONE);
             view.findViewById(R.id.attendance_status).setVisibility(View.GONE);
         } else {
-            // TODO: Call API to check if teacher is currently polling for attendance
-
+            view.findViewById(R.id.attendance_status_layout).setVisibility(View.GONE);
             attendanceButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -83,6 +91,28 @@ public class AttendanceFragment extends Fragment implements AttendanceContract.V
         }
 
         return view;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        if (!TeacherModeDataManager.getInstance().isTeacherModeEnabled()) {
+            inflater.inflate(R.menu.menu_attendance, menu);
+        }
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    /**
+     * Handles action bar button clicks
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_refresh:
+                // TODO: Check for an active attendance poll
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     // CONTRACT METHODS
