@@ -1,5 +1,6 @@
 package smartclass.com.smartclass.classroom.teacherGoals.goalCreation;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
@@ -22,6 +23,9 @@ import java.util.Date;
 
 import smartclass.com.smartclass.DatePickerFragment;
 import smartclass.com.smartclass.R;
+import smartclass.com.smartclass.classroom.ClassroomActivity;
+import smartclass.com.smartclass.classroom.teacherGoals.goalAssignment.GoalAssignmentActivity;
+import smartclass.com.smartclass.models.Goal;
 
 public class GoalCreationActivity extends AppCompatActivity implements GoalCreationContract.View {
 
@@ -119,9 +123,7 @@ public class GoalCreationActivity extends AppCompatActivity implements GoalCreat
                 finish();
                 return true;
             case R.id.action_finish:
-                if (mPresenter.createGoal()) {
-                    finish();
-                }
+                mPresenter.createGoal();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -214,6 +216,15 @@ public class GoalCreationActivity extends AppCompatActivity implements GoalCreat
         }
 
         return returnValue;
+    }
+
+    @Override
+    public void assignToStudents(Goal goal) {
+        Intent intent = new Intent(this, GoalAssignmentActivity.class);
+        intent.putExtra(GoalAssignmentActivity.GOAL_ID, goal.getGoalId());
+        intent.putExtra(GoalAssignmentActivity.GOAL_TITLE, goal.getTitle());
+        startActivity(intent);
+        finish();
     }
 
     @Override

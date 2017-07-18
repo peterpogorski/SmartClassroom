@@ -67,7 +67,13 @@ public class CourseListActivity extends Activity implements CourseListContract.V
     }
 
     @Override
-    public void showCourse(String courseName) {
+    public void showCourse(String courseName, String classroomId) {
+        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.pref_name), Context.MODE_PRIVATE);
+        sharedPreferences.edit().putString(getString(R.string.saved_classroom_id), classroomId);
+        sharedPreferences.edit().commit();
+
+        UserToken.getInstance().initClassroomId(classroomId);
+
         Intent intent;
         if (TeacherModeDataManager.getInstance().isTeacherModeEnabled()) {
             intent = new Intent(this, ClassroomActivity.class);

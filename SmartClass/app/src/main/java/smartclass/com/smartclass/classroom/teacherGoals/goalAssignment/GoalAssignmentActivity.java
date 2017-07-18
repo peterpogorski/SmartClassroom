@@ -10,14 +10,12 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import smartclass.com.smartclass.R;
-import smartclass.com.smartclass.classroom.students.StudentsListAdapter;
 import smartclass.com.smartclass.demodata.SmartClassRetrofit;
 import smartclass.com.smartclass.demodata.SmartClassService;
 import smartclass.com.smartclass.models.Goal;
@@ -29,10 +27,14 @@ import smartclass.com.smartclass.models.Student;
 
 public class GoalAssignmentActivity extends Activity implements GoalAssignmentContract.View {
 
+    public static final String GOAL_ID = "goal_id";
+    public static final String GOAL_TITLE = "goal_title";
+
     private ImageButton mAcceptButton;
     private RecyclerView mRecyclerView;
 
-    private Goal mGoal;
+    private String mGoalTitle;
+    private String mGoalId;
     private GoalAssignmentAdapter mAdapter;
     private GoalAssignmentPresenter mPresenter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -42,6 +44,9 @@ public class GoalAssignmentActivity extends Activity implements GoalAssignmentCo
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mGoalId = getIntent().getStringExtra(GOAL_ID);
+        mGoalTitle = getIntent().getStringExtra(GOAL_TITLE);
 
         setContentView(R.layout.activity_goal_assignment);
 
@@ -55,6 +60,8 @@ public class GoalAssignmentActivity extends Activity implements GoalAssignmentCo
 
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
+
+        mPresenter.onCreate();
     }
 
     @Override

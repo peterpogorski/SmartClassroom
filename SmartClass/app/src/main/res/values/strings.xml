@@ -32,6 +32,7 @@
     <string name="password">Password</string>
     <string name="saved_user_token">User Token</string>
     <string name="saved_user_id">User Id</string>
+    <string name="saved_classroom_id">Classroom Id</string>
     <string name="saved_teacher_field">Teacher Field</string>
     <string name="are_you_teacher">Are you a teacher?</string>
     <string name="username_empty">Please enter a username.</string>

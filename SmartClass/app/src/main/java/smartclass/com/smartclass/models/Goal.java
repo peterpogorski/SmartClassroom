@@ -12,6 +12,9 @@ import java.util.Date;
 
 public class Goal implements Parcelable {
 
+    @SerializedName("_id")
+    private String goalId;
+
     @SerializedName("title")
     private String title;
 
@@ -63,6 +66,9 @@ public class Goal implements Parcelable {
     public Date getStartDate() { return this.startDate; }
     public Date getEndDate() { return this.endDate; }
     public Double getWeight() { return this.weight; }
+    public String getGoalId() {
+        return goalId;
+    }
 
     @Override
     public int describeContents() {
@@ -71,6 +77,7 @@ public class Goal implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel out, int flags) {
+        out.writeString(goalId);
         out.writeString(title);
         out.writeString(description);
         out.writeString(type);
@@ -91,6 +98,7 @@ public class Goal implements Parcelable {
     };
 
     private Goal(Parcel in) {
+        goalId = in.readString();
         title = in.readString();
         description = in.readString();
         type = in.readString();

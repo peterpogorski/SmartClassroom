@@ -2,6 +2,8 @@ package smartclass.com.smartclass.classroom.teacherGoals.goalCreation;
 
 import java.util.Date;
 
+import smartclass.com.smartclass.models.Goal;
+
 /**
  * Created by kevinT on 2017-06-18.
  */
@@ -23,5 +25,6 @@ public class GoalCreationContract {
         Date getEndDate();
         boolean highlightEmptyFields();
         void displaySnackbar(String message);
+        void assignToStudents(Goal goal);
     }
 }

@@ -10,6 +10,7 @@ public class UserToken {
 
     private String mTokenValue;
     private String mUserId;
+    private String mClassroomId;
 
     public static UserToken getInstance() {
         if(instance == null) {
@@ -23,11 +24,18 @@ public class UserToken {
         mUserId = userId;
     }
 
+    public void initClassroomId(String classroomId) {
+        mClassroomId = classroomId;
+    }
     public String getTokenValue() {
         return mTokenValue;
     }
 
     public String getUserId() {
         return mUserId;
+    }
+
+    public String getClassroomId() {
+        return mClassroomId;
     }
 }

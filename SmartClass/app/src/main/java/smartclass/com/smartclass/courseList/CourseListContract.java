@@ -20,7 +20,7 @@ public class CourseListContract {
     }
 
     interface View {
-        void showCourse(String courseName);
+        void showCourse(String courseName, String classroomID);
         void confirmLogout();
         void clearCredentials();
         void showLoginScreen();

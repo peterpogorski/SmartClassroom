@@ -44,16 +44,19 @@ public interface SmartClassService {
     Call<Student> deleteStudent();
 
     @GET("goals")
-    Call<ArrayList<Goal>> getGoals();
+    Call<ArrayList<Goal>> getGoals(@Header("token") String token);
 
     @GET("goals/{id}")
     Call<Goal> getGoal(@Path("id") String studentId);
 
     @POST("goals")
-    Call<Goal> createGoal(@Body Goal goal);
+    Call<Goal> createGoal(@Body Goal goal, @Header("token") String token);
 
     @DELETE("goals/{id}")
     Call<Goal> deleteGoal(@Path("id") String goalId);
+
+    @GET("classrooms/{id}/students")
+    Call<ArrayList<Student>> getClassroomStudents(@Path("id") String classroomId, @Header("token") String token);
 
     // Quizzes
 
