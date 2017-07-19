@@ -11,14 +11,20 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import smartclass.com.smartclass.R;
 import smartclass.com.smartclass.demodata.TeacherModeDataManager;
+import smartclass.com.smartclass.models.Presence;
+import smartclass.com.smartclass.models.PresenceStudent;
 import smartclass.com.smartclass.models.Student;
 
 /**
@@ -32,6 +38,8 @@ public class AttendanceFragment extends Fragment implements AttendanceContract.V
     private Button attendanceButton;
     private TextView attendancePollStatus;
     private TextView attendanceStatus;
+    private LinearLayout separator;
+    private ListView presentStudentsListView;
 
     private boolean polling = false;
 
@@ -50,6 +58,8 @@ public class AttendanceFragment extends Fragment implements AttendanceContract.V
         attendanceButton = (Button) view.findViewById(R.id.attendance_button);
         attendancePollStatus = (TextView) view.findViewById(R.id.attendance_poll_status);
         attendanceStatus = (TextView) view.findViewById(R.id.attendance_status);
+        separator = (LinearLayout) view.findViewById(R.id.separator);
+        presentStudentsListView = (ListView) view.findViewById(R.id.present_students_listview);
 
         mPresenter = new AttendancePresenter(this);
 
@@ -127,8 +137,27 @@ public class AttendanceFragment extends Fragment implements AttendanceContract.V
     }
 
     @Override
-    public void showListOfPresentStudents(ArrayList<Student> presentStudents) {
-        // TODO
+    public void showListOfPresentStudents(ArrayList<Presence> presentStudents) {
+        Activity activity = getActivity();
+        if (activity == null) { return; }
+
+        if (presentStudents.size() == 0) {
+            Toast.makeText(activity, "No students are present", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        separator.setVisibility(View.VISIBLE);
+        presentStudentsListView.setVisibility(View.VISIBLE);
+        List<String> studentNames = new ArrayList<>();
+        for (int i = 0; i < presentStudents.size(); i++) {
+            PresenceStudent
+                    student = presentStudents.get(i).getStudent();
+            String studentFullname = student.getFirstName()+" "+student.getLastName();
+            studentNames.add(studentFullname);
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(activity, android.R.layout.simple_list_item_1, studentNames);
+        presentStudentsListView.setAdapter(adapter);
     }
 
     @Override
