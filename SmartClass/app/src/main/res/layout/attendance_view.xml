@@ -62,4 +62,18 @@
         android:text="Participate"
         style="@style/custom_button"/>
 
+    <LinearLayout
+        android:id="@+id/separator"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:orientation="vertical"
+        android:background="@color/grey"
+        android:layout_margin="4dp"
+        android:visibility="gone"/>
+
+    <ListView
+        android:id="@+id/present_students_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
 </LinearLayout>
