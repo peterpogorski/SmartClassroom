@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName;
 public class Presence {
 
     @SerializedName("student")
-    private Student student;
+    private PresenceStudent student;
 
     @SerializedName("present")
     private boolean present;
@@ -18,11 +18,11 @@ public class Presence {
      * Constructor
      * @param student
      */
-    public Presence(Student student) {
+    public Presence(PresenceStudent student) {
         this.student = student;
         this.present = false;
     }
 
-    public Student getStudent() { return student; }
+    public PresenceStudent getStudent() { return student; }
     public boolean getAttendanceStatus() { return present; }
 }
