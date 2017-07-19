@@ -12,16 +12,17 @@ public class Presence {
     private Student student;
 
     @SerializedName("present")
-    private boolean attendanceStatus;
+    private boolean present;
 
+    /**
+     * Constructor
+     * @param student
+     */
     public Presence(Student student) {
         this.student = student;
-        this.attendanceStatus = false;
+        this.present = false;
     }
 
-    public Student getStudent() {
-        return student;
-    }
-
-    public boolean getAttendanceStatus() { return attendanceStatus; }
+    public Student getStudent() { return student; }
+    public boolean getAttendanceStatus() { return present; }
 }

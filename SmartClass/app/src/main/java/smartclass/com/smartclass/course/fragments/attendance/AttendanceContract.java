@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
 
+import smartclass.com.smartclass.models.Presence;
 import smartclass.com.smartclass.models.Student;
 
 /**
@@ -21,7 +22,7 @@ public class AttendanceContract {
 
     interface View {
         void showToastMessage(@NonNull String message);
-        void showListOfPresentStudents(ArrayList<Student> presentStudents);
+        void showListOfPresentStudents(ArrayList<Presence> presentStudents);
         void updateStudentAttendanceStatus(boolean present);
     }
 }

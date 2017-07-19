@@ -21,7 +21,7 @@ public class Attendance {
     private String classroomId;
 
     @SerializedName("presences")
-    private ArrayList<Student> presentStudents;
+    private ArrayList<Presence> presentStudents;
 
     @SerializedName("activated")
     private boolean isActivated;
@@ -49,7 +49,7 @@ public class Attendance {
     public String getId() { return id; }
     public String getTitle() { return title; }
     public String getClassroomId() { return classroomId; }
-    public ArrayList<Student> getPresentStudentsList() { return presentStudents; }
+    public ArrayList<Presence> getPresentStudentsList() { return presentStudents; }
     public boolean isActive() { return isActivated; }
     public void setActiveStatus(boolean isActive) { this.isActivated = isActive; }
     public boolean getAttendanceAcceptance() { return accepted; }

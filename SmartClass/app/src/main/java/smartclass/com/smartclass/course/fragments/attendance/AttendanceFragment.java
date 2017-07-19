@@ -23,6 +23,7 @@ import java.util.List;
 
 import smartclass.com.smartclass.R;
 import smartclass.com.smartclass.demodata.TeacherModeDataManager;
+import smartclass.com.smartclass.models.Presence;
 import smartclass.com.smartclass.models.Student;
 
 /**
@@ -135,7 +136,7 @@ public class AttendanceFragment extends Fragment implements AttendanceContract.V
     }
 
     @Override
-    public void showListOfPresentStudents(ArrayList<Student> presentStudents) {
+    public void showListOfPresentStudents(ArrayList<Presence> presentStudents) {
         Activity activity = getActivity();
         if (activity == null) { return; }
 
@@ -148,7 +149,7 @@ public class AttendanceFragment extends Fragment implements AttendanceContract.V
         presentStudentsListView.setVisibility(View.VISIBLE);
         List<String> studentNames = new ArrayList<>();
         for (int i = 0; i < presentStudents.size(); i++) {
-            Student student = presentStudents.get(i);
+            Student student = presentStudents.get(i).getStudent();
             String studentFullname = student.getFirstName()+" "+student.getLastName();
             studentNames.add(studentFullname);
         }

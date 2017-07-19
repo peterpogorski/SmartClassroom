@@ -10,6 +10,7 @@ import smartclass.com.smartclass.demodata.SmartClassService;
 import smartclass.com.smartclass.demodata.TeacherModeDataManager;
 import smartclass.com.smartclass.demodata.UserToken;
 import smartclass.com.smartclass.models.Attendance;
+import smartclass.com.smartclass.models.Presence;
 import smartclass.com.smartclass.models.Student;
 
 /**
@@ -57,7 +58,7 @@ public class AttendancePresenter implements  AttendanceContract.Presenter {
             public void onResponse(Call<Attendance> call, Response<Attendance> response) {
                 Attendance attendance = response.body();
                 if (attendance != null) {
-                    ArrayList<Student> presentStudents = attendance.getPresentStudentsList();
+                    ArrayList<Presence> presentStudents = attendance.getPresentStudentsList();
                     if (mView !=null) {
                         mView.showListOfPresentStudents(presentStudents);
                     }
