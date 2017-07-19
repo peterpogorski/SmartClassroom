@@ -85,6 +85,13 @@ public class QuizViewPresenter implements QuizViewContract.Presenter {
                         // TODO: Handle failure
                     }
                 });
+
+                if(isActive) {
+                    mView.showToastMessage("Successfully submitted the quiz!");
+                    mView.dismissView();
+                } else {
+                    mView.showToastMessage("The quiz is no longer active.");
+                }
             }
 
             @Override
